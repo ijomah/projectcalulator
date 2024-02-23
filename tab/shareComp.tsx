@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import React from "react";
-import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
-export default function ShareComp() {
-    return (
-        <SafeAreaView>
-            <View style={styles.container}>
-                <Text>Open up App.tsx to start working on your app!</Text>
-                <StatusBar style="auto" />
-            </View>
-        </SafeAreaView>
+function ShareBtn() {
+    const shareScannedImage = (shareUrl) => {
+        if ( Sharing.isAvailableAsync() ) {
+            Sharing.shareAsync(shareUrl, {
+                dialogTitle: 'Share this File'
+                // mimeType: 
+            });
+            ToastAndroid.show('Sharing file', ToastAndroid.SHORT)
+        } else {
+            ToastAndroid.show('Sharing not available in this device', ToastAndroid.SHORT)
+        }
+    }
+    return(
+        <TouchableOpacity>
+            <Feather name="share-2" size={24} color="black" />
+        </TouchableOpacity>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'red'
-    }
-})
+export default ShareBtn;

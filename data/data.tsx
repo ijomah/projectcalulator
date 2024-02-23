@@ -1,3 +1,14 @@
+export const screeninfos = [
+    {id: '1', type: 'process', building: 'Residential',  info: 'Calculate Processing Fee'},
+    {id: '2', type: 'stage', building: 'Commercial', info: 'Calculate Stage Certificaton'},
+    {id: '3', type: 'penal', building: 'institutional', info: 'Calculate Penal Fee'},
+    {id: '4', type: 'idc', building: 'Mised Use',  info: 'Calculate I.D.C'},
+    {id: '5', type: 'pfs', building: 'Agricultural', info: 'Calculate P.F.S Assessment'},
+    {id: '6', type: 'setting', building: 'Recreational', info: 'Setting'},
+    {id: '7', type: 'pixCollage', building: null, info: 'Picture Collage'}
+]
+
+
 export const districtOffices = [
     {id: '1', district: 'Eti-Osa West'},
     {id: '2', district: 'Eti-Osa East'},
@@ -50,3 +61,4 @@ export const districtOffices = [
     {id: '48', district: 'Eredo'},
     {id: '49', district: 'E-pp Headquarters'}
 ]
+

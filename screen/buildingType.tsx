@@ -1,37 +1,39 @@
 import React from "react";
-import { SafeAreaView, 
-        StyleSheet, 
-        FlatList, 
-        View, Text, TextInput, 
-        TouchableOpacity } from "react-native";
+import { 
+    SafeAreaView, 
+    StyleSheet, 
+    FlatList, 
+    View, Text, TextInput, 
+    TouchableOpacity, 
+    useWindowDimensions} from "react-native";
+import { screeninfos } from "../data/data";
 
-export default function HomePage({navigation}: any) {
-    const screenInfo = [
-        {id: '1', type: 'process', info: 'Calculate Processing Fee'},
-        {id: '2', type: 'stage', info: 'Calculate Stage Certificaton'},
-        {id: '3', type: 'penal', info: 'Calculate Penal Fee'},
-        {id: '4', type: 'idc',  info: 'Calculate I.D.C'},
-        {id: '5', type: 'pfs', info: 'Calculate P.F.S Assessment'},
-        {id: '6', type: 'setting', info: 'Setting'},
-        {id: '7', type: 'pixCollage', info: 'Picture Collage'}
-    ]
+export default function BuildingTypePage({navigation}: any) {
+    const devDimension = useWindowDimensions()
 
     const showScreenInfo = ({item}: any) => {
         return(
             <TouchableOpacity
+                style={styles.buildType}
                 onPress={navigation.navigate(item.type)}
             >
-                <Text>{item.info}</Text>
+                <Text>{item.building != null ? item.building : ''}</Text>
             </TouchableOpacity>
         )
     } 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.buildTypeBox}>
             <FlatList
-                data={screenInfo}
+                data={screeninfos}
                 renderItem={showScreenInfo}
                 keyExtractor={({item}: any) => item.id}
             />
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    buildTypeBox: {},
+    buildType: {}
+
+})
