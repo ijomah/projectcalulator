@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import SettingPage from './settings/setPage';
 import HomePage from './tab/home';
+import ShareBtn from './tab/shareComp';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,8 +18,8 @@ export default function App() {
         <Tab.Screen name='setting' component={SettingPage} />
         <Tab.Screen name='home' component={HomePage} />
         {/* <Tab.Screen name='usingMode' component={UseMode} />
-        <Tab.Screen name='about' component={AboutPage} />
-        <Tab.Screen name='share' component={ShareButton} />*/}
+        <Tab.Screen name='about' component={AboutPage} /> */}
+        <Tab.Screen name='share' component={ShareBtn} />
       </Tab.Navigator>
     </NavigationContainer>
   );

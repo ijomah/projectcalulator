@@ -10,7 +10,7 @@ export default function ReuseInput({label, inputCheck, inputConfig}: any) {
     return (
         <SafeAreaView>
             <View>
-                <Text>{label}</Text>
+                <Text>{label}:</Text>
                 <TextInput 
                     {...inputConfig}
                 />

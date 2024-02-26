@@ -1,11 +1,12 @@
 export const AppStyles = {
     inputHeight: '',
     inputWidth: '',
-    inputColor: '',
+    inputOutlineColor: '#C8C92D',
 
-    btnColor: '',
+    // btnColor: '#A3FFBA',
     btnHeight: '',
     btnWidth: '',
+    btnTextColor: '#A3FFBA',
 
     txtColor: '',
     txtFont: '',

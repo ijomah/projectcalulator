@@ -3,26 +3,63 @@ import { SafeAreaView,
         StyleSheet, 
         FlatList, 
         View, Text, TextInput, 
-        TouchableOpacity } from "react-native";
-import { screeninfos } from "../data/data";
+        TouchableOpacity 
+} from "react-native";
 
-export default function HomePage({navigation}: any) {
+import { FontAwesome6 } from '@expo/vector-icons';
 
-    const showScreenInfo = ({item}: any) => {
-        return(
-            <TouchableOpacity
-                onPress={navigation.navigate(item.type)}
-            >
-                <Text>{item.info}</Text>
-            </TouchableOpacity>
-        )
-    } 
+import AppButton from "../buttons/appBtn";
+import ReuseInput from "../reuseables/input";
+import DisplayInfo from "../display/display";
+import LabelledDisplay from "../display/labelDisplay";
+
+
+export default function CalculateType({navigation}: any) {
+
+   
     return (
         <SafeAreaView>
-            <FlatList
-                data={screeninfos}
-                renderItem={showScreenInfo}
-                keyExtractor={({item}: any) => item.id}
+            <View>
+                <ReuseInput 
+                        label='FENCING FEE:'
+                        inputConfig={{
+                            placeholder: 'INPUT LAND AREA'
+                        }}
+                />
+                <FontAwesome6 name="equals" size={24} color="black" />
+                <DisplayInfo
+                        // info=
+                />
+           </View>     
+
+           
+            <LabelledDisplay
+                namedInfo='ASSESSMENT FEE'
+                // info={}
+            />
+            
+            <LabelledDisplay
+                namedInfo='LAYOUT FEE'
+            />
+
+            <LabelledDisplay
+                namedInfo='APP & REG FEE'
+            />
+
+            <LabelledDisplay 
+                namedInfo='SUB TOTAL'
+            />
+
+            <LabelledDisplay
+                namedInfo='10%'
+            />
+
+            <LabelledDisplay
+                namedInfo='S.E.C'
+            />
+
+            <LabelledDisplay
+                namedInfo='TOTAL'
             />
         </SafeAreaView>
     )

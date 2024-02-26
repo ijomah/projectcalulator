@@ -8,11 +8,11 @@ import {
 } from "react-native";
 
 //This is reusable button- can be used as prev, save & fee btn
-export default function AppButton({title}: any) {
+export default function AppButton({title, btnConfig}: any) {
     const nav = () => {}
     return (
         <TouchableOpacity
-            onPress={nav}
+            {...btnConfig}
         >
             <Text>{title}</Text>
         </TouchableOpacity>            

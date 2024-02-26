@@ -1,9 +1,11 @@
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, ToastAndroid, View } from "react-native";
+import * as Sharing from 'expo-sharing';
+import { Feather } from '@expo/vector-icons';
 
-function ShareBtn() {
-    const shareScannedImage = (shareUrl) => {
-        if ( Sharing.isAvailableAsync() ) {
+export default function ShareBtn() {
+    const shareScannedImage = async (shareUrl: any) => {
+        if ( await Sharing.isAvailableAsync() ) {
             Sharing.shareAsync(shareUrl, {
                 dialogTitle: 'Share this File'
                 // mimeType: 
@@ -19,5 +21,3 @@ function ShareBtn() {
         </TouchableOpacity>
     )
 }
-
-export default ShareBtn;
