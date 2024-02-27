@@ -61,6 +61,26 @@ export default function CalculateType({navigation}: any) {
             <LabelledDisplay
                 namedInfo='TOTAL'
             />
+
+            <AppButton 
+            // title=
+            // btnConfig=
+            />
+
+            <AppButton 
+            // title=
+            // btnConfig=
+            />
+
+            <AppButton 
+            // title=
+            // btnConfig=
+            />
+
+            <AppButton 
+            // title=
+            // btnConfig=
+            />
         </SafeAreaView>
     )
 }

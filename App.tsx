@@ -8,13 +8,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SettingPage from './settings/setPage';
 import HomePage from './tab/home';
 import ShareBtn from './tab/shareComp';
+import AppHeadLogo from './reuseables/headerLogo';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{
+        headerTitle: (props) => <AppHeadLogo {...props} />
+      }}>
         <Tab.Screen name='setting' component={SettingPage} />
         <Tab.Screen name='home' component={HomePage} />
         {/* <Tab.Screen name='usingMode' component={UseMode} />

@@ -8,6 +8,24 @@ export const screeninfos = [
     {id: '7', type: 'pixCollage', building: null, info: 'Picture Collage'}
 ]
 
+export const feeData = [
+    {feeType:'ASSESSMENT', id: '1'},
+    {feeType:'PROCESSING', id: '2'}
+];
+// export const percentData = [
+//     '5%', '10%', '15%', '20%', '25%', '30%',
+//     '35%', '40%', '45%', '50%', '55%', '60%',
+//     '65%', '70%', '80%', '85%', '90%', '95%',
+//     '100%'
+// ]
+
+//filter the Array
+
+let rangeNum = (min: number, max: number) => Array.from({length: max-min+1}, (_, i)=> {
+    if((min + i)%5 === 0 ) return {value: (min + i)+'%', label: `${i +1}`}
+})
+let numPercent = rangeNum(5, 100)
+export const percentData = numPercent.filter((datum) => datum != undefined)
 
 export const districtOffices = [
     {id: '1', district: 'Eti-Osa West'},

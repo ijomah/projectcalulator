@@ -6,17 +6,20 @@ import ReuseInput from '../../reuseables/input';
 export default function PaymentAcc({feeType}: any) {
     return (
         <SafeAreaView>
-            <Text>LASG {' '} {feeType} {' '} FEE PAYMENT ACCOUNT</Text>
+            <Text>
+                LASG {' '} {feeType} {' '} 
+                FEE PAYMENT ACCOUNT
+            </Text>
             <View style={styles.container}>
                 <ReuseInput 
-                    label='Agency Code'
+                    label='AGENCY CODE'
                     inputConfig={{
                         placeHolder: 'Code',
                         
                     }}
                 />
                 <ReuseInput 
-                    label='Revenue Code'
+                    label='REVENUE CODE'
                     inputConfig={{
                         placeHolder: 'Code',
                         
