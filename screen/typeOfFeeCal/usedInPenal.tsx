@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
-import PaymentAcc from './paymentAcc';
+import PaymentAcc from '../../settings/paymentAcc/paymentAcc';
 import LabelledDisplay from '../../display/labelDisplay';
 import AppButton from '../../buttons/appBtn';
 

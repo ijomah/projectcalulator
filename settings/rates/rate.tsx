@@ -74,6 +74,6 @@ export default function RatePage() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red'
+        // backgroundColor: 'red'
     }
 })

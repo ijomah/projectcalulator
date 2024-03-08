@@ -14,7 +14,8 @@ import DisplayInfo from "../display/display";
 import LabelledDisplay from "../display/labelDisplay";
 
 
-export default function CalculateType({navigation}: any) {
+export default function 
+({navigation}: any) {
 
    
     return (

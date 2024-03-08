@@ -3,11 +3,11 @@ import React from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 import PaymentAcc from './paymentAcc';
 
-export default function ProcessingAcc() {
+export default function IDCAccount() {
     return (
         <SafeAreaView>
             <PaymentAcc
-                feeType='PROCESSING FEE'
+                feeType='BETTERMENT (IDC)'
             />
         </SafeAreaView>
     )

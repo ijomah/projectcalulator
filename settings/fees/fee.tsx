@@ -2,15 +2,19 @@ import { StatusBar } from 'expo-status-bar';
 import React from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 import ReuseInput from '../../reuseables/input';
+import DisplayInfo from '../../display/display';
 
 export default function FeePage() {
     return (
         <SafeAreaView>
+            <DisplayInfo 
+                info='FEES'
+            />
             <View style={styles.container}>
                 <ReuseInput 
                     label='APP & REG FEE'
                     inputConfig={{
-                        placeholder: 'AMOUNT'
+                        placeholder: '  AMOUNT'
                     }}
                 />
                 <ReuseInput 
@@ -26,6 +30,6 @@ export default function FeePage() {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red'
+        // backgroundColor: 'red'
     }
 })

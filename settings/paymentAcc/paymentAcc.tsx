@@ -32,6 +32,6 @@ export default function PaymentAcc({feeType}: any) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'red'
+        // backgroundColor: 'red'
     }
 })

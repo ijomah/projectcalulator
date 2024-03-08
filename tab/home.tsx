@@ -19,12 +19,12 @@ export default function HomePage({navigation}: any) {
         {id: '6', dest: 'setting', info: 'Setting'},
         {id: '7', dest: 'pixCollage', info: 'Picture Collage'}
     ]
-    const {width, height, fontScale, scale} = useWindowDimensions();
+    // const {width, height, fontScale, scale} = useWindowDimensions();
     const showScreenInfo = ({item}: any) => {
         return(
             <TouchableOpacity
                 style={styles.cardStyle}
-                // onPress={navigation.navigate(item.dest)}
+                onPress={navigation.navigate(item.dest)}
             >
                 <Text>{item.info}</Text>
             </TouchableOpacity>
@@ -38,10 +38,10 @@ export default function HomePage({navigation}: any) {
                 // keyExtractor={({item}: any) => item.id}
                 numColumns={3}
             />
-            <Text>Height: {height}</Text>
+            {/* <Text>Height: {height}</Text>
             <Text>Width: {width}</Text>
             <Text>Font scale: {fontScale}</Text>
-            <Text>Pixel ratio: {scale}</Text>
+            <Text>Pixel ratio: {scale}</Text> */}
             <ImageBackground 
             source={require('./../assets/imagebg.jpeg')}
             style={styles.bgImgStyle}    

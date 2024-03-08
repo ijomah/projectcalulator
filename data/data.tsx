@@ -5,7 +5,7 @@ export const screeninfos = [
     {id: '4', type: 'idc', building: 'Mised Use',  info: 'Calculate I.D.C'},
     {id: '5', type: 'pfs', building: 'Agricultural', info: 'Calculate P.F.S Assessment'},
     {id: '6', type: 'setting', building: 'Recreational', info: 'Setting'},
-    {id: '7', type: 'pixCollage', building: null, info: 'Picture Collage'}
+    // {id: '7', type: 'pixCollage', building: null, info: 'Picture Collage'}
 ]
 
 export const feeData = [

@@ -22,7 +22,7 @@ export default function PaymentDisplay({total, codes}: any) {
                     <DisplayInfo
                         info={codes}
                     />
-                    : {' '} 
+                    <Text>: {' '} </Text>
                     <DisplayInfo
                         info={codes}
                     />
@@ -32,7 +32,7 @@ export default function PaymentDisplay({total, codes}: any) {
                     <DisplayInfo
                         info={codes}
                     />
-                    : {' '} 
+                    <Text>: {' '} </Text>
                     <DisplayInfo
                         info={codes}
                     />

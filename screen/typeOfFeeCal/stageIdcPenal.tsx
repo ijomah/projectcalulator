@@ -7,7 +7,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 
 import { feeData, percentData } from '../../data/data';
 
-import PaymentAcc from './paymentAcc';
+import PaymentAcc from '../../settings/paymentAcc/paymentAcc';
 import DisplayInfo from "../../display/display";
 import PaymentDisplay from "../../display/paymentDisplay";
 import LabelledDisplay from "../../display/labelDisplay";

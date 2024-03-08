@@ -2,6 +2,7 @@ export const AppStyles = {
     inputHeight: '',
     inputWidth: '',
     inputOutlineColor: '#C8C92D',
+    inputBorderStyle: 'solid',
 
     // btnColor: '#A3FFBA',
     btnHeight: '',

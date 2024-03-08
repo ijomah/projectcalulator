@@ -4,17 +4,32 @@ import {
     StyleSheet, 
     View, Text, 
     Button, 
-    Image 
+    Image, 
+    useWindowDimensions
 } from "react-native";
 
 //This is reusable button- can be used as prev, save & fee btn
 export default function AppHeadLogo({title, btnConfig}: any) {
-    
+    const devSize = useWindowDimensions();
     return (
         <Image
-            source={require('./../assets/assess-Calculator.png')}
+            style={[
+                styles.imgStyles, 
+                // {
+                //     maxHeight: devSize.height / 10, 
+                //     maxWidth: devSize.width / 2 
+                // }
+            ]}
+            source={require('./../assets/asses-calculator.png')}
         />
-            // <Text>{title}</Text>
         
     )
 }
+
+const styles=StyleSheet.create({
+    imgStyles: {
+        height: 110,
+        width: 250,
+        marginBottom: 25
+    }
+})

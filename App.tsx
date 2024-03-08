@@ -1,38 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import { StyleSheet, Text, View } from 'react-native';
+import TabNavi from "./tab/tabNavigator";
+import BuildingTypePage from "./screen/buildingType";
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import SettingPage from './settings/setPage';
-import HomePage from './tab/home';
-import ShareBtn from './tab/shareComp';
-import AppHeadLogo from './reuseables/headerLogo';
-
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={{
-        headerTitle: (props) => <AppHeadLogo {...props} />
-      }}>
-        <Tab.Screen name='setting' component={SettingPage} />
-        <Tab.Screen name='home' component={HomePage} />
-        {/* <Tab.Screen name='usingMode' component={UseMode} />
-        <Tab.Screen name='about' component={AboutPage} /> */}
-        <Tab.Screen name='share' component={ShareBtn} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name='tabNav' component={TabNavi} />
+                {/* building type */}
+                <Stack.Screen name='process' component={BuildingTypePage} />
+                <Stack.Screen name='stage' component={BuildingTypePage} />
+                <Stack.Screen name='penal' component={BuildingTypePage} />
+                <Stack.Screen name='idc' component={BuildingTypePage} />
+                <Stack.Screen name='pfs' component={BuildingTypePage} />
+                <Stack.Screen name='pixCollage' component={BuildingTypePage} />
+                
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
