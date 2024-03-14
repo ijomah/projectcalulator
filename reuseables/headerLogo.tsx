@@ -29,7 +29,7 @@ export default function AppHeadLogo({title, btnConfig}: any) {
 const styles=StyleSheet.create({
     imgStyles: {
         height: 110,
-        width: 250,
-        marginBottom: 25
+        width: 260,
+        marginBottom: 30
     }
 })

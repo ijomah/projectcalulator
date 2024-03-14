@@ -6,27 +6,31 @@ import {
     View, Text, TextInput, 
     TouchableOpacity, 
     ImageBackground,
-    useWindowDimensions
+    useWindowDimensions,
+    Dimensions
 } from "react-native";
+
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function HomePage({navigation}: any) {
     const screenInfo = [
-        {id: '1', dest: 'process', info: 'Calculate Processing Fee'},
-        {id: '2', dest: 'stage', info: 'Calculate Stage Certificaton'},
-        {id: '3', dest: 'penal', info: 'Calculate Penal Fee'},
-        {id: '4', dest: 'idc',  info: 'Calculate I.D.C'},
-        {id: '5', dest: 'pfs', info: 'Calculate P.F.S Assessment'},
-        {id: '6', dest: 'setting', info: 'Setting'},
-        {id: '7', dest: 'pixCollage', info: 'Picture Collage'}
+        {id: '1', dest: 'process', info: 'Calculate Processing Fee', iconName: 'calculate'},
+        {id: '2', dest: 'stage', info: 'Calculate Stage Certificaton', iconName: 'local-drink'},
+        {id: '3', dest: 'penal', info: 'Calculate Penal Fee', iconName: 'swipe-vertical'},
+        {id: '4', dest: 'idc',  info: 'Calculate I.D.C', iconName: 'escalator'},
+        {id: '5', dest: 'pfs', info: 'Calculate P.F.S Assessment', iconName: 'scale'},
+        {id: '6', dest: 'setting', info: 'Setting', iconName: 'settings-applications'},
+        {id: '7', dest: 'pixCollage', info: 'Picture Collage', iconName: 'picture-in-picture'}
     ]
     // const {width, height, fontScale, scale} = useWindowDimensions();
     const showScreenInfo = ({item}: any) => {
         return(
             <TouchableOpacity
                 style={styles.cardStyle}
-                onPress={navigation.navigate(item.dest)}
+                onPress={() => navigation.navigate(item.dest)}
             >
-                <Text>{item.info}</Text>
+                <MaterialIcons name={item.iconName} size={40} color="#305452" />
+                <Text style={styles.cardTextStyle}>{item.info}</Text>
             </TouchableOpacity>
         )
     } 
@@ -52,29 +56,42 @@ export default function HomePage({navigation}: any) {
     )
 }
 
+const {width, height} = Dimensions.get('screen');
+
 const styles = StyleSheet.create({
     listStyle: {
-        // justifyContent: 'space-between',
-        backgroundColor: 'white',
+        justifyContent: 'center',
+        // backgroundColor: 'red',
         alignItems: 'center',
-        margin: 2,
-        height: 740
+        margin: (width / 100) * 2,
+        height: height
     },
     cardStyle: {
-        height: 100,
-        width: 110,
+        height: height / 8,
+        width: width / 3.5,        
         backgroundColor: '#A3FFBA',
-        margin: 10,
+        margin: (height / 100) + 0.3,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
+        borderRadius: 10,
+        shadowColor: '#ad474a',
+        shadowOffset: {
+            width: -3,
+            height: 4
+        },
+        shadowOpacity: 0.8,
+        elevation: 14,
         borderColor: '#C8C92D'
     },
-    bgImgStyle: {
-        height: 200,
+    bgImgStyle: {    
+        height: height / 2,
         flexDirection: 'column',
         alignSelf: 'stretch',
-        width: 410,
+        width: width * 2,
         opacity: 0.4
+    },
+    cardTextStyle: {
+        textAlign: 'center',
     }
 })

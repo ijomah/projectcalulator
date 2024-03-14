@@ -1,10 +1,10 @@
 export const screeninfos = [
-    {id: '1', type: 'process', building: 'Residential',  info: 'Calculate Processing Fee'},
-    {id: '2', type: 'stage', building: 'Commercial', info: 'Calculate Stage Certificaton'},
-    {id: '3', type: 'penal', building: 'institutional', info: 'Calculate Penal Fee'},
-    {id: '4', type: 'idc', building: 'Mised Use',  info: 'Calculate I.D.C'},
-    {id: '5', type: 'pfs', building: 'Agricultural', info: 'Calculate P.F.S Assessment'},
-    {id: '6', type: 'setting', building: 'Recreational', info: 'Setting'},
+    {id: '1', type: 'process', building: 'Residential',  info: 'Calculate Processing Fee', colors: '#f8d731'},
+    {id: '2', type: 'stage', building: 'Commercial', info: 'Calculate Stage Certificaton', colors: '#0000ff'},
+    {id: '3', type: 'penal', building: 'Institutional', info: 'Calculate Penal Fee', colors: '#ff0000'},
+    {id: '4', type: 'idc', building: 'Mixed Use',  info: 'Calculate I.D.C', colors: '#727430'},
+    {id: '5', type: 'pfs', building: 'Agricultural', info: 'Calculate P.F.S Assessment', colors: '#136734'},
+    {id: '6', type: 'setting', building: 'Recreational', info: 'Setting', colors: '#00ff00'},
     // {id: '7', type: 'pixCollage', building: null, info: 'Picture Collage'}
 ]
 

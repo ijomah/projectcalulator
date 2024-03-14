@@ -15,14 +15,16 @@ export default function AppButton({title, btnConfig}: any) {
             style={styles.btn}
             {...btnConfig}
         >
-            <Text>{title}</Text>
+            <Text style={{color: 'white'}}>{title}</Text>
         </TouchableOpacity>            
     )
 }
 
 const styles=StyleSheet.create({
     btn: {
-        backgroundColor: 'red',
+        borderColor: '#c8c92d',
+        borderWidth: 2,
+        backgroundColor: '#305452',
         height: 52,
         width: 100,
         borderRadius:10,

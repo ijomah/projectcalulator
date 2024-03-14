@@ -5,7 +5,8 @@ import {
     FlatList, 
     View, Text, TextInput, 
     TouchableOpacity, 
-    useWindowDimensions} from "react-native";
+    useWindowDimensions,
+    Dimensions} from "react-native";
 import { AppStyles } from "../constants/styles";
 
 export default function ReuseInput({label, inputCheck, inputConfig}: any) {
@@ -23,20 +24,26 @@ export default function ReuseInput({label, inputCheck, inputConfig}: any) {
     )
 }
 
+const {width, height} = Dimensions.get('screen');
+
 const styles=StyleSheet.create({
     inputCaseStyle: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20,
+        margin: (width / 100),
     },
 
-    labelStyle: {},
+    labelStyle: {
+        fontSize: 13,
+        color: '#1044b8'
+    },
 
     inputStyle: {
-        width: 200,
-        height: 35,
+        width: width / 2,
+        height: (height / 100) * 3,
         borderWidth: 3,
         borderColor: AppStyles.inputOutlineColor,
         borderStyle: 'solid',
+        borderRadius: 8,
     },
 })

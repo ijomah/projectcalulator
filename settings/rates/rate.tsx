@@ -7,10 +7,6 @@ export default function RatePage() {
     return (
         <SafeAreaView>
             <Text>RATES</Text>
-            <View>
-                <Text>District</Text>
-                {/* Dropdown here */}
-            </View>
             <View style={styles.container}>
                                 <ReuseInput 
                     label='RESIDENTIAL USE'

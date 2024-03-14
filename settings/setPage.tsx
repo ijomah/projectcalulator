@@ -5,7 +5,8 @@ import {
   StyleSheet, 
   View, Text, 
   TextInput, 
-  Button 
+  Button, 
+  Dimensions
 } from "react-native";
 
 import { Dropdown } from 'react-native-element-dropdown';
@@ -21,6 +22,8 @@ import DisplayInfo from '../display/display';
 import { percentData, districtOffices } from '../data/data';
 
 import { AntDesign } from '@expo/vector-icons';
+import StageAccount from "./paymentAcc/stageAcc";
+import IDCAccount from "./paymentAcc/idcAcc";
 
 
 export default function SettingPage() {
@@ -44,14 +47,15 @@ export default function SettingPage() {
                     info='CONFIGURATION'
                 />
             <ScrollView>
-                <View>
+                <View style={styles.dropDownAndLabel}>
                     <DisplayInfo 
-                        info='DISTRICT:'
+                      info='DISTRICT:'
+                      textColor='#1044b8'
                     />
                     <View style={styles.dropdownContainer}>
                         {renderLabel()}
                         <Dropdown
-                            style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                            style={[styles.dropdown, isFocus && { borderColor: '#c8c92d' }]}
                             placeholderStyle={styles.placeholderStyle}
                             selectedTextStyle={styles.selectedTextStyle}
                             inputSearchStyle={styles.inputSearchStyle}
@@ -84,8 +88,8 @@ export default function SettingPage() {
                 <RatePage />
                 <FeePage />
                 <ProcessingAcc />
-                {/* <StagePage /> */}
-                {/* <IdcPage /> */}
+                <StageAccount />
+                <IDCAccount />
                 <AppButton 
                     title='SAVE'
                 />
@@ -94,17 +98,26 @@ export default function SettingPage() {
     )
 }
 
+const {width, height} = Dimensions.get('screen');
+
+
 const styles = StyleSheet.create({
   settingStyles: {
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: height / 100
     },
 
     //single drop down styles
     dropdownContainer: {},
+    dropDownAndLabel: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',  
+    },
     dropdown: {
-        height: 50,
-        borderColor: 'gray',
-        borderWidth: 0.5,
+        height: (height / 100) * 3,
+        width: width / 2,
+        borderColor: '#c8c92d',
+        borderWidth: 3,
         borderRadius: 8,
         paddingHorizontal: 8,
       },
