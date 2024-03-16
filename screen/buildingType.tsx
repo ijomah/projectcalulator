@@ -9,13 +9,16 @@ import {
     Dimensions,
     ImageBackground
 } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
+
 import { screeninfos } from "../data/data";
 import DisplayInfo from "../display/display";
 import AppButton from "../buttons/appBtn";
 
-export default function BuildingTypePage({navigation}: any) {
+export default function BuildingTypePage({nav}: any) {
     const devDimension = useWindowDimensions()
-
+    // const nav = useNavigation();
     const showScreenInfo = ({item}: any) => {
         return(
             <SafeAreaView 
@@ -27,6 +30,8 @@ export default function BuildingTypePage({navigation}: any) {
             </SafeAreaView>
         )
     } 
+
+    const goto  = () => nav.navigate('processFee');
     return (
         <SafeAreaView style={styles.buildTypeBox}>
             <FlatList
@@ -36,8 +41,9 @@ export default function BuildingTypePage({navigation}: any) {
                 // keyExtractor={({item}: any) => item.id}
             />
             <AppButton 
+                onGoto={goto}
                 btnConfig={{
-                    onPress: () => navigation.navigate(''),
+                    
                 }}
                 title='NEXT'
             />
@@ -56,9 +62,10 @@ const styles = StyleSheet.create({
     buildTypeBox: {
         // backgroundColor: 'yellow',
         // height: 750, //use dim api or windowdim hook
-        height: screenSize.height - 265,
+        height: screenSize.height - 163,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'red',
     },
     buildType: {
         justifyContent: 'center',
@@ -75,7 +82,9 @@ const styles = StyleSheet.create({
     },
 
     flatListstyle: {
-        height: (screenSize.height / 10) - 10,
+        // height: (screenSize.height / 10) - 10,
+        backgroundColor: 'yellow',
+        
     },
     imgBg: {
             height: 50,

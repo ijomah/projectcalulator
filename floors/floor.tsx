@@ -5,26 +5,31 @@ import {
     FlatList, 
     View, Text, TextInput, 
     TouchableOpacity, 
-    useWindowDimensions} from "react-native";
+    useWindowDimensions,
+    Dimensions} from "react-native";
 import ReuseInput from "../reuseables/input";
 import DisplayInfo from "../display/display";
+import { AppStyles } from "../constants/styles";
 
 export default function FloorType({floorPosition, calResult}: any) {
     const devHeight = useWindowDimensions().height;
     return (
         <SafeAreaView style={styles.floorStyle}>
             <DisplayInfo
-                info={floorPosition}
+                info='G/F:'
+                // info="Ground Floor"  // to put icon
             />
-            <View style={styles.dimStyle}>
+            <View style={styles.dimContainerStyle}>
                 <View style={styles.lengthStyle}>
                     <ReuseInput 
+                        floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
                             placeholder: 'Length'
                         }}
                     />
-
+                    <Text>x</Text>
                     <ReuseInput 
+                        floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
                             placeholder: 'Breadth'
                         }}
@@ -32,48 +37,61 @@ export default function FloorType({floorPosition, calResult}: any) {
                 </View>
                 <View style={styles.lengthStyle}>
                     <ReuseInput 
+                        floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
                             placeholder: 'Height'
                         }}
                     />
+                    <Text>x</Text>
                     <ReuseInput 
+                        floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
                             placeholder: 'Rate'
                         }}
                     />
                 </View>
             </View>
+            <Text>=</Text>
             <DisplayInfo
-                info={calResult}
+                floorDisplayStyle={styles.floorDisplayInfoStyle}
+                info='calculatedResult'
             />
         </SafeAreaView>
     )
 }
 
+const { width, height } = Dimensions.get('screen');
+
 const styles = StyleSheet.create({
+    
+    floorDisplayInfoStyle: {
+        // width: 80,
+        height: 26.88,
+        borderWidth: 3,
+        borderColor: AppStyles.inputOutlineColor,
+        borderStyle: 'solid',
+        borderRadius: 7,
+    },
     floorStyle: {
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
-        margin: 2
+        justifyContent: 'space-around',
     },
 
-    dimStyle: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 2
+    dimContainerStyle: {
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // margin: 2
+        // backgroundColor: 'red',
     },
 
-    lengthStyle: {flexDirection: 'row'},
-    cardStyle: {
-        height: 100,
-        // height: devHeight < 235 ? 45 : 124,
-        width: 110,
-        backgroundColor: '#A3FFBA',
-        margin: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 2,
-        borderColor: '#C8C92D'
+    lengthStyle: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    
+    TxtInputStyle: {
+        // width: 100
+        width: width / 4.5,
     }
 })

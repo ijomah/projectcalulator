@@ -20,7 +20,9 @@ export default function CalProcess({navigation}: any) {
      
     return (
         <SafeAreaView style={styles.buildTypeBox}>
-            <BuildingTypePage />
+            <BuildingTypePage 
+                nav={navigation}
+            />
         </SafeAreaView>
     )
 }

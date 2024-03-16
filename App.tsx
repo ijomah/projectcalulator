@@ -24,6 +24,7 @@ import ShareBtn from "./tab/shareComp";
 import AboutPage from "./screen/about";
 import ModeOfUse from "./tab/useMode";
 import AppHeadLogo from "./reuseables/headerLogo";
+import ProcessFee from "./screen/typeOfFeeCal/processingFee";
 
 
 const Tab = createBottomTabNavigator();
@@ -70,7 +71,7 @@ export default function App() {
                         tabBarButton: () => <View />
                     }}
                 >
-                    
+                    <Tab.Screen name='processFee' component={ProcessFee} />
                     <Tab.Screen name='process' component={CalProcess} />
                     <Tab.Screen name='stage' component={CalStage} />
                     <Tab.Screen name='penal' component={CalPenal} />

@@ -10,9 +10,9 @@ import { FontAwesome6 } from '@expo/vector-icons';
 
 import DisplayInfo from "./display";
 
-export default function LabelledDisplay({info, isSign, namedInfo}: any) {
+export default function LabelledDisplay({info, isSign, calTypeLabelStyle, namedInfo}: any) {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={[styles.labelDisplayStyle, calTypeLabelStyle]}>
             <Text>{namedInfo}</Text>
             {/* Equality sign icon */}
             {isSign?
@@ -26,3 +26,10 @@ export default function LabelledDisplay({info, isSign, namedInfo}: any) {
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    labelDisplayStyle: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    }
+})

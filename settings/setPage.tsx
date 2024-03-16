@@ -91,7 +91,7 @@ export default function SettingPage() {
                 <StageAccount />
                 <IDCAccount />
                 <AppButton 
-                    title='SAVE'
+                  title='SAVE'
                 />
             </ScrollView>
         </SafeAreaView>
@@ -103,12 +103,19 @@ const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   settingStyles: {
-        alignItems: 'center',
-        margin: height / 100
+    height: height,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    margin: height / 100,
+    // backgroundColor: 'red'
+        
+        
     },
 
     //single drop down styles
-    dropdownContainer: {},
+    dropdownContainer: {
+      marginTop: 5,
+    },
     dropDownAndLabel: {
       flexDirection: 'row',
       justifyContent: 'space-between',  
