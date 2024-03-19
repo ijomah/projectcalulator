@@ -19,6 +19,11 @@ export default function BuildingLevel() {
                     style={styles.floorStyle}
                 />
             </View>
+            <View style={styles.buildingLevelStyle}>
+                <FloorType 
+                    style={styles.floorStyle}
+                />
+            </View>
             <View style={styles.addFloorAndBuildingStyle}>
                 <AppButton 
                     addFloorAndBuildingBtnStyle={styles.addFloorAndBuildingBtnStyle}
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
     },
     buildingLevelStyle: {
         // backgroundColor: 'green',
-        width: width - 10,
+        width: width - 20,
         height: height / 12,
         borderWidth: 3,
         borderColor: AppStyles.buildingOutlineColor,

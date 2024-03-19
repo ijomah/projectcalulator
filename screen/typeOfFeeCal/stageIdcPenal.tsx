@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, TextInput, Dimensions, ScrollView } from "react-native";
 
 import { AntDesign } from '@expo/vector-icons';
 
@@ -13,19 +13,40 @@ import PaymentDisplay from "../../display/paymentDisplay";
 import LabelledDisplay from "../../display/labelDisplay";
 import ApplicantDet from "../../bio/applicantDet";
 import AppButton from "../../buttons/appBtn";
+import ScreenHeadings from "../../headings/Heading";
+import { AppStyles } from "../../constants/styles";
 
 
 
-export default function StageAndIDCAndPenal() {
+export default function StageAndIDCAndPenal({navigation}: any) {
     const [isFocus, setIsFocus] = useState(false);
     const [value, setValue] = useState('');
+
+    const [isFocused, setIsFocused] = useState(false);
+    const [values, setValues] = useState('');
 
 
     const renderLabel = () => {
         if (value || isFocus) {
           return (
             <Text style={[styles.label, isFocus && { color: 'blue' }]}>
-              Dropdown label
+              {/* Dropdown label */}
+            </Text>
+          );
+        }
+        return null;
+      };
+
+      const setLabels = () => {
+        if (value || isFocused) {
+          return (
+            <Text style={[
+              styles.label, 
+              isFocused && { 
+                color: AppStyles.calTypeOutlineColor 
+              }
+            ]}>
+              {/* Dropdown label */}
             </Text>
           );
         }
@@ -33,17 +54,31 @@ export default function StageAndIDCAndPenal() {
       };
 
     return (
-        <SafeAreaView>
-            <ApplicantDet />
-
-            <DisplayInfo
-                info='STAGE CERTIFICATION'
+      <ScrollView>
+        <SafeAreaView style={styles.stageIdcPenalContainerStyle}>
+          <View>
+            <ScreenHeadings 
+              title='APPLICATION DETAILS'
             />
+            <ApplicantDet />
             <View>
-                <View style={styles.container}>
+              <ScreenHeadings                
+                  title='STAGE CERTIFICATION'
+              />
+            </View>
+            <View 
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+              }}
+            >
+                <View 
+                  // style={styles.dropdownContainer}
+                >
                     {renderLabel()}
                     <Dropdown
-                        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                        style={[styles.dropdown, styles.dropdownContainer,  isFocus && { borderColor: 'blue' }]}
                         placeholderStyle={styles.placeholderStyle}
                         selectedTextStyle={styles.selectedTextStyle}
                         inputSearchStyle={styles.inputSearchStyle}
@@ -51,8 +86,8 @@ export default function StageAndIDCAndPenal() {
                         data={feeData}
                         search
                         maxHeight={300}
-                        labelField="id"
-                        valueField="feeType"
+                        labelField="feeType"
+                        valueField="id"
                         placeholder={!isFocus ? 'Select item' : '...'}
                         searchPlaceholder="Search..."
                         value={value}
@@ -65,17 +100,20 @@ export default function StageAndIDCAndPenal() {
                         renderLeftIcon={() => (
                         <AntDesign
                             style={styles.icon}
-                            color={isFocus ? 'blue' : 'black'}
+                            color={isFocus ? 'blue' : AppStyles.inputOutlineColor}
                             name="Safety"
                             size={20}
                         />
                         )}
                     />
                 </View>
-                <View style={styles.dropdownContainer}>
-                        {renderLabel()}
+                <Text>x</Text>
+                <View 
+                  // style={styles.dropdownContainer}
+                >
+                        {setLabels()}
                         <Dropdown
-                            style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                            style={[styles.dropdown, styles.dropdownContainer, isFocused && { borderColor: 'blue' }]}
                             placeholderStyle={styles.placeholderStyle}
                             selectedTextStyle={styles.selectedTextStyle}
                             inputSearchStyle={styles.inputSearchStyle}
@@ -85,19 +123,19 @@ export default function StageAndIDCAndPenal() {
                             maxHeight={300}
                             labelField="label"
                             valueField="value"
-                            placeholder={!isFocus ? 'Select item' : '...'}
+                            placeholder={!isFocused ? 'Select item' : '...'}
                             searchPlaceholder="Search..."
-                            value={value}
-                            onFocus={() => setIsFocus(true)}
-                            onBlur={() => setIsFocus(false)}
+                            value={values}
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
                             onChange={item => {
-                            setValue(item.value);
-                            setIsFocus(false);
+                            setValues(item.value);
+                            setIsFocused(false);
                             }}
                             renderLeftIcon={() => (
                             <AntDesign
                                 style={styles.icon}
-                                color={isFocus ? 'blue' : 'black'}
+                                color={isFocused ? 'blue' : AppStyles.inputOutlineColor}
                                 name="Safety"
                                 size={20}
                             />
@@ -106,43 +144,65 @@ export default function StageAndIDCAndPenal() {
                 </View>
             </View>
             <LabelledDisplay
-                // info=
-                // namedInfo=
+                multiplandInfo='PROCESSING FEE'
+                namedInfo='35%'
+                info='......'
+                isText={true}
                 // isSign=
             />
             <PaymentDisplay
-                // total=
+                // total='2040494'
                 // code=
             />
+            <View style={{
+              flexDirection: 'row',
+              justifyContent: 'center'
+              }}
+            >
+              <AppButton 
+                stageIdcPenalBtnStyle={styles.stageIdcPenalBtnStyle}
+                title='CAL PENAL'
+                onGoto={() => navigation.navigate('penalFee')}
+              />
 
+              <AppButton 
+                stageIdcPenalBtnStyle={styles.stageIdcPenalBtnStyle}
+                title='CAL I.D.C'
+              // btnConfig=
+              />
+            </View>
+          </View>
             <AppButton 
-            // title=
-            // btnConfig=
-            />
-
-            <AppButton 
-            // title=
-            // btnConfig=
-            />
-
-            <AppButton
-              // title=
+              stageIdcPenalBtnStyle={styles.stageIdcPenalBtnStyle}
+              title='PREVIEW'
               // btnConfig=
             />
         </SafeAreaView>
+      </ScrollView>
     )
 }
 
+const { width, height } = Dimensions.get("screen");
+
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'red'
+  stageIdcPenalContainerStyle: {
+    height: AppStyles.height,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+    stageIdcPenalBtnStyle: {
+      width: AppStyles.smallBtnWidth,
+      height: AppStyles.smallBtntnHeight,
     },
 
      //single drop down styles
-     dropdownContainer: {},
+     dropdownContainer: {
+      width: AppStyles.bigInputWidth,
+      height: AppStyles.inputHeight,
+     },
      dropdown: {
          height: 50,
-         borderColor: 'gray',
+         borderColor: AppStyles.inputOutlineColor,
          borderWidth: 0.5,
          borderRadius: 8,
          paddingHorizontal: 8,

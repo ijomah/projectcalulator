@@ -4,12 +4,25 @@ import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 import PaymentAcc from '../../settings/paymentAcc/paymentAcc';
 import LabelledDisplay from '../../display/labelDisplay';
 import AppButton from '../../buttons/appBtn';
+import ScreenHeadings from '../../headings/Heading';
+import ApplicantDet from '../../bio/applicantDet';
+import PaymentDisplay from '../../display/paymentDisplay';
+import PenalPaymentDet from '../../display/penalPaymentDet';
 
 export default function PageUsedInPenal() {
     return (
         <SafeAreaView>
+            <ScreenHeadings
+                title='APPLICATION DETAILS'
+            />
+            <ApplicantDet />
+            <ScreenHeadings 
+                title='PENAL'
+            />
 
-            <LabelledDisplay
+            <PaymentDisplay />
+            <PenalPaymentDet />
+            {/* <LabelledDisplay
                 // info=
                 // namedInfo=
                 // isSign=
@@ -43,10 +56,22 @@ export default function PageUsedInPenal() {
                 // info=
                 // namedInfo=
                 // isSign=
-            />
-
+            /> */}
+            <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                }}>
+                <AppButton 
+                    title='CAL STAGE CERT'
+                    // btnConfig= 
+                />
+                <AppButton
+                    title='CAL I.D.C'
+                    // btnConfig=
+                />
+            </View>
             <AppButton 
-            // title=
+                title='PREVIEW'
             // btnConfig=
             />
         </SafeAreaView>

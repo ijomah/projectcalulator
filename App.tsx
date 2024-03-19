@@ -25,6 +25,8 @@ import AboutPage from "./screen/about";
 import ModeOfUse from "./tab/useMode";
 import AppHeadLogo from "./reuseables/headerLogo";
 import ProcessFee from "./screen/typeOfFeeCal/processingFee";
+import StageAndIDCAndPenal from "./screen/typeOfFeeCal/stageIdcPenal";
+import PageUsedInPenal from "./screen/typeOfFeeCal/usedInPenal";
 
 
 const Tab = createBottomTabNavigator();
@@ -71,15 +73,15 @@ export default function App() {
                         tabBarButton: () => <View />
                     }}
                 >
+                    <Tab.Screen name='penalFee' component={PageUsedInPenal} />
+                    <Tab.Screen name="stageIdcPenal" component={StageAndIDCAndPenal} />
                     <Tab.Screen name='processFee' component={ProcessFee} />
                     <Tab.Screen name='process' component={CalProcess} />
                     <Tab.Screen name='stage' component={CalStage} />
                     <Tab.Screen name='penal' component={CalPenal} />
                     <Tab.Screen name='idc' component={CalIdc} />
                     <Tab.Screen name='setting' component={SettingPage} />
-                    <Tab.Screen name='pfs' options={{
-                        
-                    }} component={CalPfs} />
+                    <Tab.Screen name='pfs' component={CalPfs} />
                     <Tab.Screen name='pixCollage' component={PixCollageSwitch} />
                 </Tab.Group>
             </Tab.Navigator>

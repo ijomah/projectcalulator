@@ -12,20 +12,35 @@ export const feeData = [
     {feeType:'ASSESSMENT', id: '1'},
     {feeType:'PROCESSING', id: '2'}
 ];
-// export const percentData = [
-//     '5%', '10%', '15%', '20%', '25%', '30%',
-//     '35%', '40%', '45%', '50%', '55%', '60%',
-//     '65%', '70%', '80%', '85%', '90%', '95%',
-//     '100%'
-// ]
+export const percentData = [
+    {label: '5%', value: '1'}, 
+    {label: '10%', value: '2'}, 
+    {label: '15%', value: '3'}, 
+    {label: '20%', value: '4'},
+    {label: '25%', value:'5'},
+    {label: '30%', value: '6'},
+    {label: '35%', value: '7'},
+    {label: '40%', value: '8'},
+    {label: '45%', value: '9'},
+    {label: '50%', value: '10'},
+    {label: '55%', value: '11'},
+    {label: '60%', value: '12'},
+    {label: '65%', value: '13'},
+    {label: '70%', value: '14'},
+    {label: '80%', value: '15'},
+    {label: '85%', value: '16'},
+    {label: '90%', value: '17'},
+    {label: '95%', value: '18'},
+    {label: '100%', value: '19'}
+]
 
 //filter the Array
 
-let rangeNum = (min: number, max: number) => Array.from({length: max-min+1}, (_, i)=> {
-    if((min + i)%5 === 0 ) return {value: (min + i)+'%', label: `${i +1}`}
-})
-let numPercent = rangeNum(5, 100)
-export const percentData = numPercent.filter((datum) => datum != undefined)
+// let rangeNum = (min: number, max: number) => Array.from({length: max-min+1}, (_, i)=> {
+//     if((min + i)%5 === 0 ) return {value: (min + i)+'%', label: `${i +1}`}
+// })
+// let numPercent = rangeNum(6, 100)
+// export const percentData = numPercent.filter((datum) => datum != undefined)
 
 export const districtOffices = [
     {id: '1', district: 'Eti-Osa West'},

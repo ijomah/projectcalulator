@@ -9,16 +9,17 @@ import {
     Dimensions} from "react-native";
 import ReuseInput from "../reuseables/input";
 import DisplayInfo from "../display/display";
-import { AppStyles } from "../constants/styles";
+import { AppStyles, customDisplayStyle } from "../constants/styles";
 
 export default function FloorType({floorPosition, calResult}: any) {
     const devHeight = useWindowDimensions().height;
     return (
         <SafeAreaView style={styles.floorStyle}>
-            <DisplayInfo
+            {/* <DisplayInfo
                 info='G/F:'
                 // info="Ground Floor"  // to put icon
-            />
+            /> */}
+            <Text>G/F:</Text>
             <View style={styles.dimContainerStyle}>
                 <View style={styles.lengthStyle}>
                     <ReuseInput 
@@ -53,7 +54,8 @@ export default function FloorType({floorPosition, calResult}: any) {
             </View>
             <Text>=</Text>
             <DisplayInfo
-                floorDisplayStyle={styles.floorDisplayInfoStyle}
+                // floorDisplayStyle={styles.floorDisplayInfoStyle}
+                floorDisplayStyle={customDisplayStyle}
                 info='calculatedResult'
             />
         </SafeAreaView>
@@ -64,14 +66,15 @@ const { width, height } = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
     
-    floorDisplayInfoStyle: {
-        // width: 80,
-        height: 26.88,
-        borderWidth: 3,
-        borderColor: AppStyles.inputOutlineColor,
-        borderStyle: 'solid',
-        borderRadius: 7,
-    },
+    // floorDisplayInfoStyle: {
+    //     height: 26.88,
+    //     borderWidth: 3,
+    //     borderColor: AppStyles.inputOutlineColor,
+    //     borderStyle: 'solid',
+    //     borderRadius: 7,
+    //     paddingLeft: 3,
+    //     paddingRight: 3,
+    // },
     floorStyle: {
         flexDirection: 'row',
         alignItems: 'center',

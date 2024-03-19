@@ -9,15 +9,31 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 //This is reusable button- can be used as prev, save & fee btn
-export default function AppButton({title, addFloorAndBuildingBtnStyle, onGoto, btnConfig}: any) {
+export default function AppButton({
+        title, 
+        calTypeBtnStyle,
+        addFloorAndBuildingBtnStyle, 
+        onGoto, 
+        stageIdcPenalBtnStyle,
+        btnConfig}: any
+    ) {
 
     return (
         <TouchableOpacity
-            style={[styles.btn, addFloorAndBuildingBtnStyle]}
+            style={[
+                styles.btn,
+                calTypeBtnStyle,
+                addFloorAndBuildingBtnStyle,
+                stageIdcPenalBtnStyle
+            ]}
             onPress={onGoto}
             {...btnConfig}
         >
-            <Text style={{color: 'white'}}>{title}</Text>
+            <Text 
+                style={{color: 'white'}}
+            >
+                {title}
+            </Text>
         </TouchableOpacity>            
     )
 }

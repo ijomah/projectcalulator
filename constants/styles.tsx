@@ -1,8 +1,15 @@
 import { Dimensions } from "react-native"
-const {width, height} =Dimensions.get('screen');
+
+const {width, height} = Dimensions.get('screen');
+
 export const AppStyles = {
-    inputHeight: '',
-    bigInputWidth: '',
+    //full screen
+    width: width,
+    height: height,
+
+    inputHeight: height / 20,
+    bigInputWidth: width / 2.5,
+    mediumInputWidth: width / 2.9,
     smallInputWidth: width / 4.5,
     inputOutlineColor: '#C8C92D', //light lilac
     inputBorderStyle: 'solid',
@@ -27,4 +34,14 @@ export const AppStyles = {
     buildingOutlineColor: '#991b1e', // Dark red
     totalBoxOutlineColor: '#991b1e',
 
-}
+};
+
+export const customDisplayStyle = {
+        height: 26.88,
+        borderWidth: 3,
+        borderColor: AppStyles.inputOutlineColor,
+        borderStyle: 'solid',
+        borderRadius: 7,
+        paddingLeft: 3,
+        paddingRight: 3,
+};

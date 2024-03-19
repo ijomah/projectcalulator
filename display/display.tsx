@@ -4,17 +4,36 @@ import { SafeAreaView,
     FlatList, 
     View, Text, TextInput, 
     TouchableOpacity } from "react-native";
+import { AppStyles } from "../constants/styles";
 
-export default function DisplayInfo({floorDisplayStyle, textColor, info}: any) {
+export default function DisplayInfo({
+        floorDisplayStyle, 
+        calTypeLabelStyle, 
+        textColor, 
+        info}: any
+    ) {
     return (
-        <SafeAreaView>
-            <Text style={[styles.displayTextStyle, {color: textColor}, floorDisplayStyle]}>{info}</Text>
+        <SafeAreaView style={[
+                styles.displayInfoStyle,
+                floorDisplayStyle, 
+                calTypeLabelStyle
+            ]}
+        >
+            <Text style={[
+                    styles.displayTextStyle, 
+                    {color: textColor}, 
+                ]}
+            >{info}</Text>
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    displayInfoStyle: {
+        width: 120,
+        alignItems: 'center',
+    },
     displayTextStyle: {
-        // backgroundColor: 'yellow'
+        
     }
 })

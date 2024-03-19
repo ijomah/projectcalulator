@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         height: screenSize.height - 163,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red',
+        // backgroundColor: 'red',
     },
     buildType: {
         justifyContent: 'center',
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
     flatListstyle: {
         // height: (screenSize.height / 10) - 10,
-        backgroundColor: 'yellow',
+        // backgroundColor: 'yellow',
         
     },
     imgBg: {

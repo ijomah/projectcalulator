@@ -9,14 +9,34 @@ import {
     Dimensions} from "react-native";
 import { AppStyles } from "../constants/styles";
 
-export default function ReuseInput({label, calTypeStyle, inputCheck, floorTxtInputStyle, inputConfig}: any) {
+export default function ReuseInput({
+    label, 
+    calTypeStyle, 
+    calTypeInputFlex, 
+    calTypeLabelFlex, 
+    inputCheck, 
+    floorTxtInputStyle, 
+    inputConfig}: any
+    ) {
     const deviceSize = useWindowDimensions();
     return (
         <SafeAreaView>
             <View style={styles.inputCaseStyle}>
-                <Text style={[styles.labelStyle, calTypeStyle]}>{label}</Text>
+                <Text style={[
+                    styles.labelStyle, 
+                    // calTypeLabelFlex, 
+                    calTypeStyle
+                    ]}
+                >
+                    {label}
+                </Text>
                 <TextInput 
-                    style={[styles.inputStyle, calTypeStyle, floorTxtInputStyle]}
+                    style={[
+                        styles.inputStyle, 
+                        // calTypeInputFlex, 
+                        calTypeStyle, 
+                        floorTxtInputStyle
+                    ]}
                     {...inputConfig}
                 />
             </View>
