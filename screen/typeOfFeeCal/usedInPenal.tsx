@@ -9,7 +9,7 @@ import ApplicantDet from '../../bio/applicantDet';
 import PaymentDisplay from '../../display/paymentDisplay';
 import PenalPaymentDet from '../../display/penalPaymentDet';
 
-export default function PageUsedInPenal() {
+export default function PageUsedInPenal({navigation}: any) {
     return (
         <SafeAreaView>
             <ScreenHeadings
@@ -63,15 +63,21 @@ export default function PageUsedInPenal() {
                 }}>
                 <AppButton 
                     title='CAL STAGE CERT'
+                    isBtn={true}
+                    onGoto={() => navigation.navigate('stageIdcPenal')}
                     // btnConfig= 
                 />
                 <AppButton
                     title='CAL I.D.C'
+                    isBtn={true}
+                    onGoto={() => navigation.navigate('idcFee')}
                     // btnConfig=
                 />
             </View>
             <AppButton 
                 title='PREVIEW'
+                isBtn={true}
+                onGoto={() => navigation.navigate('preview')}
             // btnConfig=
             />
         </SafeAreaView>

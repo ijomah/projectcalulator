@@ -18,7 +18,10 @@ export default function CalPfs({navigation}: any) {
      
     return (
         <SafeAreaView style={styles.buildTypeBox}>
-            <BuildingTypePage />
+            <BuildingTypePage
+                nav={navigation}
+                compPathName='pfsFee'
+            />
         </SafeAreaView>
     )
 }

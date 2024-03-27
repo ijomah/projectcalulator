@@ -22,6 +22,7 @@ export default function CalProcess({navigation}: any) {
         <SafeAreaView style={styles.buildTypeBox}>
             <BuildingTypePage 
                 nav={navigation}
+                compPathName='processFee'
             />
         </SafeAreaView>
     )

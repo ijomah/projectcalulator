@@ -19,7 +19,7 @@ export default function FloorType({floorPosition, calResult}: any) {
                 info='G/F:'
                 // info="Ground Floor"  // to put icon
             /> */}
-            <Text>G/F:</Text>
+            <Text>{floorPosition}</Text>
             <View style={styles.dimContainerStyle}>
                 <View style={styles.lengthStyle}>
                     <ReuseInput 

@@ -17,37 +17,148 @@ import { AppStyles, customDisplayStyle } from "../constants/styles";
 import PaymentDisplay from "../display/paymentDisplay";
 
 
-export default function CalcuationTypes({navigation}: any) {
+export default function CalcuationTypes({navigation, isPfs}: any) {
 
     return (
         <SafeAreaView>
-            <View style={styles.fencingFeeStyle}>
-               <View style={{flex: 4.2,}}>
-                    <ReuseInput 
-                            // calTypeLabelFlex={styles.calTypeLabelFlex}
-                            // calTypeInputFlex={styles.calTypeInputFlex}
-                            calTypeStyle={[
-                                styles.calTypeInputStyle, 
-                            ]}
-                            label='FENCING FEE:'
-                            inputConfig={{
-                                placeholder: 'INPUT LAND AREA'
-                            }}
+            {isPfs?
+                <View style={styles.pfsPumpContainerStyle}
+                >
+                    <View style={styles.fencingFeeStyle}>
+                        <View style={{flex: 4.2,}}>
+                                <ReuseInput 
+                                        // calTypeLabelFlex={styles.calTypeLabelFlex}
+                                        // calTypeInputFlex={styles.calTypeInputFlex}
+                                        calTypeStyle={[
+                                            styles.calTypeInputStyle, 
+                                        ]}
+                                        label='FENCING FEE:'
+                                        inputConfig={{
+                                            placeholder: 'INPUT LAND AREA'
+                                        }}
+                                />
+                            </View>
+                            <FontAwesome6 
+                                style={styles.calTypeIconStyle}
+                                name="equals" 
+                                size={15} 
+                                color="black" 
+                            />
+                            <DisplayInfo 
+                                style={styles.calDisplayInfoStyle}
+                                calTypeLabelStyle={customDisplayStyle}
+                                    info='Result'
+                            />
+                        </View>
+                    <View style={styles.fencingFeeStyle}>
+                    <View style={{flex: 4.2,}}>
+                            <ReuseInput 
+                                    // calTypeLabelFlex={styles.calTypeLabelFlex}
+                                    // calTypeInputFlex={styles.calTypeInputFlex}
+                                    calTypeStyle={[
+                                        styles.calTypeInputStyle, 
+                                    ]}
+                                    label='1ST FLOOR PUMP:'
+                                    inputConfig={{
+                                        placeholder: 'INPUT COST'
+                                    }}
+                            />
+                        </View>
+                        <FontAwesome6 
+                            style={styles.calTypeIconStyle}
+                            name="equals" 
+                            size={15} 
+                            color="black" 
+                        />
+                        <DisplayInfo 
+                            style={styles.calDisplayInfoStyle}
+                            calTypeLabelStyle={customDisplayStyle}
+                                info='Result'
+                        />
+                    </View>
+                    
+                    <View style={styles.fencingFeeStyle}>
+                    <View style={{flex: 4.2,}}>
+                            <ReuseInput 
+                                    // calTypeLabelFlex={styles.calTypeLabelFlex}
+                                    // calTypeInputFlex={styles.calTypeInputFlex}
+                                    calTypeStyle={[
+                                        styles.calTypeInputStyle, 
+                                    ]}
+                                    label='ADD PUMP:'
+                                    inputConfig={{
+                                        placeholder: 'INPUT COST'
+                                    }}
+                            />
+                        </View>
+                        <FontAwesome6 
+                            style={styles.calTypeIconStyle}
+                            name="equals" 
+                            size={15} 
+                            color="black" 
+                        />
+                        <DisplayInfo 
+                            style={styles.calDisplayInfoStyle}
+                            calTypeLabelStyle={customDisplayStyle}
+                                info='Result'
+                        />
+                    </View>
+
+                    <View style={styles.fencingFeeStyle}>
+                        <View style={{flex: 4.2,}}>
+                                <ReuseInput 
+                                        // calTypeLabelFlex={styles.calTypeLabelFlex}
+                                        // calTypeInputFlex={styles.calTypeInputFlex}
+                                        calTypeStyle={[
+                                            styles.calTypeInputStyle, 
+                                        ]}
+                                        label='UNDER GROUND TANK @ 5OOK/TANK:'
+                                        inputConfig={{
+                                            placeholder: 'INPUT COST'
+                                        }}
+                                />
+                            </View>
+                            <FontAwesome6 
+                                style={styles.calTypeIconStyle}
+                                name="equals" 
+                                size={15} 
+                                color="black" 
+                            />
+                            <DisplayInfo 
+                                style={styles.calDisplayInfoStyle}
+                                calTypeLabelStyle={customDisplayStyle}
+                                    info='Result'
+                            />
+                    </View>
+                </View>
+            :
+                <View style={styles.fencingFeeStyle}>
+                <View style={{flex: 4.2,}}>
+                        <ReuseInput 
+                                // calTypeLabelFlex={styles.calTypeLabelFlex}
+                                // calTypeInputFlex={styles.calTypeInputFlex}
+                                calTypeStyle={[
+                                    styles.calTypeInputStyle, 
+                                ]}
+                                label='FENCING FEE:'
+                                inputConfig={{
+                                    placeholder: 'INPUT LAND AREA'
+                                }}
+                        />
+                    </View>
+                    <FontAwesome6 
+                        style={styles.calTypeIconStyle}
+                        name="equals" 
+                        size={15} 
+                        color="black" 
+                    />
+                    <DisplayInfo 
+                        style={styles.calDisplayInfoStyle}
+                        calTypeLabelStyle={customDisplayStyle}
+                            info='Result'
                     />
                 </View>
-                <FontAwesome6 
-                    style={styles.calTypeIconStyle}
-                    name="equals" 
-                    size={15} 
-                    color="black" 
-                />
-                <DisplayInfo 
-                    style={styles.calDisplayInfoStyle}
-                    calTypeLabelStyle={customDisplayStyle}
-                        info='Result'
-                />
-           </View>     
-
+            }
             <View>
                 <View>
                     <LabelledDisplay 
@@ -74,12 +185,22 @@ export default function CalcuationTypes({navigation}: any) {
                         namedInfo='SUB TOTAL'
                         isText={false}
                     />
-
+                    
                     <LabelledDisplay
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='10%'
                         isText={false}
                     />
+
+                    <>
+                    {isPfs &&
+                        <LabelledDisplay
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='5% LASEMA'
+                            isText={false}
+                        />  
+                    }
+                    </>
 
                     <LabelledDisplay
                         calTypeLabelStyle={customDisplayStyle}
@@ -106,12 +227,14 @@ export default function CalcuationTypes({navigation}: any) {
                     <AppButton 
                         calTypeBtnStyle={styles.calTypeBtnStyle}
                         title='CAL PENAL'
+                        onGoto={() => navigation.navigate('penalFee')}
                         // btnConfig=
                     />
 
                     <AppButton 
                         calTypeBtnStyle={styles.calTypeBtnStyle}
                         title='CAL IDC'
+                        onGoto={() => navigation.navigate('idcFee')}
                         // btnConfig=
                     />
                 </View>
@@ -119,6 +242,7 @@ export default function CalcuationTypes({navigation}: any) {
                 <AppButton 
                     calTypeBtnStyle={styles.calTypeBtnStyle}
                     title='PREVIEW'
+                    onGoto={() => navigation.navigate('preview')}
                     // btnConfig=
                 />
             </View>
@@ -129,6 +253,7 @@ export default function CalcuationTypes({navigation}: any) {
 const { width, height } = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
+    pfsPumpContainerStyle: {},
     calTypeLabelFlex: {
         // flex: 12
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -15,23 +15,38 @@ import { useNavigation } from "@react-navigation/native";
 import { screeninfos } from "../data/data";
 import DisplayInfo from "../display/display";
 import AppButton from "../buttons/appBtn";
+import { ConfigContext } from "../warehouse/configContext";
 
-export default function BuildingTypePage({nav}: any) {
-    const devDimension = useWindowDimensions()
+export default function BuildingTypePage({nav, compPathName}: any) {
+    const devDimension = useWindowDimensions();
+    const [rate, setRate] = useState(0);
+    const ctxRate = useContext(ConfigContext);
     // const nav = useNavigation();
+    //Transfer rate will interact with context
+    //get the rate from setting
+    //pass it as parameter to nav
+    const transferRate = () => {
+
+    };
+
+    const goto  = () => {
+        transferRate();
+        nav.navigate(compPathName, {rateTransfer: ''});
+    };
     const showScreenInfo = ({item}: any) => {
         return(
-            <SafeAreaView 
+            <TouchableOpacity 
+                onPress={transferRate}
                 style={[styles.buildType, {borderColor: item.colors}]}
             >
                 <DisplayInfo 
                     info={item.building != null ? item.building : ''}
                 />
-            </SafeAreaView>
+            </TouchableOpacity>
         )
     } 
 
-    const goto  = () => nav.navigate('processFee');
+    
     return (
         <SafeAreaView style={styles.buildTypeBox}>
             <FlatList

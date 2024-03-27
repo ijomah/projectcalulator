@@ -168,6 +168,7 @@ export default function StageAndIDCAndPenal({navigation}: any) {
               <AppButton 
                 stageIdcPenalBtnStyle={styles.stageIdcPenalBtnStyle}
                 title='CAL I.D.C'
+                onGoto={() =>navigation.navigate('idcFee')}
               // btnConfig=
               />
             </View>
@@ -175,6 +176,7 @@ export default function StageAndIDCAndPenal({navigation}: any) {
             <AppButton 
               stageIdcPenalBtnStyle={styles.stageIdcPenalBtnStyle}
               title='PREVIEW'
+              onGoto={() => navigation.navigate('preview')}
               // btnConfig=
             />
         </SafeAreaView>

@@ -16,11 +16,13 @@ export default function BuildingLevel() {
         <SafeAreaView>
             <View style={styles.buildingLevelStyle}>
                 <FloorType 
+                    floorPosition='G/F:'
                     style={styles.floorStyle}
                 />
             </View>
             <View style={styles.buildingLevelStyle}>
                 <FloorType 
+                    floorPosition='1ST/F'
                     style={styles.floorStyle}
                 />
             </View>

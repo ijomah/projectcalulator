@@ -18,7 +18,10 @@ export default function CalStage({navigation}: any) {
      
     return (
         <SafeAreaView style={styles.buildTypeBox}>
-            <BuildingTypePage />
+            <BuildingTypePage
+                nav={navigation}
+                compPathName='stageIdcPenal'
+            />
         </SafeAreaView>
     )
 }

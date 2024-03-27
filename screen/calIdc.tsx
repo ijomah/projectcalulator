@@ -18,7 +18,10 @@ export default function CalIdc({navigation}: any) {
      
     return (
         <SafeAreaView style={styles.buildTypeBox}>
-            <BuildingTypePage />
+            <BuildingTypePage 
+                nav={navigation}
+                compPathName='idcFee'
+            />
         </SafeAreaView>
     )
 }
