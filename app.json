@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/assesscal.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jacobianijo.appcalculator"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c3e8d923-a64d-4ede-b331-1e39a843270a"
+      }
     }
   }
 }

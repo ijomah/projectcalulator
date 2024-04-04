@@ -10,27 +10,26 @@ import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import WelcomeComp from "./screen/welcome";
-import CalProcess from "./screen/calProcess";
-import CalStage from "./screen/calStage";
-import CalPenal from "./screen/calPenal";
-import CalIdc from "./screen/calIdc";
-import CalPfs from "./screen/calPfs";
-import PixCollageSwitch from "./screen/pixSwitch";
 
-import SettingPage from "./settings/setPage";
-import HomePage from "./tab/home";
-import ShareBtn from "./tab/shareComp";
-import AboutPage from "./screen/about";
-import ModeOfUse from "./tab/useMode";
-import AppHeadLogo from "./reuseables/headerLogo";
-import ProcessFee from "./screen/typeOfFeeCal/processingFee";
-import StageAndIDCAndPenal from "./screen/typeOfFeeCal/stageIdcPenal";
-import PageUsedInPenal from "./screen/typeOfFeeCal/usedInPenal";
-import Idc from "./screen/typeOfFeeCal/idc";
-import Pfs from "./screen/typeOfFeeCal/pfs";
-import ConfigContextProvider from "./warehouse/configContext";
-import PreviewPage from "./screen/preview";
+import HomePage from "./src/tab/home";
+import ShareBtn from "./src/tab/shareComp";
+import ModeOfUse from "./src/tab/useMode";
+import ConfigContextProvider, { DispatchContext } from "./src/warehouse/configContext";
+import AppHeadLogo from "./src/reuseables/headerLogo";
+import AboutPage from "./src/screen/about";
+import CalIdc from "./src/screen/calIdc";
+import CalPenal from "./src/screen/calPenal";
+import CalPfs from "./src/screen/calPfs";
+import CalProcess from "./src/screen/calProcess";
+import CalStage from "./src/screen/calStage";
+import PixCollageSwitch from "./src/screen/pixSwitch";
+import PreviewPage from "./src/screen/preview";
+import Idc from "./src/screen/typeOfFeeCal/idc";
+import Pfs from "./src/screen/typeOfFeeCal/pfs";
+import ProcessFee from "./src/screen/typeOfFeeCal/processingFee";
+import StageAndIDCAndPenal from "./src/screen/typeOfFeeCal/stageIdcPenal";
+import PageUsedInPenal from "./src/screen/typeOfFeeCal/usedInPenal";
+import SettingPage from "./src/settings/setPage";
 
 
 const Tab = createBottomTabNavigator();
