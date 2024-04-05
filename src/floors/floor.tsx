@@ -26,14 +26,17 @@ export default function FloorType({floorPosition, previewEditableInput, calResul
                         floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
                             placeholder: 'Length',
-                            editable: previewEditableInput
+                            editable: previewEditableInput,
+                            inputMode: 'numeric',
                         }}
                     />
                     <Text>x</Text>
                     <ReuseInput 
                         floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
-                            placeholder: 'Breadth'
+                            placeholder: 'Breadth',
+                            editable: previewEditableInput,
+                            inputMode: 'numeric'
                         }}
                     />
                 </View>
@@ -41,14 +44,18 @@ export default function FloorType({floorPosition, previewEditableInput, calResul
                     <ReuseInput 
                         floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
-                            placeholder: 'Height'
+                            placeholder: 'Height',
+                            editable: previewEditableInput,
+                            inputMode: 'numeric'
                         }}
                     />
                     <Text>x</Text>
                     <ReuseInput 
                         floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
-                            placeholder: 'Rate'
+                            placeholder: 'Rate',
+                            editable: previewEditableInput,
+                            inputMode: 'numeric'
                         }}
                     />
                 </View>

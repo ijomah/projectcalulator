@@ -31,7 +31,7 @@ export default function PreviewPage({navigation}: any) {
             <View style={styles.imgContainerStyle}>
                 <Image
                     style={styles.imgStyle}
-                    source={require('./../../assets/icon.png')}
+                    source={require('./../../assets/lasg-prev-logo.jpg')}
                 />
                 <Image
                     style={styles.imgStyle}

@@ -31,28 +31,33 @@ export default function ApplicantDet({navigation, previewEditableInput, disableI
                 label='APPLICANT NAME:'
                 inputConfig={{
                     // placeholder: 'INPUT LAND AREA'
-                    editable: previewEditableInput
+                    editable: previewEditableInput,
+                    inputMolde: 'text'
                 }}
             />
             <ReuseInput 
                 label='APPLICANT ADDRESS:'
                 inputConfig={{
                     // placeholder: 'INPUT LAND AREA'
-                    editable: previewEditableInput
+                    editable: previewEditableInput,
+                    inputMode: 'text'
                 }}
             />
             <ReuseInput 
                 label='TELEPHONE NO:'
                 inputConfig={{
                     // placeholder: 'INPUT LAND AREA'
-                    editable: previewEditableInput
+                    editable: previewEditableInput,
+                    inputMode: 'tel',
+
                 }}
             />
             <ReuseInput 
                 label='FILE NUMBER:'
                 inputConfig={{
                     // placeholder: 'INPUT LAND AREA'
-                    editable: previewEditableInput
+                    editable: previewEditableInput,
+                    inputMode: 'text',
                 }}
             />
         </SafeAreaView>

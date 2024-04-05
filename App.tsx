@@ -30,6 +30,7 @@ import ProcessFee from "./src/screen/typeOfFeeCal/processingFee";
 import StageAndIDCAndPenal from "./src/screen/typeOfFeeCal/stageIdcPenal";
 import PageUsedInPenal from "./src/screen/typeOfFeeCal/usedInPenal";
 import SettingPage from "./src/settings/setPage";
+import ManagerSetting from "./src/settings/managerSetting/manageSetting";
 
 
 const Tab = createBottomTabNavigator();
@@ -86,7 +87,7 @@ export default function App() {
                         <Tab.Screen name='stage' component={CalStage} />
                         <Tab.Screen name='penal' component={CalPenal} />
                         <Tab.Screen name='idc' component={CalIdc} />
-                        <Tab.Screen name='setting' component={SettingPage} />
+                        <Tab.Screen name='setting' component={ManagerSetting} />
                         <Tab.Screen name='pfs' component={CalPfs} />
                         <Tab.Screen name='pixCollage' component={PixCollageSwitch} />
                     </Tab.Group>

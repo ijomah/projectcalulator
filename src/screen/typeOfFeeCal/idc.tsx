@@ -11,7 +11,7 @@ import LabelledDisplay from '../../display/labelDisplay';
 import DisplayInfo from '../../display/display';
 import ReuseInput from '../../reuseables/input';
 
-export default function Idc({navigation}: any) {
+export default function Idc(this: any, {navigation, getUserData}: any) {
     return (
         <SafeAreaView>
             <ScreenHeadings
@@ -25,14 +25,18 @@ export default function Idc({navigation}: any) {
                 <ReuseInput
                     label=''
                     inputConfig={{
-                        placeholder: 'LETTABLE SPACE/UNIT'
+                        placeholder: 'LETTABLE SPACE/UNIT',
+                        inputMode: 'numeric',
+                        onChangeText: getUserData.bind(this, 'lettableSpaceIdc')
                     }}
                 />
                 <Text>x</Text>
                 <ReuseInput
                     label=''
                     inputConfig={{
-                        placeholder: 'CURRENT RATE'
+                        placeholder: 'CURRENT RATE',
+                        inputMode: 'numeric',
+                        onChangeText: getUserData.bind(this, 'currentRateIdc')
                     }}
                 />
             </View>

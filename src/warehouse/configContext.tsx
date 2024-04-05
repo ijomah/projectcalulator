@@ -37,31 +37,21 @@ export const ConfigDataContext: any = createContext(undefined)
 
 export default function ConfigContextProvider({children}: any) {
     const value: any =  {
-            rate: {
-                resident: null,
-                commercial: null,
-                institute: null,
-                industry: null,
-                agric: null,
-                recreation: null,
-                mixedUse: null,
-            },
-            fee: {
-                layout: null,
-                appReg: null,
-            },
-            processFee: {
-                agencyCode: null,
-                revenueCode: null,
-            },
-            stageFee: {
-                agencyCode: null,
-                revenueCode: null,
-            },
-            idcFee: {
-                agencyCode: null,
-                revenueCode: null,
-            }
+                residentRate: null,
+                commercialRate: null,
+                institutionalRate: null,
+                industrialRate: null,
+                agricRate: null,
+                recreateRate: null,
+                mixedUseRate: null,
+                // layout: null,
+                // appReg: null,
+                // procAgencyCode: null,
+                // procRevenueCode: null,
+                // stageAgencyCode: null,
+                // stageRevenueCode: null,
+                // idcAgencyCode: null,
+                // idcRevenueCode: null,
         }
     const [data, setData] = useState(value)
     

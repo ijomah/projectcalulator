@@ -5,7 +5,7 @@ import ReuseInput from '../../reuseables/input';
 import DisplayInfo from '../../display/display';
 
 
-export default function FeePage() {
+export default function FeePage(this: any, {getUserData}: any) {
     return (
         <SafeAreaView>
             <DisplayInfo 
@@ -15,13 +15,17 @@ export default function FeePage() {
                 <ReuseInput 
                     label='APP & REG FEE'
                     inputConfig={{
-                        placeholder: '  AMOUNT'
+                        placeholder: '  AMOUNT',
+                        inputMode: 'numeric',
+                        onChangeText: getUserData.bind(this, 'app&RegFee'),
                     }}
                 />
                 <ReuseInput 
                     label='LAYOUT FEE'
                     inputConfig={{
-                        placeHolder: 'AMOUNT'
+                        placeHolder: 'AMOUNT',
+                        inputMode: 'numeric',
+                        onChangeText: getUserData.bind(this, 'layoutFee'),
                     }}
                 />
             </View>

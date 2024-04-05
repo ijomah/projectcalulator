@@ -4,7 +4,7 @@ import {
     StyleSheet, 
     View, Text, 
     Button, 
-    TouchableOpacity 
+    Pressable
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AppStyles } from "../constants/styles";
@@ -15,6 +15,7 @@ export default function AppButton({
         calTypeBtnStyle,
         addFloorAndBuildingBtnStyle, 
         onGoto,
+        // onSaving,
         isBtn,
         stageIdcPenalBtnStyle,
         btnConfig}: any
@@ -23,7 +24,7 @@ export default function AppButton({
     return (
         <>
             {isBtn?
-                <TouchableOpacity
+                <Pressable
                     style={[
                         styles.btn,
                         styles.btnBoolStyle,
@@ -39,9 +40,9 @@ export default function AppButton({
                     >
                         {title}
                     </Text>
-                </TouchableOpacity>   
+                </Pressable>   
                 :
-                <TouchableOpacity
+                <Pressable
                     style={[
                         styles.btn,
                         calTypeBtnStyle,
@@ -56,7 +57,7 @@ export default function AppButton({
                     >
                         {title}
                     </Text>
-                </TouchableOpacity> 
+                </Pressable> 
             } 
         </>          
     )

@@ -60,7 +60,7 @@ const styles=StyleSheet.create({
     },
 
     inputStyle: {
-        width: width / 2,
+        width: width / 2.5,
         height: (height / 100) * 3,
         borderWidth: 3,
         borderColor: AppStyles.inputOutlineColor,

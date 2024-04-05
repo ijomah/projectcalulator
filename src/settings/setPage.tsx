@@ -26,16 +26,14 @@ import DisplayInfo from "../display/display";
 import { ConfigDataContext } from "../warehouse/configContext";
 
 
-export default function SettingPage() {
+export default function SettingPage({saveData, getUserData}: any) {
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState('');
-  const ctxStore = useContext(ConfigDataContext);
-    
-  const saveData = () => {
-
-  }
+  const [district, setDistrict] = useState('');
+  
   
   const renderLabel = () => {
+    // console.log('val drop',district)
         if (value || isFocus) {
           return (
             <Text style={[styles.label, isFocus && { color: 'blue' }]}>
@@ -76,6 +74,7 @@ export default function SettingPage() {
                             onBlur={() => setIsFocus(false)}
                             onChange={item => {
                             setValue(item.id);
+                            setDistrict(item.district);
                             setIsFocus(false);
                             }}
                             renderLeftIcon={() => (
@@ -89,14 +88,14 @@ export default function SettingPage() {
                         />
                     </View>
                 </View>
-                <RatePage />
-                <FeePage />
-                <ProcessingAcc />
-                <StageAccount />
-                <IDCAccount />
+                <RatePage {...{getUserData}} />
+                <FeePage {...{getUserData}} />
+                <ProcessingAcc {...{getUserData}} />
+                <StageAccount {...{getUserData}} />
+                <IDCAccount {...{getUserData}} />
                 <AppButton 
                   title='SAVE'
-                  doAct={saveData}
+                  onGoto={() => saveData('district', district)}
                 />
             </ScrollView>
         </SafeAreaView>

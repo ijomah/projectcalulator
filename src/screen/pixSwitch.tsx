@@ -29,7 +29,7 @@ const html = `
     </h1>
     <div id="img-case">
         <img
-            src="./../assets/gateofbuilding.jpg"
+            src=${"./../assets/gateofbuilding.jpg"}
             style="width: 90vw;" 
         />
         <img
@@ -58,6 +58,7 @@ export default function PixCollageSwitch() {
 
   const printToFile = async () => {
     // On iOS/android prints the given html. On web prints the HTML from the current page.
+    console.log(html)
     const { uri } = await Print.printToFileAsync({ html });
     console.log('File has been saved to:', uri);
     await shareAsync(uri, { UTI: '.pdf', mimeType: 'application/pdf' });

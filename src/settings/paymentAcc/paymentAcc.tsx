@@ -3,7 +3,7 @@ import React from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 import ReuseInput from '../../reuseables/input';
 
-export default function PaymentAcc({feeType}: any) {
+export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
     return (
         <SafeAreaView>
             <Text>
@@ -15,6 +15,8 @@ export default function PaymentAcc({feeType}: any) {
                     label='AGENCY CODE'
                     inputConfig={{
                         placeHolder: 'Code',
+                        inputMode: 'numeric',
+                        onChangeText: getUserData.bind(this, `${feeType.replace(" ", "-").toLowerCase()}`+'AgencyCode')
                         
                     }}
                 />
@@ -22,6 +24,8 @@ export default function PaymentAcc({feeType}: any) {
                     label='REVENUE CODE'
                     inputConfig={{
                         placeHolder: 'Code',
+                        inputMode: 'numeric',
+                        onChangeText: getUserData.bind(this, `${feeType.replace(" ", "-").toLowerCase()}`+'RevenueCode')
                         
                     }}
                 />
