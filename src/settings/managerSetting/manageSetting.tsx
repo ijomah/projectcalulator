@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native";
 import { ConfigDataContext, DispatchContext } from "../../warehouse/configContext";
 import SettingPage from "../setPage";
 
+import * as SecureStore from 'expo-secure-store';
 
 export default function ManagerSetting() {
     const ctxStore: any = useContext(ConfigDataContext);
@@ -15,10 +16,11 @@ export default function ManagerSetting() {
     }
 
     //Save the data
-  const saveData = (distKey: any, distValue: any) => {
-
+  const saveData = async (distKey: any, distValue: any) => {
+    await SecureStore.setItemAsync('settingData', {...ctxStore, [distKey]: distValue});
     console.log('ctx content', {...ctxStore, [distKey]: distValue})
   }
+
     return (
        <SettingPage 
             {...{saveData, getUserData}}

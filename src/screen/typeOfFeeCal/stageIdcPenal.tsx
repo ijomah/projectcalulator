@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput, Dimensions, ScrollView } from "react-native";
 
 import { AntDesign } from '@expo/vector-icons';
@@ -14,15 +14,20 @@ import { AppStyles } from "../../constants/styles";
 import LabelledDisplay from "../../display/labelDisplay";
 import PaymentDisplay from "../../display/paymentDisplay";
 import ScreenHeadings from "../../headings/Heading";
+import { ConfigDataContext } from "../../warehouse/configContext";
 
 
 
 export default function StageAndIDCAndPenal({navigation}: any) {
+  const ctxStore: any = useContext(ConfigDataContext);
     const [isFocus, setIsFocus] = useState(false);
     const [value, setValue] = useState('');
 
     const [isFocused, setIsFocused] = useState(false);
     const [values, setValues] = useState('');
+
+    const [percentRate, setPercentRate] = useState(0);
+    const [labelPercent, setLabelPercent] = useState('');
 
 
     const renderLabel = () => {
@@ -52,6 +57,19 @@ export default function StageAndIDCAndPenal({navigation}: any) {
         return null;
       };
 
+
+    // const namedInfoCal: any = () => {
+    //  let numWithoutPercent: number = Number(labelPercent.replace('%','')) / 100;
+    //  setPercentRate(numWithoutPercent);
+    //  console.log('namedinfoCal', numWithoutPercent);
+    // }
+
+    
+    //Cal with 
+    // const calStageFee: any = () => {
+    //   const nameInfo = namedInfoCal();
+    //   return ctxStore * nameInfo;
+    // } 
     return (
       <ScrollView>
         <SafeAreaView style={styles.stageIdcPenalContainerStyle}>
@@ -129,6 +147,8 @@ export default function StageAndIDCAndPenal({navigation}: any) {
                             onBlur={() => setIsFocused(false)}
                             onChange={item => {
                             setValues(item.value);
+                            setLabelPercent(item.label);
+                            setPercentRate(item.forCal);
                             setIsFocused(false);
                             }}
                             renderLeftIcon={() => (
@@ -143,8 +163,8 @@ export default function StageAndIDCAndPenal({navigation}: any) {
                 </View>
             </View>
             <LabelledDisplay
-                multiplandInfo='PROCESSING FEE'
-                namedInfo='35%'
+                multiplandInfo={value || 'Processing Fee'}
+                namedInfo={percentRate}
                 info='......'
                 isText={true}
                 // isSign=

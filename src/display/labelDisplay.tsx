@@ -16,6 +16,7 @@ export default function LabelledDisplay({
         isText, 
         isSign,
         isWhat, 
+        prevLabelStyle,
         multiplandInfo,
         calTypeLabelStyle,
         penalPaymentDetFlexStyle, 
@@ -25,8 +26,8 @@ export default function LabelledDisplay({
         <SafeAreaView style={[styles.labelDisplayStyle]}>
             {isText?
                 <>
-                    <Text style={styles.nonEmptyTextStyle}>{multiplandInfo}</Text>
-                    <Text style={{marginHorizontal: '2%'}}>x</Text>
+                    <Text style={[styles.nonEmptyTextStyle, prevLabelStyle]}>{multiplandInfo}</Text>
+                    {/* <Text style={{marginHorizontal: '2%'}}>x</Text> */}
                 </>
                 :
                 <Text style={isWhat? styles.noSpace : styles.emptyTextStyle}>{' '}</Text>
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
 
     nonEmptyTextStyle: {
         marginLeft: '1%',
+        // flex: 1.7
     },
 
     emptyTextStyle: {

@@ -1,10 +1,10 @@
 export const screeninfos = [
-    {id: '1', type: 'process', building: 'Residential',  info: 'Calculate Processing Fee', colors: '#f8d731'},
-    {id: '2', type: 'stage', building: 'Commercial', info: 'Calculate Stage Certificaton', colors: '#0000ff'},
-    {id: '3', type: 'penal', building: 'Institutional', info: 'Calculate Penal Fee', colors: '#ff0000'},
-    {id: '4', type: 'idc', building: 'Mixed Use',  info: 'Calculate I.D.C', colors: '#727430'},
-    {id: '5', type: 'pfs', building: 'Agricultural', info: 'Calculate P.F.S Assessment', colors: '#136734'},
-    {id: '6', type: 'setting', building: 'Recreational', info: 'Setting', colors: '#00ff00'},
+    {id: '1', type: 'process', building: 'RESIDENTIAL',  info: 'Calculate Processing Fee', colors: '#f8d731'},
+    {id: '2', type: 'stage', building: 'COMMERCIAL', info: 'Calculate Stage Certificaton', colors: '#0000ff'},
+    {id: '3', type: 'penal', building: 'INSTITUTIONAL', info: 'Calculate Penal Fee', colors: '#ff0000'},
+    {id: '4', type: 'idc', building: 'MIXED USE',  info: 'Calculate I.D.C', colors: '#727430'},
+    {id: '5', type: 'pfs', building: 'AGRICULTURAL', info: 'Calculate P.F.S Assessment', colors: '#136734'},
+    {id: '6', type: 'setting', building: 'RECREATIONAL', info: 'Setting', colors: '#00ff00'},
     // {id: '7', type: 'pixCollage', building: null, info: 'Picture Collage'}
 ]
 
@@ -13,25 +13,25 @@ export const feeData = [
     {feeType:'PROCESSING', id: '2'}
 ];
 export const percentData = [
-    {label: '5%', value: '1'}, 
-    {label: '10%', value: '2'}, 
-    {label: '15%', value: '3'}, 
-    {label: '20%', value: '4'},
-    {label: '25%', value:'5'},
-    {label: '30%', value: '6'},
-    {label: '35%', value: '7'},
-    {label: '40%', value: '8'},
-    {label: '45%', value: '9'},
-    {label: '50%', value: '10'},
-    {label: '55%', value: '11'},
-    {label: '60%', value: '12'},
-    {label: '65%', value: '13'},
-    {label: '70%', value: '14'},
-    {label: '80%', value: '15'},
-    {label: '85%', value: '16'},
-    {label: '90%', value: '17'},
-    {label: '95%', value: '18'},
-    {label: '100%', value: '19'}
+    {label: '5%', value: '1', forCal: 0.05}, 
+    {label: '10%', value: '2', forCal: 0.1}, 
+    {label: '15%', value: '3', forCal: 0.15}, 
+    {label: '20%', value: '4', forCal: 0.20},
+    {label: '25%', value:'5', forCal: 0.25},
+    {label: '30%', value: '6', forCal: 0.30},
+    {label: '35%', value: '7', forCal: 0.35},
+    {label: '40%', value: '8', forCal: 0.40},
+    {label: '45%', value: '9', forCal: 0.45},
+    {label: '50%', value: '10', forCal: 0.50},
+    {label: '55%', value: '11', forCal: 0.55},
+    {label: '60%', value: '12', forCal: 0.60},
+    {label: '65%', value: '13', forCal: 0.65},
+    {label: '70%', value: '14', forCal: 0.70},
+    {label: '80%', value: '15', forCal: 0.80},
+    {label: '85%', value: '16', forCal: 0.85},
+    {label: '90%', value: '17', forCal: 0.90},
+    {label: '95%', value: '18', forCal: 0.95},
+    {label: '100%', value: '19', forCal: 1.00}
 ]
 
 //filter the Array

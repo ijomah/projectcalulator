@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 import PaymentAcc from '../../settings/paymentAcc/paymentAcc';
 import ApplicantDet from '../../bio/applicantDet';
@@ -10,8 +10,24 @@ import ScreenHeadings from '../../headings/Heading';
 import LabelledDisplay from '../../display/labelDisplay';
 import DisplayInfo from '../../display/display';
 import ReuseInput from '../../reuseables/input';
+import { ConfigDataContext, DispatchContext } from '../../warehouse/configContext';
 
-export default function Idc(this: any, {navigation, getUserData}: any) {
+export default function Idc(this: any, {navigation}: any) {
+    const idcCtxData: any = useContext(ConfigDataContext);
+    const dispatchIdcCtxData: any = useContext(DispatchContext);
+    const [idcLettable, setIdclettable] = useState(0);
+    const [curRate, setCurRate] =useState(0);
+    const getUserInputData = (objKey: any, objValue: number) => {
+        console.log('idc data', idcCtxData);
+        dispatchIdcCtxData({idcCtxData, [objKey]: objValue })
+        objKey === 'lettableSpaceIdc' && setIdclettable(objValue);
+        // Object.keys(idcCtxData) === lettableSpaceIdc
+        objKey === 'currentRateIdc' && setCurRate(objValue);
+        // console.log('idc state', idcMultiplier);
+    }
+
+    //cal
+    const calIdcTotal = idcLettable * curRate
     return (
         <SafeAreaView>
             <ScreenHeadings
@@ -19,7 +35,7 @@ export default function Idc(this: any, {navigation, getUserData}: any) {
             />
             <ApplicantDet />
             <ScreenHeadings 
-                title='BETTERMENT FEE (INFRASTRUCTURE DEVELOPMENT CHARGE'
+                title='BETTERMENT FEE (INFRASTRUCTURE DEVELOPMENT CHARGE)'
             />
             <View style={{justifyContent: 'center',flexDirection: 'row'}}>
                 <ReuseInput
@@ -27,7 +43,7 @@ export default function Idc(this: any, {navigation, getUserData}: any) {
                     inputConfig={{
                         placeholder: 'LETTABLE SPACE/UNIT',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'lettableSpaceIdc')
+                        onChangeText: getUserInputData.bind(this, 'lettableSpaceIdc')
                     }}
                 />
                 <Text>x</Text>
@@ -36,20 +52,28 @@ export default function Idc(this: any, {navigation, getUserData}: any) {
                     inputConfig={{
                         placeholder: 'CURRENT RATE',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'currentRateIdc')
+                        onChangeText: getUserInputData.bind(this, 'currentRateIdc')
                     }}
                 />
             </View>
             <View style={{justifyContent: 'center',flexDirection: 'row'}}>
                 <DisplayInfo
-                    info='LETTABLE SPACE/UNIT'
+                    // info={idcMultiplier === null? 'LETTABLE SPACE/UNIT' : idcMultiplier.lettableSpaceIdc}
+                    info={idcLettable || 'LETTABLE SPACE/UNIT'}
                 />
                 <Text>x</Text>
                 <DisplayInfo
-                    info='CURRENT RATE'
+                    // info={idcCtxData.currentRateIdc === undefined? 'CURRENT RATE' : idcMultiplier.currentRateIdc}
+                    info={curRate || 'CURRENT RATE'}
+                />
+                <Text>=</Text>
+                <DisplayInfo
+                    info={'N'+calIdcTotal || 'Total'}
                 />
             </View>
-            <PaymentDisplay />
+            <PaymentDisplay
+                total={'N'+calIdcTotal || '***'}
+            />
             {/* <PenalPaymentDet />  */}
 
             <View style={{

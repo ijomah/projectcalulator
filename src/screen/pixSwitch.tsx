@@ -7,8 +7,10 @@ import {
     SafeAreaView 
 } from 'react-native';
 
+import * as ImagePicker from 'expo-image-picker';
 import * as Print from 'expo-print';
 import { shareAsync } from 'expo-sharing';
+// import { useState } from 'react';
 
 //What i wanted
 // Create an html code that has 3 img tag
@@ -17,36 +19,67 @@ import { shareAsync } from 'expo-sharing';
 // I will need expo file system in order to save things in the
 //phone file system
 
+// import gateofbuilding from './../../assets/gateofbuilding.jpg'
+const img1 = require('./../../assets/gateofbuilding.jpg')
+//  './../assets/gateofbuilding.jpg';
+// import onebuilding from './../../assets/onebuilding.jpg'
+const img2 = require('./../../assets/onebuilding.jpg');
+// "'./../assets/onebuilding.jpg'";
+const img3 = require('./../../assets/twobuilding.jpg')
+// "'./../assets/twobuilding.jpg'";
+const imgHeading = 'Building Pictures'
 
-const html = `
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-  </head>
-  <body style="text-align: center;">
-    <h1 style="font-size: 50px; font-family: Helvetica Neue; font-weight: normal;">
-      Hello Expo!
-    </h1>
-    <div id="img-case">
-        <img
-            src=${"./../assets/gateofbuilding.jpg"}
-            style="width: 90vw;" 
-        />
-        <img
-            src="./../assets/onebuilding.jpg"
-            style="width: 90vw;" 
-        />
-        <img
-            src="./../assets/twobuilding.jpg"
-            style="width: 90vw;" 
-        />
-    </div>
-  </body>
-</html>
-`;
+
 
 export default function PixCollageSwitch() {
   const [selectedPrinter, setSelectedPrinter] = React.useState();
+  const [image, setImage]: any = React.useState([]);
+
+  const html = `
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    </head>
+    <body style="text-align: center;">
+      <h1 style="font-size: 50px; font-family: Helvetica Neue; font-weight: normal;">
+        ${imgHeading}
+      </h1>
+      <div id="img-case">
+          <img
+              src="${image[1]}"
+              style="width: 40vw;" 
+          />
+          <img
+              src="${image[2]}"
+              style="width: 40vw;" 
+          />
+          <img
+              src="${image[2]}"
+              style="width: 40vw;" 
+          />
+      </div>
+    </body>
+  </html>
+  `;
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let {assets, canceled} = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log('asse', assets);
+
+    if (!canceled) {
+      assets?.forEach(({uri})=> {
+        return setImage([...image, uri])
+      })
+      // return setImage(assets[0].uri);
+    }
+  };
 
   const print = async () => {
     // On iOS/android prints the given html. On web prints the HTML from the current page.
@@ -73,7 +106,9 @@ export default function PixCollageSwitch() {
     <View style={styles.container}>
       <Button title="Print" onPress={print} />
       <View style={styles.spacer} />
-      <Button title="Print to PDF file" onPress={printToFile} />
+      <Button title="Share as PDF file" onPress={printToFile} />
+      <View style={styles.spacer} />
+      <Button title='Pick Image' onPress={pickImage} />
       {Platform.OS === 'ios' && (
         <>
           <View style={styles.spacer} />
@@ -83,7 +118,7 @@ export default function PixCollageSwitch() {
             />
           <View style={styles.spacer} />
           {selectedPrinter ? (
-            <Text style={styles.printer}>{`Selected printer: ${selectedPrinter.name}`}</Text>
+            <Text style={styles.printer}>{`Selected printer: ${selectedPrinter}`}</Text>
           ) : undefined}
         </>
       )}

@@ -73,7 +73,7 @@ const styles=StyleSheet.create({
         borderWidth: 2,
         backgroundColor: '#305452',
         height: 42,
-        width: 80,
+        width: 100,
         shadowColor: '#dbaeaf',
         shadowOffset: {
             width: 3,

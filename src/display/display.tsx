@@ -7,10 +7,12 @@ import { SafeAreaView,
 import { AppStyles } from "../constants/styles";
 
 export default function DisplayInfo({
-        floorDisplayStyle, 
+        floorDisplayStyle,
+        prevBuidingDisplayInfoStyle,
         calTypeLabelStyle, 
         textColor,
-        prevDisplayStyles, 
+        prevDisplayStyles,
+        prevBuildingOutlineStyle,
         info}: any
     ) {
     return (
@@ -18,7 +20,9 @@ export default function DisplayInfo({
                 styles.displayInfoStyle,
                 floorDisplayStyle, 
                 prevDisplayStyles,
-                calTypeLabelStyle
+                calTypeLabelStyle,
+                prevBuidingDisplayInfoStyle,
+                prevBuildingOutlineStyle
             ]}
         >
             <Text style={[

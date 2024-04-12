@@ -55,7 +55,8 @@ const styles=StyleSheet.create({
     },
 
     labelStyle: {
-        fontSize: 13,
+        alignContent: 'center',
+        fontSize: AppStyles.txtFontSize * 10,
         color: '#1044b8',
     },
 

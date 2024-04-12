@@ -7,7 +7,8 @@ import {
     TouchableOpacity, 
     useWindowDimensions,
     Dimensions,
-    ImageBackground
+    ImageBackground,
+    ToastAndroid
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -20,23 +21,43 @@ import { ConfigDataContext } from "../warehouse/configContext";
 export default function BuildingTypePage({nav, compPathName}: any) {
     const devDimension = useWindowDimensions();
     const [rate, setRate] = useState(0);
-    const ctxRate = useContext(ConfigDataContext);
+    const ctxRate: any = useContext(ConfigDataContext);
     // const nav = useNavigation();
     //Transfer rate will interact with context
     //get the rate from setting
     //pass it as parameter to nav
-    const transferRate = () => {
-
+    const transferRate = (rateKey: any) => {
+        // loop the ctx obj
+        //compare the keys with the one string
+        //if true, take the value, set it to state
+        for (var property in ctxRate) {
+            if (property.toUpperCase() === rateKey.replace(' ', '')) {
+                setRate(ctxRate.property)
+            }
+        }
+        // console.log(Object.keys(ctxRate))
+        const {...ctxRateCopy} = ctxRate;
+        // Object.getOwnPropertyNames(ctxRate).forEach((objKey)=>{
+        //     if(objKey === rateKey.replace(' ', '')) {
+        //         setRate(ctxRate.objKey);
+        //     }
+        // })
     };
 
     const goto  = () => {
-        transferRate();
-        nav.navigate(compPathName, {rateTransfer: ''});
+        if (rate === 0) {
+            // return ToastAndroid.BOTTOM('Please select a building type',)
+            return console.log('no rate o')
+        }
+        console.log('rate is', rate)
+        nav.navigate(compPathName, {rateTransfer: rate});
     };
     const showScreenInfo = ({item}: any) => {
         return(
             <TouchableOpacity 
-                onPress={transferRate}
+                onPress={() => {
+                    transferRate(item.building)
+                }}
                 style={[styles.buildType, {borderColor: item.colors}]}
             >
                 <DisplayInfo 

@@ -34,7 +34,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                         ]}
                                         label='FENCING FEE:'
                                         inputConfig={{
-                                            placeholder: 'INPUT LAND AREA'
+                                            placeholder: 'INPUT LAND AREA',
+                                            textAlign: 'center'
                                         }}
                                 />
                             </View>
@@ -60,7 +61,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                     ]}
                                     label='1ST FLOOR PUMP:'
                                     inputConfig={{
-                                        placeholder: 'INPUT COST'
+                                        placeholder: 'INPUT COST',
+                                        textAlign: 'center'
                                     }}
                             />
                         </View>
@@ -87,7 +89,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                     ]}
                                     label='ADD PUMP:'
                                     inputConfig={{
-                                        placeholder: 'INPUT COST'
+                                        placeholder: 'INPUT COST',
+                                        textAlign: 'center'
                                     }}
                             />
                         </View>
@@ -114,7 +117,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                         ]}
                                         label='UNDER GROUND TANK @ 5OOK/TANK:'
                                         inputConfig={{
-                                            placeholder: 'INPUT COST'
+                                            placeholder: 'INPUT COST',
+                                            textAlign: 'center'
                                         }}
                                 />
                             </View>
@@ -142,7 +146,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                 ]}
                                 label='FENCING FEE:'
                                 inputConfig={{
-                                    placeholder: 'INPUT LAND AREA'
+                                    placeholder: 'INPUT LAND AREA',
+                                    textAlign: 'center'
                                 }}
                         />
                     </View>
@@ -150,7 +155,7 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                         style={styles.calTypeIconStyle}
                         name="equals" 
                         size={15} 
-                        color="black" 
+                        color="black"
                     />
                     <DisplayInfo 
                         style={styles.calDisplayInfoStyle}

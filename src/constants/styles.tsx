@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native"
 
-const {width, height} = Dimensions.get('screen');
+const {width, height, fontScale} = Dimensions.get('screen');
 
 export const AppStyles = {
     //full screen
@@ -29,7 +29,7 @@ export const AppStyles = {
     txtFont: '',
     txtFamily: '',
     txtFontWeight: '',
-    txtFontSize: '',
+    txtFontSize: fontScale,
 
     //Building container outline
     buildingOutlineColor: '#991b1e', // Dark red

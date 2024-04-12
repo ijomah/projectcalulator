@@ -9,6 +9,9 @@ import {
   Dimensions
 } from "react-native";
 
+
+import { AntDesign } from '@expo/vector-icons';
+
 import { Dropdown } from 'react-native-element-dropdown';
 
 import RatePage from './rates/rate';
@@ -17,7 +20,6 @@ import ProcessingAcc from './paymentAcc/processing';
 import StagePage from '../screen/typeOfFeeCal/stageIdcPenal';
 import IdcPage from '../screen/typeOfFeeCal/usedInPenal';
 
-import { AntDesign } from '@expo/vector-icons';
 import StageAccount from "./paymentAcc/stageAcc";
 import IDCAccount from "./paymentAcc/idcAcc";
 import AppButton from "../buttons/appBtn";
@@ -43,6 +45,8 @@ export default function SettingPage({saveData, getUserData}: any) {
         }
         return null;
   };
+
+  
     return (
         <SafeAreaView style={styles.settingStyles}>
             <DisplayInfo 

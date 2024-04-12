@@ -11,8 +11,17 @@ import { customDisplayStyle } from "../constants/styles";
 import DisplayInfo from "../display/display";
 import ReuseInput from "../reuseables/input";
 
-export default function FloorType({floorPosition, previewEditableInput, calResult}: any) {
+export default function FloorType(this: any, 
+    {
+        floorPosition, 
+        previewEditableInput, 
+        getUserInputs,
+        calResult
+    }: any) {
     const devHeight = useWindowDimensions().height;
+
+    //cal case
+    //getUserInputs = null
     return (
         <SafeAreaView style={styles.floorStyle}>
             {/* <DisplayInfo
@@ -27,7 +36,8 @@ export default function FloorType({floorPosition, previewEditableInput, calResul
                         inputConfig={{
                             placeholder: 'Length',
                             editable: previewEditableInput,
-                            inputMode: 'numeric',
+                            inputMode: 'tel',
+                            onChangeText: getUserInputs.bind(this, 'length') 
                         }}
                     />
                     <Text>x</Text>
@@ -36,7 +46,8 @@ export default function FloorType({floorPosition, previewEditableInput, calResul
                         inputConfig={{
                             placeholder: 'Breadth',
                             editable: previewEditableInput,
-                            inputMode: 'numeric'
+                            inputMode: 'tel',
+                            onChangeText: getUserInputs.bind(this, 'breadth') 
                         }}
                     />
                 </View>
@@ -46,7 +57,8 @@ export default function FloorType({floorPosition, previewEditableInput, calResul
                         inputConfig={{
                             placeholder: 'Height',
                             editable: previewEditableInput,
-                            inputMode: 'numeric'
+                            inputMode: 'tel',
+                            onChangeText: getUserInputs.bind(this, 'height') 
                         }}
                     />
                     <Text>x</Text>
@@ -55,7 +67,8 @@ export default function FloorType({floorPosition, previewEditableInput, calResul
                         inputConfig={{
                             placeholder: 'Rate',
                             editable: previewEditableInput,
-                            inputMode: 'numeric'
+                            inputMode: 'tel',
+                            onChangeText: getUserInputs.bind(this, 'rate') 
                         }}
                     />
                 </View>
@@ -64,7 +77,7 @@ export default function FloorType({floorPosition, previewEditableInput, calResul
             <DisplayInfo
                 // floorDisplayStyle={styles.floorDisplayInfoStyle}
                 floorDisplayStyle={customDisplayStyle}
-                info='calculatedResult'
+                info={calResult}
             />
         </SafeAreaView>
     )
