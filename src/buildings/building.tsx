@@ -14,7 +14,7 @@ import AppButton from "../buttons/appBtn";
 import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
 
 export default function BuildingLevel({previewEditableInput}: any) {
-    const [datum, buildDatum] = useState([[{type: 'G/F', id: '1'}]]);
+    const [datum, buildDatum] = useState([{type: 'G/F', id: '1'}]);
         // {type: 'G/F', id: '1'},
         // {type: '1ST/F', id: '2'},
         // {type: '2ND/F', id: '3'},
@@ -68,17 +68,17 @@ export default function BuildingLevel({previewEditableInput}: any) {
     //
 
     // Add building btn
-    const addBuilding = () => {
-        console.log('addbuilding')
-        setBuildDatum([...buildDatum, 
-            {
-            category: buildDatum.length 
-                +
-                    (buildDatum.length>1?( buildDatum.length>2? (buildDatum.length>3? 'TH': 'RD'): 'ND' ):'ST')
-                +' '
-                +'BUILDING', 
-            id: (buildDatum.length + 1).toString()} ])
-    }
+    // const addBuilding = () => {
+    //     console.log('addbuilding')
+    //     setBuildDatum([...buildDatum, 
+    //         {
+    //         category: buildDatum.length 
+    //             +
+    //                 (buildDatum.length>1?( buildDatum.length>2? (buildDatum.length>3? 'TH': 'RD'): 'ND' ):'ST')
+    //             +' '
+    //             +'BUILDING', 
+    //         id: (buildDatum.length + 1).toString()} ])
+    // }
     return (
         <>
         <SafeAreaView>

@@ -13,7 +13,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'residentRate')
+                        onChangeText: getUserData.bind(this, "residential")
 
                     }}
                 />
@@ -23,7 +23,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'commercialRate')
+                        onChangeText: getUserData.bind(this, "commercial")
                         
                     }}
                 />
@@ -33,7 +33,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'industrialRate')
+                        onChangeText: getUserData.bind(this, "industrial")
                     }}
                 />
 
@@ -42,7 +42,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'institutionRate')
+                        onChangeText: getUserData.bind(this, "institutional")
                         
                     }}
                 />
@@ -52,7 +52,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'agricRate')
+                        onChangeText: getUserData.bind(this, "agricultural")
                         
                     }}
                 />
@@ -62,7 +62,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'recreateRate')
+                        onChangeText: getUserData.bind(this, 'recreational')
                         
                     }}
                 />
@@ -72,7 +72,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, 'mixedUseRate')
+                        onChangeText: getUserData.bind(this, "mixedUse")
                         
                     }}
                 />

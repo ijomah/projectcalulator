@@ -1,5 +1,6 @@
-import React, {useState} from "react";
-import { createContext } from "react";
+import React, {useState, createContext} from "react";
+
+import * as SecureStore from 'expo-secure-store'
 // import { SafeAreaView, View } from "react-native";
 
 export const DispatchContext: any = createContext(undefined);

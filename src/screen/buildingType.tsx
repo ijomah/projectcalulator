@@ -17,6 +17,8 @@ import { screeninfos } from "../data/data";
 import DisplayInfo from "../display/display";
 import { ConfigDataContext } from "../warehouse/configContext";
 
+import * as SecureStore from 'expo-secure-store';
+
 
 export default function BuildingTypePage({nav, compPathName}: any) {
     const devDimension = useWindowDimensions();
@@ -27,6 +29,9 @@ export default function BuildingTypePage({nav, compPathName}: any) {
     //get the rate from setting
     //pass it as parameter to nav
     const transferRate = (rateKey: any) => {
+        const storeDataStr: any = SecureStore.getItemAsync("settingData");
+        const storeData = JSON.parse(storeDataStr)
+        console.log('store', storeDataStr, storeData);
         // loop the ctx obj
         //compare the keys with the one string
         //if true, take the value, set it to state

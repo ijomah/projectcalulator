@@ -10,15 +10,17 @@ export default function ManagerSetting() {
     const dispatchToCtxStore: any = useContext(DispatchContext);
     const getUserData = (inputKey: any, inputValue: any) => {
         // console.log('input', inputKey, inputValue);
-        console.log('input', {...ctxStore, [inputKey]: inputValue});
+        console.log('input', {[inputKey]: inputValue});
         dispatchToCtxStore({...ctxStore, [inputKey]: inputValue})
 
     }
 
     //Save the data
   const saveData = async (distKey: any, distValue: any) => {
-    await SecureStore.setItemAsync('settingData', {...ctxStore, [distKey]: distValue});
-    console.log('ctx content', {...ctxStore, [distKey]: distValue})
+    const {...storeCtxData} = ctxStore
+    const valueForStore = JSON.stringify({...ctxStore, [distKey]: distValue})
+    await SecureStore.setItemAsync("settingData", valueForStore);
+    console.log('ctx content', valueForStore)
   }
 
     return (

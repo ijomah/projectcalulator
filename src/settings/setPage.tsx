@@ -30,8 +30,8 @@ import { ConfigDataContext } from "../warehouse/configContext";
 
 export default function SettingPage({saveData, getUserData}: any) {
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState('');
-  const [district, setDistrict] = useState('');
+  const [value, setValue] = useState("");
+  const [district, setDistrict] = useState("");
   
   
   const renderLabel = () => {
@@ -99,7 +99,7 @@ export default function SettingPage({saveData, getUserData}: any) {
                 <IDCAccount {...{getUserData}} />
                 <AppButton 
                   title='SAVE'
-                  onGoto={() => saveData('district', district)}
+                  onGoto={() => saveData("district", district)}
                 />
             </ScrollView>
         </SafeAreaView>

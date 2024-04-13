@@ -19,7 +19,9 @@ import BuildingLevel from "../../buildings/building";
 export default function ProcessFee({navigation}: any) {
     const devDimension = useWindowDimensions();
 
-     
+     const getRate = () => {
+        
+     }
     return (
         <ScrollView style={styles.processCase}>
             <ScreenHeadings 
