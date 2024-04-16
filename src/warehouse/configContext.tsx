@@ -45,8 +45,13 @@ export default function ConfigContextProvider({children}: any) {
                 agricultural: '',
                 recreational: '',
                 mixedUse: '',
-                processFee: '',
+                processFee: [],
                 assessmentFee: '',
+                idcFee: [],
+                stageFee: [],
+                penalFee: [],
+                pfsFee: []
+                
                 // layout: '',
                 // appReg: '',
                 // procAgencyCode: '',

@@ -10,6 +10,10 @@ import {
     Dimensions,
     ScrollView
 } from "react-native";
+
+import * as Print from 'expo-print';
+import { shareAsync } from 'expo-sharing';
+
 import ApplicantDet from "../bio/applicantDet";
 import BuildingLevel from "../buildings/building";
 import AppButton from "../buttons/appBtn";
@@ -19,15 +23,34 @@ import LabelledDisplay from "../display/labelDisplay";
 import PaymentDisplay from "../display/paymentDisplay";
 import ScreenHeadings from "../headings/Heading";
 import PreviewBuildingLevel from "../../preview/prevBuildingLevel";
+import PreviewPaymentAcc from "../../preview/previewPayAcc";
 
 
 export default function PreviewPage({navigation}: any) {
+    const [selectedPrinter, setSelectedPrinter] = React.useState();
     const devDimension = useWindowDimensions();
 
     const downloadPage = () => {
         // download this page as pdf
         // download code
     };
+    const titleText = null;
+    const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+        </head>
+        <body style="text-align: center;">
+            <h1 style="font-size: 50px; font-family: Helvetica Neue; font-weight: normal;">
+                ${titleText}
+            </h1>
+            <div id="img-case" style="">
+                
+            </div>
+        </body>
+    </html>
+    `
     return (
         <ScrollView contentContainerStyle={{justifyContent: 'space-between'}}>
         <View style={styles.processCase}>
@@ -139,6 +162,12 @@ export default function PreviewPage({navigation}: any) {
                     />
                 </View>
             <PaymentDisplay />
+            {
+            // fee?
+               <PreviewPaymentAcc
+                    
+               />
+            }
             <AppButton 
                 title='SAVE'
                 onGoto={downloadPage}
@@ -147,13 +176,19 @@ export default function PreviewPage({navigation}: any) {
         </View>
         <View>
         <Text style={
-            {fontSize: AppStyles.txtFontSize * 9.5, 
-            borderWidth: 2, 
-            borderColor: 'gray', 
-            borderStyle: 'solid', 
-            textAlign: 'center'
+            {
+                fontSize: AppStyles.txtFontSize * 8, 
+                borderWidth: 1,
+                marginBottom: 0,
+                justifyContent: 'flex-end',
+                borderColor: 'gray', 
+                borderStyle: 'solid', 
+                textAlign: 'center'
             }
-        }>PLEASE CHECK THE CALCULATED ASSESSMENT FOR ERRORS. ASSESSMENT CALCULATOR WOULD NOT BE LIABLE FOR ANY HUMAN ERROR</Text>
+        }>
+            PLEASE CHECK THE CALCULATED ASSESSMENT FOR ERRORS. 
+            ASSESSMENT CALCULATOR WOULD NOT BE LIABLE FOR ANY HUMAN ERROR
+        </Text>
         </View>
         </ScrollView>
     )

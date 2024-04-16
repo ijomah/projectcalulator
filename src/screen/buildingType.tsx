@@ -22,22 +22,30 @@ import * as SecureStore from 'expo-secure-store';
 
 export default function BuildingTypePage({nav, compPathName}: any) {
     const devDimension = useWindowDimensions();
-    const [rate, setRate] = useState(0);
+    const [rate, setRate] = useState();
+    
     const ctxRate: any = useContext(ConfigDataContext);
+    const [rateCtxState, setRateCtxState] = useState(ctxRate);
     // const nav = useNavigation();
     //Transfer rate will interact with context
     //get the rate from setting
     //pass it as parameter to nav
     const transferRate = (rateKey: any) => {
-        const storeDataStr: any = SecureStore.getItemAsync("settingData");
-        const storeData = JSON.parse(storeDataStr)
-        console.log('store', storeDataStr, storeData);
+        // const storeDataStr: any = SecureStore.getItemAsync("settingData");
+        // const storeData = JSON.parse(storeDataStr)
+        // console.log('store', storeDataStr, storeData);
         // loop the ctx obj
         //compare the keys with the one string
         //if true, take the value, set it to state
+        // setRate(ctxRate[rateKey])
+        let keyRate = rateKey.replace(' ', '')
+        console.log('ctxRate', ctxRate)
         for (var property in ctxRate) {
-            if (property.toUpperCase() === rateKey.replace(' ', '')) {
-                setRate(ctxRate.property)
+            console.log('property for ctx', property)
+            
+            if (property === keyRate ) {
+                // let ppty = property.toLowerCase();
+                return setRate(rateCtxState[property])
             }
         }
         // console.log(Object.keys(ctxRate))
@@ -47,6 +55,7 @@ export default function BuildingTypePage({nav, compPathName}: any) {
         //         setRate(ctxRate.objKey);
         //     }
         // })
+        console.log('rate',rate)
     };
 
     const goto  = () => {

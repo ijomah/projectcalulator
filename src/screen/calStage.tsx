@@ -7,10 +7,11 @@ import {
     TouchableOpacity, 
     useWindowDimensions
 } from "react-native";
-import { screeninfos } from "../src/data/data";
-import DisplayInfo from "../src/display/display";
-import AppButton from "../src/buttons/appBtn";
+// import { screeninfos } from "../src/data/data";
+// import DisplayInfo from "../src/display/display";
+// import AppButton from "../src/buttons/appBtn";
 import BuildingTypePage from "./buildingType";
+import { AppStyles } from "../constants/styles";
 
 export default function CalStage({navigation}: any) {
     const devDimension = useWindowDimensions()
@@ -29,7 +30,7 @@ export default function CalStage({navigation}: any) {
 const styles = StyleSheet.create({
     buildTypeBox: {
         // backgroundColor: 'yellow',
-        height: 750, //use dim api or windowdim hook
+        height: AppStyles.height, //use dim api or windowdim hook
         alignItems: 'center',
         justifyContent: 'center',
     },

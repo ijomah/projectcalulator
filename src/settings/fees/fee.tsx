@@ -17,7 +17,7 @@ export default function FeePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeholder: '  AMOUNT',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, "app&RegFee"),
+                        onChangeText: getUserData.bind(this, "appRegFee"),
                     }}
                 />
                 <ReuseInput 

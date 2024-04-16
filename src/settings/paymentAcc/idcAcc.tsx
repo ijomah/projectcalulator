@@ -7,7 +7,7 @@ export default function IDCAccount({getUserData}: any) {
     return (
         <SafeAreaView>
             <PaymentAcc
-                feeType='BETTERMENT (IDC)'
+                feeType='BETTERMENT'
                 {...{getUserData}}
             />
         </SafeAreaView>
