@@ -15,6 +15,7 @@ import CalcuationTypes from "../calType";
 import ScreenHeadings from "../../headings/Heading";
 import ApplicantDet from "../../bio/applicantDet";
 import BuildingLevel from "../../buildings/building";
+import ManageApplicantDetails from "../../bio/manageApplicantDet";
 
 export default function ProcessFee({navigation}: any) {
     const devDimension = useWindowDimensions();
@@ -27,7 +28,7 @@ export default function ProcessFee({navigation}: any) {
             <ScreenHeadings 
                 title='APPLICATION DETAILS'
             />
-            <ApplicantDet />
+            <ManageApplicantDetails />
             <BuildingLevel />
         <CalcuationTypes navigation={navigation} />
             

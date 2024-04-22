@@ -12,6 +12,7 @@ import FloorType from "../floors/floor";
 import { AppStyles } from "../constants/styles";
 import AppButton from "../buttons/appBtn";
 import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
+import { structureData } from "../../util/utilFxn";
 
 export default function BuildingLevel({previewEditableInput}: any) {
     const [datum, buildDatum] = useState([{type: 'G/F', id: '1'}]);
@@ -43,7 +44,9 @@ export default function BuildingLevel({previewEditableInput}: any) {
     // }
 
     const getUserInputs = (storeKey: any, storeValue: number) => {
-        dispatchData({...ctxData, [storeKey]: storeValue});
+        const floorObj = {[storeKey]: storeValue}
+        const floorArr = structureData(floorObj);
+        dispatchData({...ctxData, floorData: floorArr});
         console.log('ctx', ctxData);
     }
     //calculated value

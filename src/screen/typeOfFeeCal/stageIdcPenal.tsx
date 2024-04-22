@@ -15,6 +15,7 @@ import LabelledDisplay from "../../display/labelDisplay";
 import PaymentDisplay from "../../display/paymentDisplay";
 import ScreenHeadings from "../../headings/Heading";
 import { ConfigDataContext } from "../../warehouse/configContext";
+import ManageApplicantDetails from "../../bio/manageApplicantDet";
 
 
 
@@ -77,7 +78,7 @@ export default function StageAndIDCAndPenal({navigation}: any) {
             <ScreenHeadings 
               title='APPLICATION DETAILS'
             />
-            <ApplicantDet />
+            <ManageApplicantDetails />
             <View>
               <ScreenHeadings                
                   title='STAGE CERTIFICATION'

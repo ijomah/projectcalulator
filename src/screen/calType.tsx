@@ -17,7 +17,7 @@ import ReuseInput from "../reuseables/input";
 
 
 
-export default function CalcuationTypes({navigation, isPfs}: any) {
+export default function CalcuationTypes(this: any, {getUserData,navigation, isPfs}: any) {
 
     return (
         <SafeAreaView>
@@ -35,7 +35,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                         label='FENCING FEE:'
                                         inputConfig={{
                                             placeholder: 'INPUT LAND AREA',
-                                            textAlign: 'center'
+                                            textAlign: 'center',
+                                            onChangeText: getUserData.bind(this, 'fencingQfee')
                                         }}
                                 />
                             </View>
@@ -62,7 +63,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                     label='1ST FLOOR PUMP:'
                                     inputConfig={{
                                         placeholder: 'INPUT COST',
-                                        textAlign: 'center'
+                                        textAlign: 'center',
+                                        onChangeText: getUserData.bind(this, 'firstQfloorQpump')
                                     }}
                             />
                         </View>
@@ -90,7 +92,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                     label='ADD PUMP:'
                                     inputConfig={{
                                         placeholder: 'INPUT COST',
-                                        textAlign: 'center'
+                                        textAlign: 'center',
+                                        onChangeText: getUserData.bind(this, 'addQpump')
                                     }}
                             />
                         </View>
@@ -118,7 +121,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                         label='UNDER GROUND TANK @ 5OOK/TANK:'
                                         inputConfig={{
                                             placeholder: 'INPUT COST',
-                                            textAlign: 'center'
+                                            textAlign: 'center',
+                                            onChangeText: getUserData.bind(this, 'underQgroundQtank@500k/tank')
                                         }}
                                 />
                             </View>
@@ -147,7 +151,8 @@ export default function CalcuationTypes({navigation, isPfs}: any) {
                                 label='FENCING FEE:'
                                 inputConfig={{
                                     placeholder: 'INPUT LAND AREA',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    onChangeText: getUserData.bind(this, 'fencingQfee')
                                 }}
                         />
                     </View>

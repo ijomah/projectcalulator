@@ -15,7 +15,7 @@ import LabelledDisplay from "../display/labelDisplay";
 import ReuseInput from "../reuseables/input";
 
 
-export default function ApplicantDet({navigation, previewEditableInput, disableInput}: any) {
+export default function ApplicantDet(this: any, {navigation, gatherDet, previewEditableInput, disableInput}: any) {
 
    
     return (
@@ -24,7 +24,8 @@ export default function ApplicantDet({navigation, previewEditableInput, disableI
                 label='LOCATION OF DEVELOPMENT:'
                 inputConfig={{
                     // placeholder: 'INPUT LAND AREA'
-                    editable: previewEditableInput
+                    editable: previewEditableInput,
+                    onChangeText: gatherDet.bind(this, 'locationQofQdevelopment')
                 }}
             />
             <ReuseInput 
@@ -32,7 +33,8 @@ export default function ApplicantDet({navigation, previewEditableInput, disableI
                 inputConfig={{
                     // placeholder: 'INPUT LAND AREA'
                     editable: previewEditableInput,
-                    inputMolde: 'text'
+                    inputMolde: 'text',
+                    onChangeText: gatherDet.bind(this, 'applicantQname')
                 }}
             />
             <ReuseInput 
@@ -40,7 +42,8 @@ export default function ApplicantDet({navigation, previewEditableInput, disableI
                 inputConfig={{
                     // placeholder: 'INPUT LAND AREA'
                     editable: previewEditableInput,
-                    inputMode: 'text'
+                    inputMode: 'text',
+                    onChangeText: gatherDet.bind(this, 'applicantQaddress')
                 }}
             />
             <ReuseInput 
@@ -49,6 +52,7 @@ export default function ApplicantDet({navigation, previewEditableInput, disableI
                     // placeholder: 'INPUT LAND AREA'
                     editable: previewEditableInput,
                     inputMode: 'tel',
+                    onChangeText: gatherDet.bind(this, 'telephoneQno')
 
                 }}
             />
@@ -58,6 +62,7 @@ export default function ApplicantDet({navigation, previewEditableInput, disableI
                     // placeholder: 'INPUT LAND AREA'
                     editable: previewEditableInput,
                     inputMode: 'text',
+                    onChangeText: gatherDet.bind(this, 'fileQnumber')
                 }}
             />
         </SafeAreaView>

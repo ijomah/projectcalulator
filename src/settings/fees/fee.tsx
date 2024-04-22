@@ -17,7 +17,7 @@ export default function FeePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeholder: '  AMOUNT',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, "appRegFee"),
+                        onChangeText: getUserData.bind(this, "appQRegQFee"),
                     }}
                 />
                 <ReuseInput 
@@ -25,7 +25,7 @@ export default function FeePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'AMOUNT',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, "layoutFee"),
+                        onChangeText: getUserData.bind(this, "layoutQFee"),
                     }}
                 />
             </View>

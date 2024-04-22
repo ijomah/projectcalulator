@@ -15,6 +15,7 @@ import CalcuationTypes from "../calType";
 import ApplicantDet from "../../bio/applicantDet";
 import BuildingLevel from "../../buildings/building";
 import ScreenHeadings from "../../headings/Heading";
+import ManageApplicantDetails from "../../bio/manageApplicantDet";
 
 export default function Pfs({navigation}: any) {
     const devDimension = useWindowDimensions();
@@ -25,7 +26,7 @@ export default function Pfs({navigation}: any) {
             <ScreenHeadings 
                 title='APPLICATION DETAILS'
             />
-            <ApplicantDet />
+            <ManageApplicantDetails />
             <BuildingLevel />
         <CalcuationTypes 
             isPfs={true}

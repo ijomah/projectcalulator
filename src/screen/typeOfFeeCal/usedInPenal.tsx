@@ -7,6 +7,7 @@ import AppButton from '../../buttons/appBtn';
 import PaymentDisplay from '../../display/paymentDisplay';
 import PenalPaymentDet from '../../display/penalPaymentDet';
 import ScreenHeadings from '../../headings/Heading';
+import ManageApplicantDetails from '../../bio/manageApplicantDet';
 
 export default function PageUsedInPenal({navigation}: any) {
     return (
@@ -14,7 +15,7 @@ export default function PageUsedInPenal({navigation}: any) {
             <ScreenHeadings
                 title='APPLICATION DETAILS'
             />
-            <ApplicantDet />
+            <ManageApplicantDetails />
             <ScreenHeadings 
                 title='PENAL'
             />

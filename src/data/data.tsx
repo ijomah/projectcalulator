@@ -95,3 +95,52 @@ export const districtOffices = [
     {id: '49', district: 'E-pp Headquarters'}
 ]
 
+export const previewData = {
+    district: '',
+    // location: '',
+    // Name: '',
+    // Address: '',
+    // tel: null,
+    // fileNo: null,
+    buildingType: '',
+    floorType: '',
+    // landArea: null,
+    // gfloorLength: '',
+    // gfloorBreadth: '',
+    // gfloorHeight: '',
+    // rate: '',
+    feeData: [],
+    floorData: [],
+    bioData: [],
+    // assessFee: '',
+    // layoutFee: '',
+    // appRegFee: '',
+    // subTotal: '',
+    // percentVal: '',
+    // sec: '',
+    // total: '',
+    agentCode: '',
+    revCode: ''
+}
+
+let newObFee = [
+    {feeKey: 'FENCING FEE', feeValue: 'number', id: '1'},
+    {feeKey: 'ASSESSMENT FEE', feeValue: 'number', id: '2'},
+    {feeKey: 'LAYOUT FEE', feeValue: 'number', id: '3'},
+    {feeKey: 'APP & REG FEE', feeValue: 'number', id: '4'},
+    {feeKey: 'SUB TOTAL', feeValue: 'number', id: '5'},
+    {feeKey: '10%', feeValue: 'number', id: '6'},
+    {feeKey: 'S.E.C', feeValue: 'number', id: '7'},
+    {feeKey: 'TOTAL', feeValue: 'number', id: '8'},
+]
+
+let newObFloor = [
+    {floorKey: 'G/F', id: '1', length: 'num', breadth: 'num', height: 'num', rate: 'num'},
+    {floorKey: '1ST/F', id: '2', length: 'num', breadth: 'num', height: 'num', rate: 'num'},
+    {floorKey: '2ND/F', id: '3', length: 'num', breadth: 'num', height: 'num', rate: 'num'}
+]
+
+let newObBioData = [
+    {ownerKey: 'LOCATION OF DEVELOPMENT', id: '1', ownerData: 'address data'},
+    {ownerKey: 'APPLICANT NAME', id: '2', ownerData: 'name data'}
+]

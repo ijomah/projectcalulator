@@ -11,6 +11,7 @@ import LabelledDisplay from '../../display/labelDisplay';
 import DisplayInfo from '../../display/display';
 import ReuseInput from '../../reuseables/input';
 import { ConfigDataContext, DispatchContext } from '../../warehouse/configContext';
+import ManageApplicantDetails from '../../bio/manageApplicantDet';
 
 export default function Idc(this: any, {navigation}: any) {
     const idcCtxData: any = useContext(ConfigDataContext);
@@ -33,7 +34,7 @@ export default function Idc(this: any, {navigation}: any) {
             <ScreenHeadings
                 title='APPLICATION DETAILS'
             />
-            <ApplicantDet />
+            <ManageApplicantDetails />
             <ScreenHeadings 
                 title='BETTERMENT FEE (INFRASTRUCTURE DEVELOPMENT CHARGE)'
             />
