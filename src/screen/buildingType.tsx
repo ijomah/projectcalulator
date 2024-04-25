@@ -15,17 +15,18 @@ import { useNavigation } from "@react-navigation/native";
 import AppButton from "../buttons/appBtn";
 import { screeninfos } from "../data/data";
 import DisplayInfo from "../display/display";
-import { ConfigDataContext } from "../warehouse/configContext";
+import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
 
 import * as SecureStore from 'expo-secure-store';
 
 
 export default function BuildingTypePage({nav, compPathName}: any) {
     const devDimension = useWindowDimensions();
-    const [rate, setRate] = useState();
+    const [rate, setRate] = useState({});
     
     const ctxRate: any = useContext(ConfigDataContext);
-    const [rateCtxState, setRateCtxState] = useState(ctxRate);
+    const dispatchCtxRate: any = useContext(DispatchContext);
+    // const [rateCtxState, setRateCtxState] = useState(ctxRate);
     // const nav = useNavigation();
     //Transfer rate will interact with context
     //get the rate from setting
@@ -34,28 +35,28 @@ export default function BuildingTypePage({nav, compPathName}: any) {
         // const storeDataStr: any = SecureStore.getItemAsync("settingData");
         // const storeData = JSON.parse(storeDataStr)
         // console.log('store', storeDataStr, storeData);
+        dispatchCtxRate({...ctxRate, rateKey: rateKey})
         // loop the ctx obj
         //compare the keys with the one string
         //if true, take the value, set it to state
         // setRate(ctxRate[rateKey])
-        let keyRate = rateKey.replace(' ', '')
-        console.log('ctxRate', ctxRate)
-        for (var property in ctxRate) {
-            console.log('property for ctx', property)
+        // let keyRate = rateKey.replace(' ', '');
+        // console.log('ctxRate', ctxRate)
+        // for (var property in ctxRate) {
+        //     console.log('property for ctx', property)
             
-            if (property === keyRate ) {
-                // let ppty = property.toLowerCase();
-                return setRate(rateCtxState[property])
-            }
-        }
+        //     if (property === rateKey ) {
+        //         // let ppty = property.toLowerCase();
+        //         dispatchCtxRate({...ctxRate, rateKey: ctxRate[property]})
+        //     }
+        // }
         // console.log(Object.keys(ctxRate))
-        const {...ctxRateCopy} = ctxRate;
+        // const {...ctxRateCopy} = ctxRate;
         // Object.getOwnPropertyNames(ctxRate).forEach((objKey)=>{
         //     if(objKey === rateKey.replace(' ', '')) {
         //         setRate(ctxRate.objKey);
         //     }
         // })
-        console.log('rate',rate)
     };
 
     const goto  = () => {
@@ -64,13 +65,13 @@ export default function BuildingTypePage({nav, compPathName}: any) {
             return console.log('no rate o')
         }
         console.log('rate is', rate)
-        nav.navigate(compPathName, {rateTransfer: rate});
+        nav.navigate(compPathName, rate);
     };
     const showScreenInfo = ({item}: any) => {
         return(
             <TouchableOpacity 
                 onPress={() => {
-                    transferRate(item.building)
+                    transferRate(item.buildType)
                 }}
                 style={[styles.buildType, {borderColor: item.colors}]}
             >

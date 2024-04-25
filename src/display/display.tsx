@@ -13,6 +13,7 @@ export default function DisplayInfo({
         textColor,
         prevDisplayStyles,
         prevBuildingOutlineStyle,
+        rightPenalPaymentDetFlexStyle,
         info}: any
     ) {
     return (
@@ -22,7 +23,8 @@ export default function DisplayInfo({
                 prevDisplayStyles,
                 calTypeLabelStyle,
                 prevBuidingDisplayInfoStyle,
-                prevBuildingOutlineStyle
+                prevBuildingOutlineStyle,
+                rightPenalPaymentDetFlexStyle
             ]}
         >
             <Text style={[

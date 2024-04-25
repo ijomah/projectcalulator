@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -10,6 +10,7 @@ import {
 import { customDisplayStyle } from "../constants/styles";
 import DisplayInfo from "../display/display";
 import ReuseInput from "../reuseables/input";
+import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
 
 export default function FloorType(this: any, 
     {
@@ -19,9 +20,12 @@ export default function FloorType(this: any,
         calResult
     }: any) {
     const devHeight = useWindowDimensions().height;
-
+        const floorCtxVal: any = useContext(ConfigDataContext);
+        const dispatchFloorCtx = useContext(DispatchContext);
+        
     //cal case
     //getUserInputs = null
+
     return (
         <SafeAreaView style={styles.floorStyle}>
             {/* <DisplayInfo
@@ -77,7 +81,7 @@ export default function FloorType(this: any,
             <DisplayInfo
                 // floorDisplayStyle={styles.floorDisplayInfoStyle}
                 floorDisplayStyle={customDisplayStyle}
-                info={calResult}
+                info={floorCtxVal.floorRes}
             />
         </SafeAreaView>
     )

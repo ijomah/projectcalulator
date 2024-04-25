@@ -17,12 +17,12 @@ import ApplicantDet from "../../bio/applicantDet";
 import BuildingLevel from "../../buildings/building";
 import ManageApplicantDetails from "../../bio/manageApplicantDet";
 
-export default function ProcessFee({navigation}: any) {
+export default function ProcessFee({navigation, params}: any) {
     const devDimension = useWindowDimensions();
-
      const getRate = () => {
         
      }
+     const getUserData = () => {}
     return (
         <ScrollView style={styles.processCase}>
             <ScreenHeadings 
@@ -30,7 +30,10 @@ export default function ProcessFee({navigation}: any) {
             />
             <ManageApplicantDetails />
             <BuildingLevel />
-        <CalcuationTypes navigation={navigation} />
+        <CalcuationTypes 
+            navigation={navigation} 
+            getUserData={getUserData}
+        />
             
         </ScrollView>
     )

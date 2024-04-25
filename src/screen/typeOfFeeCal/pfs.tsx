@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -16,10 +16,18 @@ import ApplicantDet from "../../bio/applicantDet";
 import BuildingLevel from "../../buildings/building";
 import ScreenHeadings from "../../headings/Heading";
 import ManageApplicantDetails from "../../bio/manageApplicantDet";
+import { ConfigDataContext, DispatchContext } from "../../warehouse/configContext";
 
 export default function Pfs({navigation}: any) {
+    const ctxData: any = useContext(ConfigDataContext);
+    const dispatchCtxData: any = useContext(DispatchContext);
+
     const devDimension = useWindowDimensions();
 
+    const getUserData = (dataKey: any, dataValue: any) => {
+        const dataStore = {[dataKey]: dataValue};
+        dispatchCtxData({...ctxData, dataStore})
+    }
      
     return (
         <ScrollView style={styles.processCase}>
@@ -30,7 +38,8 @@ export default function Pfs({navigation}: any) {
             <BuildingLevel />
         <CalcuationTypes 
             isPfs={true}
-            navigation={navigation} 
+            navigation={navigation}
+            getUserData={getUserData} 
         />
             
         </ScrollView>

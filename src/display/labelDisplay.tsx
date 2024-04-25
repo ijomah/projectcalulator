@@ -19,7 +19,8 @@ export default function LabelledDisplay({
         prevLabelStyle,
         multiplandInfo,
         calTypeLabelStyle,
-        penalPaymentDetFlexStyle, 
+        penalPaymentDetFlexStyle,
+        rightPenalPaymentDetFlexStyle, 
         namedInfo}: any
     ) {
     return (
@@ -33,7 +34,9 @@ export default function LabelledDisplay({
                 <Text style={isWhat? styles.noSpace : styles.emptyTextStyle}>{' '}</Text>
                 
             }
-            <Text style={[styles.namedInfoStyle, penalPaymentDetFlexStyle]}>{namedInfo}</Text>
+            <Text style={[
+                styles.namedInfoStyle, 
+                penalPaymentDetFlexStyle]}>{namedInfo}</Text>
             {/* Equality sign icon */}
             {isSign?
                 <Entypo 
@@ -41,14 +44,21 @@ export default function LabelledDisplay({
                 size={15} color="black" />
                 :
                 <FontAwesome6 
-                    style={styles.iconEqualStyle}
+                    style={
+                        styles.iconEqualStyle
+                    }
                     name="equals" 
                     size={15} 
                     color="black" 
                 />
             }
             <DisplayInfo 
-                style={[styles.displayInfoPartStyle, penalPaymentDetFlexStyle]}
+                style={[
+                    // styles.displayInfoPartStyle, 
+                    // penalPaymentDetFlexStyle,
+                    rightPenalPaymentDetFlexStyle
+                ]}
+                rightPenalPaymentDetFlexStyle={rightPenalPaymentDetFlexStyle}
                 calTypeLabelStyle={calTypeLabelStyle}
                 info={info}
             />
@@ -64,7 +74,7 @@ const styles = StyleSheet.create({
     },
 
     noSpace: {
-        flex:0
+        flex: 0,
     },
 
     nonEmptyTextStyle: {
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
     },
 
     namedInfoStyle: {
-        flex: 2.5
+        flex: 2.5        
     },
 
     iconEqualStyle: {
@@ -86,6 +96,7 @@ const styles = StyleSheet.create({
 
     displayInfoPartStyle: {
         flex: 4
+        
     }
 
 })

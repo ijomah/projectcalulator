@@ -47,7 +47,10 @@ export default function ConfigContextProvider({children}: any) {
                 mixedUse: '',
                 bioData: [],
                 feeData: [],
-                floorData: [],                
+                floorData: [],
+                assesmentFee: '',
+                subTotal: '',
+                total: ''                
                 // layout: '',
                 // appReg: '',
                 // procAgencyCode: '',

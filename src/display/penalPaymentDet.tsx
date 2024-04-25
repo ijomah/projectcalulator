@@ -4,7 +4,7 @@ import LabelledDisplay from "./labelDisplay";
 
 export default function PenalPaymentDet() {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{padding: 5}}>
             <LabelledDisplay 
                 namedInfo='REVENUE DESCRIPTION'
                 info='PENAL FEES ON BUILDING PLAN'
@@ -12,6 +12,7 @@ export default function PenalPaymentDet() {
                 isText={false}
                 isWhat={true}
                 penalPaymentDetFlexStyle={styles.penalPaymentDetFlexStyle}
+                rightPenalPaymentDetFlexStyle={styles.rightPenalPaymentDetFlexStyle}
             />
 
             <LabelledDisplay 
@@ -20,7 +21,8 @@ export default function PenalPaymentDet() {
                 isSign={true}
                 isText={false}
                 isWhat={true}
-                // penalPaymentDetFlexStyle={styles.penalPaymentDetFlexStyle}
+                penalPaymentDetFlexStyle={styles.penalPaymentDetFlexStyle}
+                rightPenalPaymentDetFlexStyle={styles.rightPenalPaymentDetFlexStyle}
             />
 
             <LabelledDisplay
@@ -29,7 +31,8 @@ export default function PenalPaymentDet() {
                 isSign={true}
                 isText={false}
                 isWhat={true}
-                // penalPaymentDetFlexStyle={styles.penalPaymentDetFlexStyle}
+                penalPaymentDetFlexStyle={styles.penalPaymentDetFlexStyle}
+                rightPenalPaymentDetFlexStyle={styles.rightPenalPaymentDetFlexStyle}
             />
 
             <LabelledDisplay 
@@ -38,7 +41,8 @@ export default function PenalPaymentDet() {
                 isSign={true}
                 isWhat={true}
                 isText={false}
-                // penalPaymentDetFlexStyle={{flex: 1}}
+                rightPenalPaymentDetFlexStyle={styles.rightPenalPaymentDetFlexStyle}
+                penalPaymentDetFlexStyle={styles.penalPaymentDetFlexStyle}
             />
         </SafeAreaView>
     )
@@ -46,7 +50,12 @@ export default function PenalPaymentDet() {
 
 const styles = StyleSheet.create({
     penalPaymentDetFlexStyle: {
-        flex: 2
+        // flex: 2
+        flex: .5
     },
-
+    rightPenalPaymentDetFlexStyle: {
+        // flex: 2
+        flex: .8,
+        alignItems: 'flex-start',
+    },
 })

@@ -1,10 +1,10 @@
 export const screeninfos = [
-    {id: '1', type: 'process', building: 'RESIDENTIAL',  info: 'Calculate Processing Fee', colors: '#f8d731'},
-    {id: '2', type: 'stage', building: 'COMMERCIAL', info: 'Calculate Stage Certificaton', colors: '#0000ff'},
-    {id: '3', type: 'penal', building: 'INSTITUTIONAL', info: 'Calculate Penal Fee', colors: '#ff0000'},
-    {id: '4', type: 'idc', building: 'MIXED USE',  info: 'Calculate I.D.C', colors: '#727430'},
-    {id: '5', type: 'pfs', building: 'AGRICULTURAL', info: 'Calculate P.F.S Assessment', colors: '#136734'},
-    {id: '6', type: 'setting', building: 'RECREATIONAL', info: 'Setting', colors: '#00ff00'},
+    {id: '1', type: 'process', buildType: 'residential', building: 'RESIDENTIAL',  info: 'Calculate Processing Fee', colors: '#f8d731'},
+    {id: '2', type: 'stage', buildType: 'commercial', building: 'COMMERCIAL', info: 'Calculate Stage Certificaton', colors: '#0000ff'},
+    {id: '3', type: 'penal', buildType: 'institutional', building: 'INSTITUTIONAL', info: 'Calculate Penal Fee', colors: '#ff0000'},
+    {id: '4', type: 'idc', buildType: 'mixedUse', building: 'MIXED USE',  info: 'Calculate I.D.C', colors: '#727430'},
+    {id: '5', type: 'pfs', buildType: 'agricultural', building: 'AGRICULTURAL', info: 'Calculate P.F.S Assessment', colors: '#136734'},
+    {id: '6', type: 'setting', buildType: 'recreational', building: 'RECREATIONAL', info: 'Setting', colors: '#00ff00'},
     // {id: '7', type: 'pixCollage', building: null, info: 'Picture Collage'}
 ]
 

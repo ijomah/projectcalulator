@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView, 
         StyleSheet, 
         FlatList, 
@@ -14,10 +14,17 @@ import DisplayInfo from "../display/display";
 import LabelledDisplay from "../display/labelDisplay";
 import PaymentDisplay from "../display/paymentDisplay";
 import ReuseInput from "../reuseables/input";
+import { calculate } from "../../util/utilFxn";
+import { ConfigDataContext } from "../warehouse/configContext";
 
 
 
 export default function CalcuationTypes(this: any, {getUserData,navigation, isPfs}: any) {
+    const ctxInfo = useContext(ConfigDataContext);
+    
+    const doCal = calculate();
+    const doAdd = doCal.addTwo(3);
+    // const doMultiply = doCal.multiply(ctxInfo, 'residential');
 
     return (
         <SafeAreaView>
@@ -34,9 +41,9 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                                         ]}
                                         label='FENCING FEE:'
                                         inputConfig={{
-                                            placeholder: 'INPUT LAND AREA',
+                                            placeholder: 'LAND AREA',
                                             textAlign: 'center',
-                                            onChangeText: getUserData.bind(this, 'fencingQfee')
+                                            onChangeText: getUserData.bind(this, 'pfsfencingQfee')
                                         }}
                                 />
                             </View>
@@ -49,7 +56,7 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                             <DisplayInfo 
                                 style={styles.calDisplayInfoStyle}
                                 calTypeLabelStyle={customDisplayStyle}
-                                    info='Result'
+                                    info={'Result'}
                             />
                         </View>
                     <View style={styles.fencingFeeStyle}>
@@ -296,10 +303,10 @@ const styles = StyleSheet.create({
     },
 
     calTypeInputStyle: {
-        width: AppStyles.mediumInputWidth,
+        width: AppStyles.smallInputWidth,
         // flex: 8,
         // justifyContent: 'space-between',
         // marginRight: 15,
-        marginRight: width / 100.9
+        // marginRight: width / 100.9
     }
 })

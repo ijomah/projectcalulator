@@ -12,7 +12,7 @@ import FloorType from "../floors/floor";
 import { AppStyles } from "../constants/styles";
 import AppButton from "../buttons/appBtn";
 import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
-import { structureData } from "../../util/utilFxn";
+import { calculate, structureData } from "../../util/utilFxn";
 
 export default function BuildingLevel({previewEditableInput}: any) {
     const [datum, buildDatum] = useState([{type: 'G/F', id: '1'}]);
@@ -28,7 +28,7 @@ export default function BuildingLevel({previewEditableInput}: any) {
         // {type: '9TH/F', id: '10'},
         // {type: '10TH/F', id: '11'},
         // {type: '11TH/F', id: '12'}
-    
+    const [objArr, setObjArr]: any = useState();
     const ctxData: any = useContext(ConfigDataContext);
     const dispatchData: any = useContext(DispatchContext);
 
@@ -43,25 +43,39 @@ export default function BuildingLevel({previewEditableInput}: any) {
     //     </View>
     // }
 
-    const getUserInputs = (storeKey: any, storeValue: number) => {
-        const floorObj = {[storeKey]: storeValue}
-        const floorArr = structureData(floorObj);
-        dispatchData({...ctxData, floorData: floorArr});
-        console.log('ctx', ctxData);
-    }
     //calculated value
     // const calResult = ctxData.length * ctxData.breadth * ctxData.height * ctxData.rate;
+    const doCalc = calculate();
 
+    const getUserInputs = (storeKey: any, storeValue: number) => {
+        const floorObj = {[storeKey]: storeValue}
+        setObjArr(floorObj);
+        
+        dispatchData({...ctxData, [storeKey]: storeValue});
+        console.log('ctx', ctxData);
+        if(ctxData.length != "" && ctxData.height != "" && ctxData.breadth != "") {
+            //note this empty string will be replace with rate value
+            // either of this 'institutional', or 'rectreational' or others
+            doCalc.multiply(ctxData, ctxData.rateKey)
+            dispatchData({...ctxData, floorRes: doCalc.answer})
+        }
+
+    }
+    
+    const makeArrOfObj = () => {
+        const floorArr = structureData(objArr);
+        dispatchData({...ctxData, floorData: floorArr});
+    }
     // Add floor btn
     const addFloor = () => {
-        console.log('addfloor')
+        console.log('addfloor');
         buildDatum([...datum, 
             {
             type: datum.length 
                 + 
                     (datum.length>1?( datum.length>2? (datum.length>3? 'TH': 'RD'): 'ND' ):'ST')
                 +'/F', 
-            id: (datum.length + 1).toString()} ])
+            id: (datum.length + 1).toString()} ]);
     }
             //pseudocode 1 
     // create 2d array
