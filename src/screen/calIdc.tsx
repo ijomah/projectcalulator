@@ -9,6 +9,7 @@ import {
 } from "react-native";
 // import { screeninfos } from "../src/data/ds
 import BuildingTypePage from "./buildingType";
+import { AppStyles } from "../constants/styles";
 
 export default function CalIdc({navigation}: any) {
     const devDimension = useWindowDimensions()
@@ -27,7 +28,8 @@ export default function CalIdc({navigation}: any) {
 const styles = StyleSheet.create({
     buildTypeBox: {
         // backgroundColor: 'yellow',
-        height: 780, //use dim api or windowdim hook
+        // height: 780, //use dim api or windowdim hook
+        height: AppStyles.height - 150,
         alignItems: 'center',
         justifyContent: 'center',
     },

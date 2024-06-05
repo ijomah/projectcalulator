@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView, 
     StyleSheet, 
     FlatList, 
     View, Text, TextInput, 
     TouchableOpacity } from "react-native";
 import { AppStyles } from "../constants/styles";
+import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
 
 export default function DisplayInfo({
         floorDisplayStyle,
@@ -14,8 +15,12 @@ export default function DisplayInfo({
         prevDisplayStyles,
         prevBuildingOutlineStyle,
         rightPenalPaymentDetFlexStyle,
+        onCal,
         info}: any
     ) {
+
+    const ctxDatum: any = useContext(ConfigDataContext);
+
     return (
         <SafeAreaView style={[
                 styles.displayInfoStyle,
@@ -24,13 +29,14 @@ export default function DisplayInfo({
                 calTypeLabelStyle,
                 prevBuidingDisplayInfoStyle,
                 prevBuildingOutlineStyle,
-                rightPenalPaymentDetFlexStyle
+                rightPenalPaymentDetFlexStyle,
             ]}
         >
             <Text style={[
                     styles.displayTextStyle, 
                     {color: textColor}, 
                 ]}
+                onPress={ctxDatum.computeAssessmentData}
             >{info}</Text>
         </SafeAreaView>
     )
@@ -38,7 +44,7 @@ export default function DisplayInfo({
 
 const styles = StyleSheet.create({
     displayInfoStyle: {
-        width: 120,
+        width: AppStyles.width / 3,
         alignItems: 'center',
     },
     displayTextStyle: {

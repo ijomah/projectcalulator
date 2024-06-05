@@ -22,7 +22,7 @@ import * as SecureStore from 'expo-secure-store';
 
 export default function BuildingTypePage({nav, compPathName}: any) {
     const devDimension = useWindowDimensions();
-    const [rate, setRate] = useState({});
+    // const [rate, setRate] = useState({});
     
     const ctxRate: any = useContext(ConfigDataContext);
     const dispatchCtxRate: any = useContext(DispatchContext);
@@ -35,11 +35,11 @@ export default function BuildingTypePage({nav, compPathName}: any) {
         // const storeDataStr: any = SecureStore.getItemAsync("settingData");
         // const storeData = JSON.parse(storeDataStr)
         // console.log('store', storeDataStr, storeData);
-        dispatchCtxRate({...ctxRate, rateKey: rateKey})
+        dispatchCtxRate({...ctxRate, selectedBuildType: {buildType: rateKey, rate: ctxRate[rateKey]}})
         // loop the ctx obj
         //compare the keys with the one string
         //if true, take the value, set it to state
-        // setRate(ctxRate[rateKey])
+        // setRate({buildType: rateKey, rate: ctxRate[rateKey]})
         // let keyRate = rateKey.replace(' ', '');
         // console.log('ctxRate', ctxRate)
         // for (var property in ctxRate) {
@@ -60,12 +60,12 @@ export default function BuildingTypePage({nav, compPathName}: any) {
     };
 
     const goto  = () => {
-        if (rate === 0) {
-            // return ToastAndroid.BOTTOM('Please select a building type',)
-            return console.log('no rate o')
-        }
-        console.log('rate is', rate)
-        nav.navigate(compPathName, rate);
+        // if (rate === 0) {
+        //     // return ToastAndroid.BOTTOM('Please select a building type',)
+        //     return console.log('no rate o')
+        // }
+        // console.log('rate is', rate)
+        nav.navigate(compPathName);
     };
     const showScreenInfo = ({item}: any) => {
         return(

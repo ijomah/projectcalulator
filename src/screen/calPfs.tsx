@@ -11,6 +11,7 @@ import {
 // import DisplayInfo from "../src/display/display";
 // import AppButton from "../src/buttons/appBtn";
 import BuildingTypePage from "./buildingType";
+import { AppStyles } from "../constants/styles";
 
 export default function CalPfs({navigation}: any) {
     const devDimension = useWindowDimensions()
@@ -29,7 +30,8 @@ export default function CalPfs({navigation}: any) {
 const styles = StyleSheet.create({
     buildTypeBox: {
         // backgroundColor: 'yellow',
-        height: 780, //use dim api or windowdim hook
+        // height: 780, //use dim api or windowdim hook
+        height: AppStyles.height - 150,
         alignItems: 'center',
         justifyContent: 'center',
     },

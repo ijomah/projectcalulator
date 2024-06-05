@@ -21,6 +21,7 @@ export default function LabelledDisplay({
         calTypeLabelStyle,
         penalPaymentDetFlexStyle,
         rightPenalPaymentDetFlexStyle, 
+        onCal,
         namedInfo}: any
     ) {
     return (
@@ -60,6 +61,7 @@ export default function LabelledDisplay({
                 ]}
                 rightPenalPaymentDetFlexStyle={rightPenalPaymentDetFlexStyle}
                 calTypeLabelStyle={calTypeLabelStyle}
+                onCal={onCal}
                 info={info}
             />
         </SafeAreaView>

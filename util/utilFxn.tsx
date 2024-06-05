@@ -75,16 +75,16 @@ export const structureData = (val: any) => {
 }
 
 export function calculate() {
-  var res = 0;
+  var resData = 0;
   return {
     answer: () => {
-      return res;
+      return resData;
     },
 
     multiply: (datum: any, rateType: any) => {
       //use switch statement here
       const times = Number(datum.length) * Number(datum.breadth) * Number(datum.height)
-      res = times * Number(datum[rateType]); 
+      resData = times * Number(datum[rateType]); 
       // switch (rateType) {
       //   case 'residential':
       //     res = times * datum[rateType];    
@@ -133,3 +133,19 @@ export function calculate() {
     }
   }
 }
+
+export function multiplyNum(stateRate: any) {
+  return function (val1: any) {
+    return function (val2: any) {
+      return function (val3: any) {
+        return val1 * val2 * val3 * stateRate;
+      }
+    }
+  }
+}
+
+export function addUp(...addee: any) {
+  return addee.reduce((a: any, b: any) => a + b)
+}
+
+const calPercent = () => {}

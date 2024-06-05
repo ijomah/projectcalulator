@@ -1,3 +1,4 @@
+
 export const screeninfos = [
     {id: '1', type: 'process', buildType: 'residential', building: 'RESIDENTIAL',  info: 'Calculate Processing Fee', colors: '#f8d731'},
     {id: '2', type: 'stage', buildType: 'commercial', building: 'COMMERCIAL', info: 'Calculate Stage Certificaton', colors: '#0000ff'},

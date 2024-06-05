@@ -8,20 +8,20 @@ import {
 import DisplayInfo from "./display";
 import LabelledDisplay from "./labelDisplay";
 
-export default function PaymentDisplay({total, codes}: any) {
+export default function PaymentDisplay({total, agencyCode, revCode, payType, codes}: any) {
     return (
         <SafeAreaView style={styles.payDisplayContainer}>
             <Text style={{textAlign: 'center'}}>
                 PLEASE PAY THE SUM OF 
                 {' '} 
-                {total}
+                {'N'+total}
                 {' '} 
-                TO LASG ACCOUNT AS PROCESSING FEE
+                TO LASG ACCOUNT AS {payType} FEE
             </Text>
             <View style={{flexDirection: 'row',}}>
                 <View style={{flexDirection: 'row'}}>
                     <DisplayInfo
-                        info='AGENCY CODE:...'
+                        info={'AGENCY CODE: '+ agencyCode}
                     />
                     {/* <Text> {' '} </Text> */}
                     {/* <DisplayInfo
@@ -31,7 +31,7 @@ export default function PaymentDisplay({total, codes}: any) {
 
                 <View style={{flexDirection: 'row'}}>
                     <DisplayInfo
-                        info='REVENUE CODE:...'
+                        info={'REVENUE CODE: '+ revCode}
                     />
                     {/* <Text> {' '} </Text> */}
                     {/* <DisplayInfo

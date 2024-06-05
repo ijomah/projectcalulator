@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeAreaView, 
         StyleSheet, 
         FlatList, 
@@ -14,17 +14,81 @@ import DisplayInfo from "../display/display";
 import LabelledDisplay from "../display/labelDisplay";
 import PaymentDisplay from "../display/paymentDisplay";
 import ReuseInput from "../reuseables/input";
-import { calculate } from "../../util/utilFxn";
-import { ConfigDataContext } from "../warehouse/configContext";
+import { addUp, calculate } from "../../util/utilFxn";
+import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
+import Pfs from "./typeOfFeeCal/pfs";
 
 
 
-export default function CalcuationTypes(this: any, {getUserData,navigation, isPfs}: any) {
-    const ctxInfo = useContext(ConfigDataContext);
+export default function CalcuationTypes(this: any, {getUserData, floorTotArr, navigation, isPfs}: any) {
+    const ctxData: any = useContext(ConfigDataContext);
+    const dispatchCtxData: any = useContext(DispatchContext)
     
-    const doCal = calculate();
-    const doAdd = doCal.addTwo(3);
-    // const doMultiply = doCal.multiply(ctxInfo, 'residential');
+
+    //get the floor data arr
+    //filter the array to the correct arithmetical ones
+    //take the floor total of each floor
+    //cal your assessment then
+    // const computeAssessmentData = () => {
+    //     console.log('touched')
+    //     //filter the arr
+    //     let filteredFloorData = ctxData.floorData.filter((info: any) => (info.length * info.breadth * info.height * info.rate) === info.gFloorRes);
+        
+    //     dispatchCtxData({...ctxData, floorData: filteredFloorData})
+
+    //     let floorTotArr = filteredFloorData.reduce((item: any, current: any, floorIdx: any) => {
+    //         // if (current === 'gFloorRes') {
+    //             item[floorIdx] = current.gFloorRes
+    //         // }
+    //         let floorTotalArr = Object.values(item); 
+    //         return Object.values(item);
+    //     }, {} )
+        
+    //     // let floorTotArr = Object.values(floorTotObj);
+    //     //put in ctx
+    //     if(isPfs === true) {
+    //         dispatchCtxData({...ctxData, assessmentFee: addUp(...floorTotArr, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)});
+    //     } else {
+    //         dispatchCtxData({...ctxData, assessmentFee: addUp(...floorTotArr, ctxData.fencingQFee)});
+    //     }
+
+    //     //calls
+    //     calSubTotal();
+    //     cal10Percent();
+    //     cal5Percent();
+    //     calTotal();
+    // }
+
+    // const workoutPfs = () => {
+
+    // }
+    // if (isPfs === true) {
+    //     dispatchCtxData({...ctxData, assessmentFee: addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)});
+    // }
+    // let structTotal
+    //
+    //functions
+    // const cal10Percent = () => {
+    //     let tenPercent = ctxData.assessmentFee * 0.1     //ie 10%
+    //     dispatchCtxData({...ctxData, tenPercent: tenPercent})
+    // } 
+    // const cal5Percent = () => {
+    //     let fivePercent = ctxData.assessmentFee * 0.05     //ie 5%
+    //     dispatchCtxData({...ctxData, fivePercent: fivePercent})
+    // }
+    // const calSubTotal = () => {
+    //     let subTotal = addUp(ctxData.assessmentFee, ctxData.layout, ctxData.appReg);
+    //     dispatchCtxData({...ctxData, subTotal: subTotal})
+    // }
+    // const calTotal = () => {
+    //     let total = addUp(ctxData.tenPercent, ctxData.sec, ctxData.subTotal)
+    //     dispatchCtxData({...ctxData, total: total});
+    // }
+
+    // setInterval(computeAssessmentData, 50000 )
+    // useEffect(() => {
+    //     computeAssessmentData
+    // }, [ctxData])
 
     return (
         <SafeAreaView>
@@ -43,7 +107,8 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                                         inputConfig={{
                                             placeholder: 'LAND AREA',
                                             textAlign: 'center',
-                                            onChangeText: getUserData.bind(this, 'pfsfencingQfee')
+                                            onChangeText: getUserData.bind(this, 'pfsQFencingQFee'),
+                                            // onEndEditting: computeAssessmentData
                                         }}
                                 />
                             </View>
@@ -56,7 +121,7 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                             <DisplayInfo 
                                 style={styles.calDisplayInfoStyle}
                                 calTypeLabelStyle={customDisplayStyle}
-                                    info={'Result'}
+                                    info={ctxData.pfsQFencingQFee}
                             />
                         </View>
                     <View style={styles.fencingFeeStyle}>
@@ -71,7 +136,8 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                                     inputConfig={{
                                         placeholder: 'INPUT COST',
                                         textAlign: 'center',
-                                        onChangeText: getUserData.bind(this, 'firstQfloorQpump')
+                                        onChangeText: getUserData.bind(this, 'firstQfloorQpump'),
+                                        // onEndEditting: computeAssessmentData
                                     }}
                             />
                         </View>
@@ -84,7 +150,7 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                         <DisplayInfo 
                             style={styles.calDisplayInfoStyle}
                             calTypeLabelStyle={customDisplayStyle}
-                                info='Result'
+                                info={ctxData.firstQfloorQpump}
                         />
                     </View>
                     
@@ -100,7 +166,8 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                                     inputConfig={{
                                         placeholder: 'INPUT COST',
                                         textAlign: 'center',
-                                        onChangeText: getUserData.bind(this, 'addQpump')
+                                        onChangeText: getUserData.bind(this, 'addQpump'),
+                                        // onEndEditting: computeAssessmentData
                                     }}
                             />
                         </View>
@@ -113,7 +180,7 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                         <DisplayInfo 
                             style={styles.calDisplayInfoStyle}
                             calTypeLabelStyle={customDisplayStyle}
-                                info='Result'
+                                info={ctxData.addQpump}
                         />
                     </View>
 
@@ -129,7 +196,8 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                                         inputConfig={{
                                             placeholder: 'INPUT COST',
                                             textAlign: 'center',
-                                            onChangeText: getUserData.bind(this, 'underQgroundQtank@500k/tank')
+                                            onChangeText: getUserData.bind(this, 'underQgroundQtank'),
+                                            // onEndEditting: computeAssessmentData
                                         }}
                                 />
                             </View>
@@ -142,12 +210,13 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                             <DisplayInfo 
                                 style={styles.calDisplayInfoStyle}
                                 calTypeLabelStyle={customDisplayStyle}
-                                    info='Result'
+                                    info={ctxData.underQgroundQtank}
                             />
                     </View>
                 </View>
             :
                 <View style={styles.fencingFeeStyle}>
+                        {/* pfs ends here */}
                 <View style={{flex: 4.2,}}>
                         <ReuseInput 
                                 // calTypeLabelFlex={styles.calTypeLabelFlex}
@@ -157,9 +226,11 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                                 ]}
                                 label='FENCING FEE:'
                                 inputConfig={{
-                                    placeholder: 'INPUT LAND AREA',
+                                    placeholder: 'LAND AREA',
                                     textAlign: 'center',
-                                    onChangeText: getUserData.bind(this, 'fencingQfee')
+                                    onChangeText: getUserData.bind(this, 'fencingQFee'),
+                                    // onEndEditting: computeAssessmentData
+                                    // onKeyPress:computeAssessmentData
                                 }}
                         />
                     </View>
@@ -169,10 +240,11 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                         size={15} 
                         color="black"
                     />
+                    
                     <DisplayInfo 
                         style={styles.calDisplayInfoStyle}
                         calTypeLabelStyle={customDisplayStyle}
-                            info='Result'
+                            info={ctxData.fencingQFee}
                     />
                 </View>
             }
@@ -181,31 +253,36 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                     <LabelledDisplay 
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='ASSESSMENT FEE'
-                        info='Result'
+                        // onCal={computeAssessmentData}
+                        info={ctxData.assessmentFee || 'Get Result'}
                         isText={false}
                     />
                     
                     <LabelledDisplay 
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='LAYOUT FEE'
+                        info={ctxData.layoutQFee}
                         isText={false}
                     />
 
                     <LabelledDisplay
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='APP & REG FEE'
+                        info={ctxData.appQRegQFee}
                         isText={false}
                     />
 
                     <LabelledDisplay 
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='SUB TOTAL'
+                        info={ctxData.subTotal}
                         isText={false}
                     />
                     
                     <LabelledDisplay
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='10%'
+                        info={ctxData.tenPercent}
                         isText={false}
                     />
 
@@ -214,6 +291,7 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                         <LabelledDisplay
                             calTypeLabelStyle={customDisplayStyle}
                             namedInfo='5% LASEMA'
+                            info={ctxData.fivePercent}
                             isText={false}
                         />  
                     }
@@ -222,13 +300,14 @@ export default function CalcuationTypes(this: any, {getUserData,navigation, isPf
                     <LabelledDisplay
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='S.E.C'
+                        info={ctxData.sec}
                         isText={false}
                     />
 
                     <LabelledDisplay
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='TOTAL'
-                        info='Total Result'
+                        info={ctxData.processingFee}
                         isText={false}
                     />
                 </View>

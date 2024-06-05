@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 
 import { AntDesign } from '@expo/vector-icons';
@@ -14,8 +14,14 @@ import ManageApplicantDetails from '../../bio/manageApplicantDet';
 import { AppStyles } from '../../constants/styles';
 import { Dropdown } from 'react-native-element-dropdown';
 import { feeData, percentData } from '../../data/data';
+import { ConfigDataContext, DispatchContext } from '../../warehouse/configContext';
+import DisplayInfo from '../../display/display';
+import ReuseInput from '../../reuseables/input';
 
-export default function PageUsedInPenal({navigation}: any) {
+export default function PageUsedInPenal(this: any, {navigation}: any) {
+    const ctxInfo: any = useContext(ConfigDataContext);
+    const dispatchCtxInfo: any = useContext(DispatchContext);
+
     const [isFocus, setIsFocus] = useState(false);
     const [value, setValue] = useState('');
 
@@ -52,6 +58,9 @@ export default function PageUsedInPenal({navigation}: any) {
         return null;
       };
 
+      const getUserInputInfo = (penalProperty: any, val: any) => {
+        dispatchCtxInfo({...ctxInfo, [penalProperty]: val})
+      }
     return (
         <SafeAreaView>
             <ScreenHeadings
@@ -91,8 +100,10 @@ export default function PageUsedInPenal({navigation}: any) {
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
                         onChange={item => {
-                        setValue(item.feeType);
-                        setIsFocus(false);
+                          setValue(item.id);
+                          setLabelPercent(item.feeType)
+                        // setValue(item.feeType);
+                          setIsFocus(false);
                         }}
                         renderLeftIcon={() => (
                         <AntDesign
@@ -105,7 +116,7 @@ export default function PageUsedInPenal({navigation}: any) {
                     />
                 </View>
                 <Text>x</Text>
-                <View 
+                {/* <View 
                   // style={styles.dropdownContainer}
                 >
                         {setLabels()}
@@ -127,7 +138,7 @@ export default function PageUsedInPenal({navigation}: any) {
                             onBlur={() => setIsFocused(false)}
                             onChange={item => {
                             setValues(item.value);
-                            setLabelPercent(item.label);
+                            // setLabelPercent(item.label);
                             setPercentRate(item.forCal);
                             setIsFocused(false);
                             }}
@@ -140,10 +151,37 @@ export default function PageUsedInPenal({navigation}: any) {
                             />
                             )}
                         />
-                </View>
+                </View> */}
+                   <ReuseInput
+                    label=''
+                    inputConfig={{
+                        placeholder: 'CURRENT RATE',
+                        inputMode: 'numeric',
+                        onChangeText: getUserInputInfo.bind(this, 'currentRatePenal')
+                    }}
+                />
             </View>
 
-            <PaymentDisplay />
+            <View style={{flexDirection: 'row'}}>
+            <DisplayInfo 
+              info={labelPercent[0] === "ASSESSMENT"? ctxInfo.assessmentFee  : labelPercent[0] === "PROCESSING"? ctxInfo.processingFee : '0' }
+            />
+            <Text>x</Text>
+            <DisplayInfo 
+              info={ctxInfo.currentRatePenal}
+            />
+            <Text>=</Text>
+            <DisplayInfo 
+              info={labelPercent[0] === "ASSESSMENT"? ctxInfo.assessmentFee * ctxInfo.currentRatePenal  : labelPercent[0] === "PROCESSING"? ctxInfo.processingFee * ctxInfo.currentRatePenal : '0'}
+            />
+            </View>
+
+            <PaymentDisplay
+              total={labelPercent[0] === "ASSESSMENT"? ctxInfo.assessmentFee * ctxInfo.currentRatePenal  : labelPercent[0] === "PROCESSING"? ctxInfo.processingFee * ctxInfo.currentRatePenal : '0'}
+              agencyCode={'ORACLE CODE 77128'}
+              revCode={'ORACLE CODE 32205'}
+              payType = 'PENAL '
+            />
             <PenalPaymentDet />
             {/* <LabelledDisplay
                 // info=

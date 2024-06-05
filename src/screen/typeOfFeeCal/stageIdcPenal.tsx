@@ -16,14 +16,17 @@ import PaymentDisplay from "../../display/paymentDisplay";
 import ScreenHeadings from "../../headings/Heading";
 import { ConfigDataContext } from "../../warehouse/configContext";
 import ManageApplicantDetails from "../../bio/manageApplicantDet";
+import DisplayInfo from "../../display/display";
 
 
 
 export default function StageAndIDCAndPenal({navigation}: any) {
   const ctxStore: any = useContext(ConfigDataContext);
+    // fee drpdown
     const [isFocus, setIsFocus] = useState(false);
     const [value, setValue] = useState('');
 
+    //RateDropdown
     const [isFocused, setIsFocused] = useState(false);
     const [values, setValues] = useState('');
 
@@ -31,8 +34,8 @@ export default function StageAndIDCAndPenal({navigation}: any) {
     const [labelPercent, setLabelPercent] = useState('');
 
 
-    const renderLabel = () => {
-        if (value || isFocus) {
+    const renderFeeTypeDropdown = () => {
+        if (labelPercent || isFocus) {
           return (
             <Text style={[styles.label, isFocus && { color: 'blue' }]}>
               {/* Dropdown label */}
@@ -42,7 +45,8 @@ export default function StageAndIDCAndPenal({navigation}: any) {
         return null;
       };
 
-      const setLabels = () => {
+      const renderRateDropdown = () => {
+        console.log('stage')
         if (value || isFocused) {
           return (
             <Text style={[
@@ -71,6 +75,8 @@ export default function StageAndIDCAndPenal({navigation}: any) {
     //   const nameInfo = namedInfoCal();
     //   return ctxStore * nameInfo;
     // } 
+
+
     return (
       <ScrollView>
         <SafeAreaView style={styles.stageIdcPenalContainerStyle}>
@@ -94,7 +100,7 @@ export default function StageAndIDCAndPenal({navigation}: any) {
                 <View 
                   // style={styles.dropdownContainer}
                 >
-                    {renderLabel()}
+                    {renderFeeTypeDropdown()}
                     <Dropdown
                         style={[styles.dropdown, styles.dropdownContainer,  isFocus && { borderColor: 'blue' }]}
                         placeholderStyle={styles.placeholderStyle}
@@ -112,7 +118,8 @@ export default function StageAndIDCAndPenal({navigation}: any) {
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
                         onChange={item => {
-                        setValue(item.feeType);
+                        setValue(item.id);
+                        setLabelPercent(item.feeType)
                         setIsFocus(false);
                         }}
                         renderLeftIcon={() => (
@@ -129,7 +136,7 @@ export default function StageAndIDCAndPenal({navigation}: any) {
                 <View 
                   // style={styles.dropdownContainer}
                 >
-                        {setLabels()}
+                        {renderRateDropdown()}
                         <Dropdown
                             style={[styles.dropdown, styles.dropdownContainer, isFocused && { borderColor: 'blue' }]}
                             placeholderStyle={styles.placeholderStyle}
@@ -148,7 +155,7 @@ export default function StageAndIDCAndPenal({navigation}: any) {
                             onBlur={() => setIsFocused(false)}
                             onChange={item => {
                             setValues(item.value);
-                            setLabelPercent(item.label);
+                            // setLabelPercent(item.label);
                             setPercentRate(item.forCal);
                             setIsFocused(false);
                             }}
@@ -163,16 +170,31 @@ export default function StageAndIDCAndPenal({navigation}: any) {
                         />
                 </View>
             </View>
-            <LabelledDisplay
+            {/* <LabelledDisplay
                 multiplandInfo={value || 'Processing Fee'}
                 namedInfo={percentRate}
                 info='......'
                 isText={true}
                 // isSign=
+            /> */}
+            <View style={{flexDirection: 'row'}}>
+            <DisplayInfo 
+              info={labelPercent[0] === "ASSESSMENT"? ctxStore.assessmentFee  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee : '0' }
             />
+            <Text>x</Text>
+            <DisplayInfo 
+              info={percentRate}
+            />
+            <Text>=</Text>
+            <DisplayInfo 
+              info={labelPercent[0] === "ASSESSMENT"? ctxStore.assessmentFee * percentRate  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee * percentRate : '0'}
+            />
+            </View>
             <PaymentDisplay
-                // total='2040494'
-                // code=
+                total={labelPercent[0] === "ASSESSMENT"? ctxStore.assessmentFee * percentRate  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee * percentRate : '0'}
+                agencyCode={ctxStore.stageAgencyCode}
+                revCode={ctxStore.stageRevenueCode}
+                payType = 'STAGE CERTIFICATION '
             />
             <View style={{
               flexDirection: 'row',
@@ -208,7 +230,7 @@ const { width, height } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
   stageIdcPenalContainerStyle: {
-    height: AppStyles.height,
+    height: AppStyles.height - 180,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },

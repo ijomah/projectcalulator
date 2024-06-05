@@ -30,7 +30,7 @@ export default function CalStage({navigation}: any) {
 const styles = StyleSheet.create({
     buildTypeBox: {
         // backgroundColor: 'yellow',
-        height: AppStyles.height, //use dim api or windowdim hook
+        height: AppStyles.height - 150, //use dim api or windowdim hook
         alignItems: 'center',
         justifyContent: 'center',
     },

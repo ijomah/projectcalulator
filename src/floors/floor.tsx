@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -11,18 +11,22 @@ import { customDisplayStyle } from "../constants/styles";
 import DisplayInfo from "../display/display";
 import ReuseInput from "../reuseables/input";
 import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
+import AppButton from "../buttons/appBtn";
 
 export default function FloorType(this: any, 
     {
         floorPosition, 
         previewEditableInput, 
         getUserInputs,
-        calResult
+        calResult,
+        totResult,
+        timesValues,
+        getTotalVal
     }: any) {
     const devHeight = useWindowDimensions().height;
         const floorCtxVal: any = useContext(ConfigDataContext);
-        const dispatchFloorCtx = useContext(DispatchContext);
-        
+        const dispatchFloorCtx: any = useContext(DispatchContext);
+        const [totalValue, setTotalValue] = useState(0)
     //cal case
     //getUserInputs = null
 
@@ -70,19 +74,52 @@ export default function FloorType(this: any,
                         floorTxtInputStyle={styles.TxtInputStyle}
                         inputConfig={{
                             placeholder: 'Rate',
-                            editable: previewEditableInput,
+                            editable: false,
                             inputMode: 'tel',
-                            onChangeText: getUserInputs.bind(this, 'rate') 
+                            value: floorCtxVal.selectedBuildType.rate
+                            // onChangeText: getUserInputs.bind(this, 'rate') 
                         }}
                     />
                 </View>
             </View>
             <Text>=</Text>
-            <DisplayInfo
+            {/* <ReuseInput 
+                        floorTxtInputStyle={styles.TxtInputStyle}
+                        inputConfig={{
+                            placeholder: 'Tap here',
+                            editable: false,
+                            inputMode: 'tel',
+                            // disabled: true,
+                            value: totalValue,
+                            onPressOut: () => {
+                                console.log('press')
+                                setTotalValue(timesValues())
+                            } 
+                        }}
+                    /> */}
+                    <AppButton
+                        title={totalValue}
+                        onGoto={
+                            () => {
+                                console.log(timesValues())
+                                getTotalVal(timesValues())
+                                setTotalValue(timesValues())
+                                dispatchFloorCtx({...floorCtxVal, floorTotal: [...floorCtxVal.floorTotal, timesValues()]})
+                                
+                            } 
+                        }
+                    />
+            {/* <DisplayInfo
                 // floorDisplayStyle={styles.floorDisplayInfoStyle}
                 floorDisplayStyle={customDisplayStyle}
-                info={floorCtxVal.floorRes}
-            />
+                // info={floorCtxVal.floorRes}
+                info={totalValue}
+                onPress={ () => {
+                                console.log('press')
+                                setTotalValue(timesValues())
+                            } 
+                        }
+            /> */}
         </SafeAreaView>
     )
 }
