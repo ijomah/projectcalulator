@@ -10,7 +10,8 @@ import * as SQLite from 'expo-sqlite';
 //     return SQLite.openDatabase('myDatabaseName.db');
 // }
 
-export const db = SQLite.openDatabase('assescal.db', '1.0');  //, version); 2nd parameter for 
+// const db = await SQLite.openDatabaseAsync('assescal.db');
+
 
 // let tableRes = db.exec([{ sql: 'DROP DATABASE archived;', args: [] }], 
 //     false, 
@@ -21,44 +22,28 @@ export const db = SQLite.openDatabase('assescal.db', '1.0');  //, version); 2nd 
 // { sql: 'PRAGMA table_list(files);', args: [] }
 // console.log(tableRes)
 
-export function dbInit() {
+export async function dbInit() {
+    // const db = await SQLite.openDatabaseAsync('assescal.db');
     // console.log('db', db);
-    const promiseObj = new Promise((resolve, reject) => {
-        db.transaction(
-            (tx) => {
-                // tx.executeSql(`PRAGMA table_info(jagonbox)`)
-                //New table to be creaated
 
-                // tx.executeSql(`CREATE TABLE IF NOT EXISTS files (
-                //     id INTEGER NOT NULL PRIMARY KEY,
-                //     file_name TEXT NOT NULL,
-                //     file_no INTEGER NOT NULL,
-                //     file_type TEXT,
-                //     date_created NUMERIC,
-                //     user_id,
-                //     applic_id,
-                //     FOREIGN KEY(applic_id) REFERENCES applications(id),
-                //     FOREIGN KEY(user_id) REFERENCES users(id)
-                // )`
-               
-                // );
-
-            tx.executeSql(`CREATE TABLE IF NOT EXISTS users (
+    const promiseObj = new Promise(async (resolve, reject) => {
+        await db.withExclusiveTransactionAsync(async (txn) => {
+            await txn.runAsync(`CREATE TABLE IF NOT EXISTS users (
                 id INTEGER NOT NULL PRIMARY KEY,
                 fname TEXT,
                 lname TEXT,
                 phone_no NUMERIC
             )`);
 
-            tx.executeSql(`CREATE TABLE IF NOT EXISTS fees (
+            await txn.runAsync(`CREATE TABLE IF NOT EXISTS fees (
                 id INTEGER NOT NULL PRIMARY KEY,
                 appreg INTEGER,
                 layout INTEGER,
                 user_id,
                 FOREIGN KEY(user_id) REFERENCES users(id)
-            )`)
+            )`);
 
-            tx.executeSql(`CREATE TABLE IF NOT EXISTS codes (
+            await txn.runAsync(`CREATE TABLE IF NOT EXISTS codes (
                 id INTEGER NOT NULL PRIMARY KEY,
                 process INTEGER,
                 stage INTEGER,
@@ -66,16 +51,16 @@ export function dbInit() {
                 betterment INTEGER,
                 user_id,
                 FOREIGN KEY(user_id) REFERENCES users(id)
-            )`)
+            )`);
 
-            tx.executeSql(`CREATE TABLE IF NOT EXISTS districts (
+            await txn.runAsync(`CREATE TABLE IF NOT EXISTS districts (
                 id INTEGER NOT NULL PRIMARY KEY,
                 district TEXT,
                 user_id,
                 FOREIGN KEY(user_id) REFERENCES users(id)
-            )`)
+            )`);
 
-            tx.executeSql(`CREATE TABLE IF NOT EXISTS rates (
+            await txn.runAsync(`CREATE TABLE IF NOT EXISTS rates (
                 id INTEGER NOT NULL PRIMARY KEY,
                 residential INTEGER,
                 commercial INTEGER,
@@ -87,18 +72,82 @@ export function dbInit() {
                 date DATE,
                 user_id,
                 FOREIGN KEY(user_id) REFERENCES users(id)           
-            )`
+            )`);
+        })
+            // (txn: any) => {
+            //     // txn.runAsync(`PRAGMA table_info(jagonbox)`)
+            //     //New table to be creaated
+
+            //     // txn.runAsync(`CREATE TABLE IF NOT EXISTS files (
+            //     //     id INTEGER NOT NULL PRIMARY KEY,
+            //     //     file_name TEXT NOT NULL,
+            //     //     file_no INTEGER NOT NULL,
+            //     //     file_type TEXT,
+            //     //     date_created NUMERIC,
+            //     //     user_id,
+            //     //     applic_id,
+            //     //     FOREIGN KEY(applic_id) REFERENCES applications(id),
+            //     //     FOREIGN KEY(user_id) REFERENCES users(id)
+            //     // )`
+               
+            //     // );
+
+            // txn.runAsync(`CREATE TABLE IF NOT EXISTS users (
+            //     id INTEGER NOT NULL PRIMARY KEY,
+            //     fname TEXT,
+            //     lname TEXT,
+            //     phone_no NUMERIC
+            // )`);
+
+            // txn.runAsync(`CREATE TABLE IF NOT EXISTS fees (
+            //     id INTEGER NOT NULL PRIMARY KEY,
+            //     appreg INTEGER,
+            //     layout INTEGER,
+            //     user_id,
+            //     FOREIGN KEY(user_id) REFERENCES users(id)
+            // )`)
+
+            // txn.runAsync(`CREATE TABLE IF NOT EXISTS codes (
+            //     id INTEGER NOT NULL PRIMARY KEY,
+            //     process INTEGER,
+            //     stage INTEGER,
+            //     penal INTEGER,
+            //     betterment INTEGER,
+            //     user_id,
+            //     FOREIGN KEY(user_id) REFERENCES users(id)
+            // )`)
+
+            // txn.runAsync(`CREATE TABLE IF NOT EXISTS districts (
+            //     id INTEGER NOT NULL PRIMARY KEY,
+            //     district TEXT,
+            //     user_id,
+            //     FOREIGN KEY(user_id) REFERENCES users(id)
+            // )`)
+
+            // txn.runAsync(`CREATE TABLE IF NOT EXISTS rates (
+            //     id INTEGER NOT NULL PRIMARY KEY,
+            //     residential INTEGER,
+            //     commercial INTEGER,
+            //     institutional INTEGER,
+            //     mixeduse INTEGER,
+            //     agricultural INTEGER,
+            //     recreational INTEGER,
+            //     industrial INTEGER,
+            //     date DATE,
+            //     user_id,
+            //     FOREIGN KEY(user_id) REFERENCES users(id)           
+            // )`
        
-            );
-                // FOREIGN KEY(address_id) REFERENCES addresses(id)
-            },
-            (err) => {
-                console.log('err from transaction', err);
-            },
-            () => {
-                console.log('Table creation, complete!');
-            } 
-        )
+            // );
+            //     // FOREIGN KEY(address_id) REFERENCES addresses(id)
+            // }
+            // (err: any) => {
+            //     console.log('err from withTransactionAsync', err);
+            // },
+            // () => {
+            //     console.log('Table creation, complete!');
+            // } 
+        // )
     })    
     return promiseObj
 }
@@ -107,10 +156,10 @@ export function dbInit() {
 export const storeData = (docData: any) => {
     const storeDataPromise = new Promise((resolve, reject) => {
         let userId: any;
-        db.transaction((tx) => {
+        db.withExclusiveTransactionAsync(async (txn: any) => {
             // for (const oneItm in docData) {
 
-                tx.executeSql(`
+                await txn.runAsync(`
                 INSERT INTO users (
                     fname,
                     lname,
@@ -121,18 +170,18 @@ export const storeData = (docData: any) => {
                     docData.lName,
                     docData.phoneNo
                 ],
-                (_, res) => {
+                (_: any, res: any) => {
                     userId = res.insertId;
                     console.log('resObj',res.insertId)
                     resolve(res)
                 }
                 // (_, err) => {
-                //     console.log(err)
-                //     reject(err)
+                //     console.log(err: any)
+                //     reject(err: any)
                 // }
             );
 
-                tx.executeSql(`
+                txn.runAsync(`
                     INSERT INTO rates (
                         residential,
                         commercial,
@@ -157,17 +206,17 @@ export const storeData = (docData: any) => {
                         docData.user_id,
                         userId
                     ],
-                    (_, res) => {
+                    (_: any, res: any) => {
                         console.log('apidbusers good', res);
                         resolve(res);
                     },
                     // (_, err) => {
                     //     console.log('apidbusers', err)
-                    //     reject(err)
+                    //     reject(err: any)
                     // }
                 );
 
-                tx.executeSql(`
+                txn.runAsync(`
                     INSERT INTO fees (
                         appreg,
                         layout,
@@ -178,19 +227,19 @@ export const storeData = (docData: any) => {
                         docData.layout,
                         userId
                     ],
-                    (_, res) => {
+                    (_: any, res: any) => {
                         console.log('resObj',res)
                         resolve(res)
                     }
                     // (_, err) => {
-                    //     console.log(err)
-                    //     reject(err)
+                    //     console.log(err: any)
+                    //     reject(err: any)
                     // }
                 );
 // //Remember to drop column applic_name here. 
 // //it is now in name table
 // //Relationship is many to many
-                tx.executeSql(`
+                txn.runAsync(`
                     INSERT INTO codes (
                             process,
                             penal
@@ -204,17 +253,17 @@ export const storeData = (docData: any) => {
                         docData.betterment,
                         userId
                     ],
-                    (_, res) => {
+                    (_: any, res: any) => {
                         console.log(res)
                         resolve(res)
                     },
                     // (_, err) => {
-                    //     console.log(err)
-                    //     reject(err)
+                    //     console.log(err: any)
+                    //     reject(err: any)
                     // }
                 )
 
-//                 tx.executeSql(`
+//                 txn.runAsync(`
 //                 INSERT INTO names (f_name, l_name, m_name)
 //                 VALUES (?, ?, ?)`,
 //                 [
@@ -222,16 +271,16 @@ export const storeData = (docData: any) => {
 //                     docData.lName,
 //                     docData.areaName
 //                 ],
-//                 (_, res) => {
+//                 (_: any, res: any) => {
 //                     console.log(res)
 //                     resolve(res)
 //                 },
 //                 (_, err) => {
-//                     console.log(err)
-//                     reject(err)
+//                     console.log(err: any)
+//                     reject(err: any)
 //                 }
 //                 )
-                // tx.executeSql(`INSERT INTO jargonbox (
+                // txn.runAsync(`INSERT INTO jargonbox (
                 //         img_url,
                 //         address,
                 //         img_name,
@@ -253,12 +302,12 @@ export const storeData = (docData: any) => {
                 // ],
             //}
         },
-        (err) => {
-            console.log('err from transaction', err);
-        },
-        () => {
-            console.log('Data insertion, complete!');
-        }
+        // (err: any) => {
+        //     console.log('err from withTransactionAsync', err);
+        // },
+        // () => {
+        //     console.log('Data insertion, complete!');
+        // }
         );
 
     })
@@ -269,8 +318,8 @@ export const storeData = (docData: any) => {
 // This was for jargonBox, but will be used for experimentation
 export const readData = () => {
     const readDataPromise = new Promise((resolve, reject) => {
-        db.transaction((tx) => {
-            tx.executeSql(`SELECT 
+        db.withExclusiveTransactionAsync(async (txn: any) => {
+            await txn.getFirstAsync(`SELECT 
                                 residential,
                                 commercial,
                                 institutional,
@@ -294,13 +343,13 @@ export const readData = () => {
                                     u.id = c.id`,
                             
             [],
-            (_, res) => {
+            (_: any, res: any) => {
                 console.log(res)
                 resolve(res);
             },
             // (_, err) => {
-            //     console.log(err)
-            //     reject(err);
+            //     console.log(err: any)
+            //     reject(err: any);
             // }
             )
         })
@@ -311,14 +360,14 @@ export const readData = () => {
 
 // export const minusData = (datumId) => {
 //     const minusDataPromise = new Promise((resolve, reject) => {
-//         db.transaction((tx) => {
-//             tx.executeSql(`DELLTE from jarggonbox WHERE id = ${datumId}`,
+//         db.withTransactionAsync((txn) => {
+//             txn.runAsync(`DELLTE from jarggonbox WHERE id = ${datumId}`,
 //             [],
-//             (_, res) => {
+//             (_: any, res: any) => {
 //                 resolve(res)
 //             },
 //             (_, err) => {
-//                 reject(err)
+//                 reject(err: any)
 //             }
 //             )
 //         })
@@ -328,16 +377,16 @@ export const readData = () => {
 
 // export const updateData = (datumId, dataToFill) => {
 //     const updateDataPromise = new Promise((resolve, reject) => {
-//         db.transaction((tx) => {
-//             tx.executeSql(`UPDATE jargonbox 
+//         db.withTransactionAsync((txn) => {
+//             txn.runAsync(`UPDATE jargonbox 
 //                 SET id = ${dataToFill}
 //                 WHERE id = ${datumId}`,
 //             [],
-//             (_, res) => {
+//             (_: any, res: any) => {
 //                 resolve(res);
 //             },
 //             (_, err) => {
-//                 reject(err);
+//                 reject(err: any);
 //             })
 //         })
 //     })

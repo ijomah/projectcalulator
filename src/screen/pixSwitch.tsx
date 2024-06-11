@@ -6,6 +6,7 @@ import {
     Platform, Text, 
     SafeAreaView,
     Image,
+    ScrollView,
 } from 'react-native';
 
 import * as ImagePicker from 'expo-image-picker';
@@ -336,64 +337,66 @@ export default function PixCollageSwitch() {
 
   return (
     <View style={styles.container}>
-      <View>
-        {disNum === 1 && 
-          <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch'}}>
-              <Image source={{uri:displayimg[1]}} style={[{width:150, margin: 3, height: 200}]} />
-              <Image source={{uri:displayimg[2]}} style={[{width: 150, height: 200, margin: 3,}]} />
+        <ScrollView>
+        <View>
+          {disNum === 1 && 
+            <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch'}}>
+                <Image source={{uri:displayimg[1]}} style={[{width:150, margin: 3, height: 200}]} />
+                <Image source={{uri:displayimg[2]}} style={[{width: 150, height: 200, margin: 3,}]} />
+              </View>
+              <Image source={{uri:displayimg[0]}} style={[{width: 200, height: 200,margin: 3,}]} />
             </View>
-            <Image source={{uri:displayimg[0]}} style={[{width: 200, height: 200,margin: 3,}]} />
-          </View>
-        }
-        {disNum === 2 &&
-          <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch'}}>
-              <Image source={{uri:displayimg[2]}} style={[{width:150, margin: 3, height: 100}]} />
-              <Image source={{uri:displayimg[0]}} style={[{width: 150, height: 100, margin: 3,}]} />
+          }
+          {disNum === 2 &&
+            <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch'}}>
+                <Image source={{uri:displayimg[2]}} style={[{width:150, margin: 3, height: 100}]} />
+                <Image source={{uri:displayimg[0]}} style={[{width: 150, height: 100, margin: 3,}]} />
+              </View>
+              <Image source={{uri:displayimg[1]}} style={[{width: 200, height: 200,margin: 3,}]} />
             </View>
-            <Image source={{uri:displayimg[1]}} style={[{width: 200, height: 200,margin: 3,}]} />
-          </View>
-        }
-        {disNum ===3 && 
-          <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
-            <Image source={{uri:displayimg[0]}} style={[{width: 200, height: 200,margin: 3,}]} />
-            <View style={{justifyContent: 'space-around', alignItems: 'stretch'}}>
-              <Image source={{uri:displayimg[1]}} style={[{width:300, margin: 3, height: 150}]} />
-              <Image source={{uri:displayimg[2]}} style={[{width: 300, height: 150, margin: 3,}]} />
+          }
+          {disNum ===3 && 
+            <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
+              <Image source={{uri:displayimg[0]}} style={[{width: 200, height: 200,margin: 3,}]} />
+              <View style={{justifyContent: 'space-around', alignItems: 'stretch'}}>
+                <Image source={{uri:displayimg[1]}} style={[{width:300, margin: 3, height: 150}]} />
+                <Image source={{uri:displayimg[2]}} style={[{width: 300, height: 150, margin: 3,}]} />
+              </View>
             </View>
-          </View>
-        }
-        {disNum === 0 &&
-          <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch'}}>
-              <Image source={{uri:displayimg[0]}} style={[{width:150, margin: 3, height: 100}]} />
-              <Image source={{uri:displayimg[1]}} style={[{width: 150, height: 100, margin: 3,}]} />
+          }
+          {disNum === 0 &&
+            <View style={{justifyContent: 'space-around', alignItems: 'center'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'stretch'}}>
+                <Image source={{uri:displayimg[0]}} style={[{width:150, margin: 3, height: 100}]} />
+                <Image source={{uri:displayimg[1]}} style={[{width: 150, height: 100, margin: 3,}]} />
+              </View>
+              <Image source={{uri:displayimg[2]}} style={[{width: 200, height: 200,margin: 3,}]} />
             </View>
-            <Image source={{uri:displayimg[2]}} style={[{width: 200, height: 200,margin: 3,}]} />
-          </View>
-        }
-      </View>
-      <Button title="Print" color={AppStyles.btnBackgroundColor} onPress={print} />
-      <View style={styles.spacer} />
-      <Button title="Share as PDF file" color={AppStyles.btnBackgroundColor} onPress={printToFile} />
-      <View style={styles.spacer} />
-      <Button title='Pick Image'color={AppStyles.btnBackgroundColor} onPress={pickImage} />
-      <View style={styles.spacer} />
-      <Button title='Reorder Image' color={AppStyles.btnBackgroundColor} onPress={reorganizeImg} />
-      {Platform.OS === 'ios' && (
-        <>
-          <View style={styles.spacer} />
-          <Button 
-            title="Select printer" 
-            // onPress={selectPrinter} 
-            />
-          <View style={styles.spacer} />
-          {selectedPrinter ? (
-            <Text style={styles.printer}>{`Selected printer: ${selectedPrinter}`}</Text>
-          ) : undefined}
-        </>
-      )}
+          }
+        </View>
+        <Button title="Print" color={AppStyles.btnBackgroundColor} onPress={print} />
+        <View style={styles.spacer} />
+        <Button title="Share as PDF file" color={AppStyles.btnBackgroundColor} onPress={printToFile} />
+        <View style={styles.spacer} />
+        <Button title='Pick Image'color={AppStyles.btnBackgroundColor} onPress={pickImage} />
+        <View style={styles.spacer} />
+        <Button title='Reorder Image' color={AppStyles.btnBackgroundColor} onPress={reorganizeImg} />
+        {Platform.OS === 'ios' && (
+          <>
+            <View style={styles.spacer} />
+            <Button 
+              title="Select printer" 
+              // onPress={selectPrinter} 
+              />
+            <View style={styles.spacer} />
+            {selectedPrinter ? (
+              <Text style={styles.printer}>{`Selected printer: ${selectedPrinter}`}</Text>
+            ) : undefined}
+          </>
+        )}
+      </ScrollView>
     </View>
   );
 }

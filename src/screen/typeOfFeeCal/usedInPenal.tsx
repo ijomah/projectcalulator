@@ -18,10 +18,10 @@ import { ConfigDataContext, DispatchContext } from '../../warehouse/configContex
 import DisplayInfo from '../../display/display';
 import ReuseInput from '../../reuseables/input';
 
-export default function PageUsedInPenal(this: any, {navigation}: any) {
+export default function PageUsedInPenal(this: any, {navigation, route}: any) {
     const ctxInfo: any = useContext(ConfigDataContext);
     const dispatchCtxInfo: any = useContext(DispatchContext);
-
+    // const {proc, assFee} = route.params;
     const [isFocus, setIsFocus] = useState(false);
     const [value, setValue] = useState('');
 
@@ -79,42 +79,55 @@ export default function PageUsedInPenal(this: any, {navigation}: any) {
                 alignItems: 'center',
               }}
             >
-                <View 
-                  // style={styles.dropdownContainer}
-                >
-                    {renderLabel()}
-                    <Dropdown
-                        style={[styles.dropdown, styles.dropdownContainer,  isFocus && { borderColor: 'blue' }]}
-                        placeholderStyle={styles.placeholderStyle}
-                        selectedTextStyle={styles.selectedTextStyle}
-                        inputSearchStyle={styles.inputSearchStyle}
-                        iconStyle={styles.iconStyle}
-                        data={feeData}
-                        search
-                        maxHeight={300}
-                        labelField="feeType"
-                        valueField="id"
-                        placeholder={!isFocus ? 'Select item' : '...'}
-                        searchPlaceholder="Search..."
-                        value={value}
-                        onFocus={() => setIsFocus(true)}
-                        onBlur={() => setIsFocus(false)}
-                        onChange={item => {
-                          setValue(item.id);
-                          setLabelPercent(item.feeType)
-                        // setValue(item.feeType);
-                          setIsFocus(false);
-                        }}
-                        renderLeftIcon={() => (
-                        <AntDesign
-                            style={styles.icon}
-                            color={isFocus ? 'blue' : AppStyles.inputOutlineColor}
-                            name="Safety"
-                            size={20}
-                        />
-                        )}
-                    />
-                </View>
+              <View>
+                {ctxInfo.assessmentFee !== null?
+                  <View 
+                    // style={styles.dropdownContainer}
+                  >
+                      {renderLabel()}
+                      <Dropdown
+                          style={[styles.dropdown, styles.dropdownContainer,  isFocus && { borderColor: 'blue' }]}
+                          placeholderStyle={styles.placeholderStyle}
+                          selectedTextStyle={styles.selectedTextStyle}
+                          inputSearchStyle={styles.inputSearchStyle}
+                          iconStyle={styles.iconStyle}
+                          data={feeData}
+                          search
+                          maxHeight={300}
+                          labelField="feeType"
+                          valueField="id"
+                          placeholder={!isFocus ? 'Select item' : '...'}
+                          searchPlaceholder="Search..."
+                          value={value}
+                          onFocus={() => setIsFocus(true)}
+                          onBlur={() => setIsFocus(false)}
+                          onChange={item => {
+                            setValue(item.id);
+                            setLabelPercent(item.feeType)
+                          // setValue(item.feeType);
+                            setIsFocus(false);
+                          }}
+                          renderLeftIcon={() => (
+                          <AntDesign
+                              style={styles.icon}
+                              color={isFocus ? 'blue' : AppStyles.inputOutlineColor}
+                              name="Safety"
+                              size={20}
+                          />
+                          )}
+                      />
+                  </View>
+                  :
+                    <ReuseInput
+                    label=''
+                    inputConfig={{
+                        placeholder: 'FEE TYPE',
+                        inputMode: 'numeric',
+                        onChangeText: getUserInputInfo.bind(this, 'feeTypePenal')
+                    }}
+                />
+                }
+              </View>
                 <Text>x</Text>
                 {/* <View 
                   // style={styles.dropdownContainer}
@@ -164,7 +177,9 @@ export default function PageUsedInPenal(this: any, {navigation}: any) {
 
             <View style={{flexDirection: 'row'}}>
             <DisplayInfo 
-              info={labelPercent[0] === "ASSESSMENT"? ctxInfo.assessmentFee  : labelPercent[0] === "PROCESSING"? ctxInfo.processingFee : '0' }
+            info={labelPercent === "ASSESSMENT"? ctxInfo.assessmentFee  : labelPercent === "PROCESSING"? ctxInfo.processingFee : '0' }
+              // info={labelPercent[0] === "ASSESSMENT"? assFee  : labelPercent[0] === "PROCESSING"? proc : '0' }
+              // info={labelPercent === "ASSESSMENT"? assFee  : proc }
             />
             <Text>x</Text>
             <DisplayInfo 
@@ -172,12 +187,18 @@ export default function PageUsedInPenal(this: any, {navigation}: any) {
             />
             <Text>=</Text>
             <DisplayInfo 
-              info={labelPercent[0] === "ASSESSMENT"? ctxInfo.assessmentFee * ctxInfo.currentRatePenal  : labelPercent[0] === "PROCESSING"? ctxInfo.processingFee * ctxInfo.currentRatePenal : '0'}
+              // info={labelPercent === "ASSESSMENT"? ctxStore.assessmentFee  : labelPercent === "PROCESSING"? ctxStore.processingFee : '0' }
+              // info={labelPercent === "ASSESSMENT"? ((Math.round(assFee * ctxInfo.currentRatePenal * 100)) / 100).toString()  : labelPercent === "PROCESSING"? ((Math.round(proc * ctxInfo.currentRatePenal * 100)) / 100).toString() : '0'}
+              info={(labelPercent === "ASSESSMENT"? ((Math.round(ctxInfo.assessmentFee * ctxInfo.currentRatePenal * 100)) / 100).toString()  : labelPercent === "PROCESSING"? ((Math.round(ctxInfo.processingFee * ctxInfo.currentRatePenal * 100)) / 100).toString() : '0') ||
+                    labelPercent === "" && ((Math.round(ctxInfo.feeTypePenal * ctxInfo.currentRatePenal * 100)) / 100).toString()
+              }
             />
             </View>
 
             <PaymentDisplay
-              total={labelPercent[0] === "ASSESSMENT"? ctxInfo.assessmentFee * ctxInfo.currentRatePenal  : labelPercent[0] === "PROCESSING"? ctxInfo.processingFee * ctxInfo.currentRatePenal : '0'}
+              total={(labelPercent === "ASSESSMENT"? ((Math.round(ctxInfo.assessmentFee * ctxInfo.currentRatePenal * 100)) / 100)  : labelPercent[0] === "PROCESSING"? ((Math.round(ctxInfo.processingFee * ctxInfo.currentRatePenal * 100)) / 100) : '0') ||
+                labelPercent === "" && ((Math.round(ctxInfo.feeTypePenal * ctxInfo.currentRatePenal * 100)) / 100).toString()
+              }
               agencyCode={'ORACLE CODE 77128'}
               revCode={'ORACLE CODE 32205'}
               payType = 'PENAL '
@@ -225,7 +246,7 @@ export default function PageUsedInPenal(this: any, {navigation}: any) {
                 <AppButton 
                     title='CAL STAGE CERT'
                     isBtn={true}
-                    onGoto={() => navigation.navigate('stageIdcPenal')}
+                    onGoto={() => navigation.navigate('stageIdcPenal', route.params)}
                     // btnConfig= 
                 />
                 <AppButton

@@ -1,26 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView } from "react-native";
 import { ConfigDataContext, DispatchContext } from "../../warehouse/configContext";
 import SettingPage from "../setPage";
 
 import * as SecureStore from 'expo-secure-store';
+// import { storeData } from "../../../db/dbService";
 
 export default function ManagerSetting() {
     const ctxStore: any = useContext(ConfigDataContext);
     const dispatchToCtxStore: any = useContext(DispatchContext);
+  const [dbVal, setDbVal] = useState({})
+
     const getUserData = (inputKey: any, inputValue: any) => {
         // console.log('input', inputKey, inputValue);
         console.log('input', {[inputKey]: inputValue});
         dispatchToCtxStore({...ctxStore, [inputKey]: inputValue})
+        setDbVal({...dbVal, [inputKey]: inputValue})
 
     }
 
     //Save the data
   const saveData = async (distKey: any, distValue: any) => {
     const {...storeCtxData} = ctxStore
-    const valueForStore = JSON.stringify({...ctxStore, [distKey]: distValue})
-    await SecureStore.setItemAsync("settingData", valueForStore);
-    console.log('ctx content', valueForStore)
+    // const valueForStore = JSON.stringify({...ctxStore, [distKey]: distValue})
+    // await SecureStore.setItemAsync("settingData", valueForStore);
+    // console.log('ctx content', valueForStore)
+    // storeData(dbVal);
   }
 
     return (

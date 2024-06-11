@@ -25,8 +25,8 @@ export default function Pfs({navigation}: any) {
     const devDimension = useWindowDimensions();
 
     const getUserData = (dataKey: any, dataValue: any) => {
-        const dataStore = {[dataKey]: dataValue};
-        dispatchCtxData({...ctxData, dataStore})
+        // const dataStore = {[dataKey]: dataValue};
+        dispatchCtxData({...ctxData, [dataKey]: dataValue})
     }
      
     return (
@@ -39,7 +39,7 @@ export default function Pfs({navigation}: any) {
         <CalcuationTypes 
             isPfs={true}
             navigation={navigation}
-            getUserData={getUserData} 
+            getUserDatum={getUserData} 
         />
             
         </ScrollView>

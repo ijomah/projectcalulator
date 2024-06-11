@@ -48,11 +48,11 @@ export default function SettingPage({saveData, getUserData}: any) {
 
   
     return (
-        <SafeAreaView style={styles.settingStyles}>
+        <ScrollView contentContainerStyle={styles.settingStyles}>
             <DisplayInfo 
                     info='CONFIGURATION'
                 />
-            <ScrollView>
+            <View>
                 <View style={styles.dropDownAndLabel}>
                     <DisplayInfo 
                       info='DISTRICT:'
@@ -101,8 +101,8 @@ export default function SettingPage({saveData, getUserData}: any) {
                   title='SAVE'
                   onGoto={() => saveData("district", district)}
                 />
-            </ScrollView>
-        </SafeAreaView>
+            </View>
+        </ScrollView>
     )
 }
 
@@ -111,7 +111,7 @@ const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   settingStyles: {
-    height: height,
+    height: height - 100,
     alignItems: 'center',
     justifyContent: 'space-between',
     margin: height / 100,

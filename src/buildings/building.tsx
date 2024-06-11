@@ -90,13 +90,25 @@ export default function BuildingLevel({previewEditableInput, params}: any) {
     //form floor obj
     const createFloorObj = (floorTot: any) => {
         let floorObj = {
+            length: null,
+            breadth: null,
+            height: null,
+            rate: null,
+            gFloorRes: null
+        };
+            floorObj.length = ctxData.length;
+            floorObj.breadth= ctxData.breadth
+            floorObj.height= ctxData.height
+            floorObj.rate= ctxData.selectedBuildType.rate
+            floorObj.gFloorRes= floorTot
+        
+       dispatchData({...ctxData, floorData: [...ctxData.floorData, {
             length: ctxData.length,
             breadth: ctxData.breadth,
             height: ctxData.height,
             rate: ctxData.selectedBuildType.rate,
             gFloorRes: floorTot
-        }
-       dispatchData({...ctxData, floorData: [...ctxData.floorData, floorObj]});
+        }]});
     }
 
     //Add build btn

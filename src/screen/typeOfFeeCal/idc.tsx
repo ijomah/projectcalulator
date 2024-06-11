@@ -69,7 +69,7 @@ export default function Idc(this: any, {navigation}: any) {
                 />
                 <Text>=</Text>
                 <DisplayInfo
-                    info={'N'+calIdcTotal || 'Total'}
+                    info={calIdcTotal || 'Total'}
                 />
             </View>
             <PaymentDisplay

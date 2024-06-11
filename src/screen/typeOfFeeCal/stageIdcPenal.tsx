@@ -14,18 +14,21 @@ import { AppStyles } from "../../constants/styles";
 import LabelledDisplay from "../../display/labelDisplay";
 import PaymentDisplay from "../../display/paymentDisplay";
 import ScreenHeadings from "../../headings/Heading";
-import { ConfigDataContext } from "../../warehouse/configContext";
+import { ConfigDataContext, DispatchContext } from "../../warehouse/configContext";
 import ManageApplicantDetails from "../../bio/manageApplicantDet";
 import DisplayInfo from "../../display/display";
 
 
 
-export default function StageAndIDCAndPenal({navigation}: any) {
+export default function StageAndIDCAndPenal({navigation, route}: any) {
   const ctxStore: any = useContext(ConfigDataContext);
+  const dispatchCtxStore: any = useContext(DispatchContext);
+
+  // dispatchCtxStore({...ctxStore, assessmentFee: route.params.assFee, processingFee: route.params.proc})
     // fee drpdown
     const [isFocus, setIsFocus] = useState(false);
     const [value, setValue] = useState('');
-
+    // const {proc, assFee} = route.params;
     //RateDropdown
     const [isFocused, setIsFocused] = useState(false);
     const [values, setValues] = useState('');
@@ -179,7 +182,9 @@ export default function StageAndIDCAndPenal({navigation}: any) {
             /> */}
             <View style={{flexDirection: 'row'}}>
             <DisplayInfo 
-              info={labelPercent[0] === "ASSESSMENT"? ctxStore.assessmentFee  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee : '0' }
+              // info={labelPercent === "ASSESSMENT"? assFee  : labelPercent === "PROCESSING"? proc : '0' }
+              info={labelPercent === "ASSESSMENT"? ctxStore.assessmentFee  : labelPercent === "PROCESSING"? ctxStore.processingFee : '0' }
+              // info={labelPercent === "ASSESSMENT"? assFee  : proc }
             />
             <Text>x</Text>
             <DisplayInfo 
@@ -187,11 +192,13 @@ export default function StageAndIDCAndPenal({navigation}: any) {
             />
             <Text>=</Text>
             <DisplayInfo 
-              info={labelPercent[0] === "ASSESSMENT"? ctxStore.assessmentFee * percentRate  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee * percentRate : '0'}
+              info={labelPercent[0] === "ASSESSMENT"? Math.round(ctxStore.assessmentFee * percentRate * 100) / 100  : labelPercent[0] === "PROCESSING"? Math.round(ctxStore.processingFee * percentRate * 100) / 100 : '0'}
+              // info={labelPercent === "ASSESSMENT"? Math.round((assFee * percentRate) * 100) / 100  : labelPercent === "PROCESSING"? Math.round((proc * percentRate) * 100) / 100 : '0'}
             />
             </View>
             <PaymentDisplay
-                total={labelPercent[0] === "ASSESSMENT"? ctxStore.assessmentFee * percentRate  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee * percentRate : '0'}
+                total={labelPercent[0] === "ASSESSMENT"? Math.round(ctxStore.assessmentFee * percentRate * 100) / 100  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee * percentRate : '0'}
+                // total={labelPercent === "ASSESSMENT"? Math.round((assFee * percentRate) * 100) / 100  : labelPercent === "PROCESSING"? Math.round((proc * percentRate) * 100) / 100 : '0'}
                 agencyCode={ctxStore.stageAgencyCode}
                 revCode={ctxStore.stageRevenueCode}
                 payType = 'STAGE CERTIFICATION '
@@ -204,7 +211,7 @@ export default function StageAndIDCAndPenal({navigation}: any) {
               <AppButton 
                 stageIdcPenalBtnStyle={styles.stageIdcPenalBtnStyle}
                 title='CAL PENAL'
-                onGoto={() => navigation.navigate('penalFee')}
+                onGoto={() => navigation.navigate('penalFee', route.params)}
               />
 
               <AppButton 
