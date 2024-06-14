@@ -20,7 +20,7 @@ import Pfs from "./typeOfFeeCal/pfs";
 
 
 
-export default function CalcuationTypes(this: any, {getUserDatum, floorTotArr, navigation, isPfs}: any) {
+export default function CalcuationTypes(this: any, {getUserDatum, fenceFee, navigation, isPfs}: any) {
     const ctxData: any = useContext(ConfigDataContext);
     const dispatchCtxData: any = useContext(DispatchContext)
     
@@ -51,8 +51,15 @@ export default function CalcuationTypes(this: any, {getUserDatum, floorTotArr, n
         // let floorTotArr = Object.values(floorTotObj);
 
     const computeAssessmentData = () => {
-        let assessCost = addUp(...ctxData.floorTotal, ctxData.fencingQFee)
+        let assessCost = addUp(...ctxData.floorTotal, parseInt(fenceFee.fencingQFee)) || addUp(...ctxData.floorTotal, ctxData.fencingQFee)
         setAssess(parseInt(assessCost))
+
+        // if(isPfs === true) {
+        //     assessCost= addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)
+        //     setAssess(parseInt(assessCost))
+        // }
+        
+        
         dispatchCtxData({...ctxData, assessmentFee: assess});
         console.log('touched contxt', ctxData, assessCost)
 
@@ -60,9 +67,9 @@ export default function CalcuationTypes(this: any, {getUserDatum, floorTotArr, n
         calSubTotal();
         let subTotal = addUp(assess, parseInt(ctxData.layoutQFee), parseInt(ctxData.appQRegQFee));
         cal10Percent();
-        let tenPercent = assess * 0.1     //ie 10%
+        let tenPercent = (assess * 10) / 100     //ie 10%
         cal5Percent();
-        let fivePercent = assess * 0.05     //ie 5%
+        let fivePercent = (assess * 5) / 100     //ie 5%
         calTotal();
         let total = addUp(tenPercentage, assess, subtot)
         
@@ -70,6 +77,12 @@ export default function CalcuationTypes(this: any, {getUserDatum, floorTotArr, n
         setTenPercent(tenPercent);
         setFivePercent(fivePercent);
         setProcessFee(total);
+
+        // if (isPfs === true) {
+        //     dispatchCtxData({...ctxData, assessmentFee: addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)});
+        //     total = addUp(tenPercentage, assess, subtot, fivePercentage)
+        //     setProcessFee(total);
+        // }
 
         if (ctxData.selectedBuildType.buildType !== 'residential') {
             total = addUp(tenPercentage, assess, subtot, fivePercentage)
@@ -94,9 +107,7 @@ export default function CalcuationTypes(this: any, {getUserDatum, floorTotArr, n
     // const workoutPfs = () => {
 
     // }
-    // if (isPfs === true) {
-    //     dispatchCtxData({...ctxData, assessmentFee: addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)});
-    // }
+    
     // let structTotal
     //
     //functions
@@ -264,12 +275,10 @@ export default function CalcuationTypes(this: any, {getUserDatum, floorTotArr, n
                                     placeholder: 'LAND AREA',
                                     textAlign: 'center',
                                     onChangeText: getUserDatum.bind(this, 'fencingQFee'),
-                                    onChange: () => {
-                                    // onEndEditting: computeAssessmentData
+                                    onChange: () => {                                    
                                         computeAssessmentData();
                                         
-                                        dispatchCtxData({...ctxData, assessmentFee: assess, processingFee: procFee})
-                                    // onKeyPress:computeAssessmentData
+                                        dispatchCtxData({...ctxData, assessmentFee: assess, processingFee: procFee})                                    
                                     }
                                 }}
                         />

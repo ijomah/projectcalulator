@@ -13,6 +13,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
+                        // value: '',
                         onChangeText: getUserData.bind(this, "residential")
 
                     }}

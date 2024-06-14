@@ -1,6 +1,6 @@
-import React, {useState, createContext} from "react";
+import React, {useState, createContext, useEffect} from "react";
 
-import * as SecureStore from 'expo-secure-store'
+import { useSQLiteContext } from "expo-sqlite";
 // import { SafeAreaView, View } from "react-native";
 
 export const DispatchContext: any = createContext(undefined);
@@ -59,19 +59,38 @@ export default function ConfigContextProvider({children}: any) {
                 addQpump: '',
                 underQgroundQtank: '',
                 sec: '',
-                layout: '',
-                appReg: '',
+                appQRegQFee: '',
+                layoutQFee: '',
                 tenPercent: '',
                 fivePercent: '',
-                procAgencyCode: '',
-                procRevenueCode: '',
-                stageAgencyCode: '',
-                stageRevenueCode: '',
-                idcAgencyCode: '',
-                idcRevenueCode: '',
+                processingfeeRevenueCode: '',
+                processingfeeAgencyCode: '',
+                stagecertificationAgencyCode: '',
+                stagecertificationRevenueCode: '',
+                bettermentAgencyCode: '',
+                bettermentRevenueCode: ''
         }
+    // const db = useSQLiteContext();
     const [data, setData] = useState(value)
     
+
+    //Insert into db here
+
+    //Read from db here using the hook and update
+    // the state variable(data).
+    // const getDBData = async () => {
+    //     const dbRes = await db.getFirstAsync(`
+    //         SELECT * FROM fees, codes, rates, districts;
+    //     `)
+
+    //     setData(dbRes)
+    // }
+
+    // I need this to run once
+    // useEffect(() => {
+    //     getDBData();
+    // })
+
     return (
         <ConfigDataContext.Provider value={data}>
             <DispatchContext.Provider value={setData}>

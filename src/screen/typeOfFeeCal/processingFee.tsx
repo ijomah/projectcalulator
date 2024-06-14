@@ -113,6 +113,8 @@ export default function ProcessFee({navigation, params}: any) {
             <CalcuationTypes 
                 navigation={navigation} 
                 getUserDatum={getUserDatum}
+                isPfs={false}
+                fenceFee={fenceFee}
             />    
         </ScrollView>
     )
