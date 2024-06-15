@@ -14,187 +14,195 @@ import AppButton from "../buttons/appBtn";
 import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
 import { addUp, calculate, multiplyNum, structureData } from "../../util/utilFxn";
 
-export default function BuildingLevel({previewEditableInput, params}: any) {
-    const [datum, buildDatum] = useState([{type: 'G/F', id: '1', totResult: 0}]);
-    //test for build array
-    const [buildLevelData, setBuildLevelData] = useState(
-        [
-            [
-                {
-                    type: 'G/F', 
-                    id: '1', 
-                    totResult: 0
-                }
-            ]
-        ]
-    );
+export default function BuildingLevel({
+    addFloor,
+    previewEditableInput,
+    getUserInputs,
+    addBuildBtn,
+    timesValues, 
+    getTotalVal, 
+    floorTotArr,
+    buildLevelData, params}: any) {
+    // const [datum, buildDatum] = useState([{type: 'G/F', id: '1', totResult: 0}]);
+    // //test for build array
+    // const [buildLevelData, setBuildLevelData] = useState(
+    //     [
+    //         [
+    //             {
+    //                 type: 'G/F', 
+    //                 id: '1', 
+    //                 totResult: 0
+    //             }
+    //         ]
+    //     ]
+    // );
     
-    const [floorTotArr, setFloorTotArr]: any = useState([]);
-    const ctxData: any = useContext(ConfigDataContext);
-    const dispatchData: any = useContext(DispatchContext);
-    const [moreFloor, setMoreFloor]: any = useState([]);
-    const [fulFloor, setFulFloor]: any = useState({
-        length: '',
-        breadth: '',
-        height: '',
-        rate: ctxData.selectedBuildType.rate,
-        gFloorRes: ''
-    });
+    // const [floorTotArr, setFloorTotArr]: any = useState([]);
+    // const ctxData: any = useContext(ConfigDataContext);
+    // const dispatchData: any = useContext(DispatchContext);
+    // const [moreFloor, setMoreFloor]: any = useState([]);
+    // const [fulFloor, setFulFloor]: any = useState({
+    //     length: '',
+    //     breadth: '',
+    //     height: '',
+    //     rate: ctxData.selectedBuildType.rate,
+    //     gFloorRes: ''
+    // });
 
    
     
-    const getUserInputs = (storeKey: any, storeValue: number) => {  
+    // const getUserInputs = (storeKey: any, storeValue: number) => {  
         
-        // setFulFloor({...fulFloor, [storeKey]: storeValue})
+    //     // setFulFloor({...fulFloor, [storeKey]: storeValue})
 
-        dispatchData({...ctxData, [storeKey]: storeValue});
-        let grFloorRes: any = fulFloor.gFloorRes
-        grFloorRes = parseInt(fulFloor.length) * parseInt(fulFloor.height) * parseInt(fulFloor.breadth) * ctxData.selectedBuildType.rate;
-        // floorDataArr.push({...fulFloor})
-        // fulFloor.gFloorRes = timesValues().toString()
+    //     dispatchData({...ctxData, [storeKey]: storeValue});
+    //     let grFloorRes: any = fulFloor.gFloorRes
+    //     grFloorRes = parseInt(fulFloor.length) * parseInt(fulFloor.height) * parseInt(fulFloor.breadth) * ctxData.selectedBuildType.rate;
+    //     // floorDataArr.push({...fulFloor})
+    //     // fulFloor.gFloorRes = timesValues().toString()
         
         
-        // if(parseInt(fulFloor.length) > 0 && parseInt(fulFloor.height) > 0 && parseInt(fulFloor.breadth) > 0) {
+    //     // if(parseInt(fulFloor.length) > 0 && parseInt(fulFloor.height) > 0 && parseInt(fulFloor.breadth) > 0) {
 
-            //new idea
-            // setMoreFloor([...moreFloor, fulFloor])
-            // ctxData.floorData = moreFloor
-            // dispatchData({...ctxData, floorData: [...ctxData.floorData, fulFloor]})
-            // dispatchData({...ctxData, floorData: moreFloor})
-            console.log('gf', fulFloor.gFloorRes)
-        // }
-        // computeAssessmentData();
-        console.log('ctx', ctxData);
-    }
+    //         //new idea
+    //         // setMoreFloor([...moreFloor, fulFloor])
+    //         // ctxData.floorData = moreFloor
+    //         // dispatchData({...ctxData, floorData: [...ctxData.floorData, fulFloor]})
+    //         // dispatchData({...ctxData, floorData: moreFloor})
+    //         console.log('gf', fulFloor.gFloorRes)
+    //     // }
+    //     // computeAssessmentData();
+    //     console.log('ctx', ctxData);
+    // }
 
-    // const getFloorData = () => {
-    //     let i: any
-    //     let dataFloor: any = {
+    // // const getFloorData = () => {
+    // //     let i: any
+    // //     let dataFloor: any = {
+    // //         length: ctxData.length,
+    // //         breadth: ctxData.breadth,
+    // //         height: ctxData.height,
+    // //         rate: ctxData.rate,
+    // //         totRes: ctxData.height * ctxData.length * ctxData.breadth * ctxData.rate,
+    // //         floorLevel: datum[i].type
+    // //     }
+
+    // //     setFulFloor(dataFloor)
+    // // }
+    
+    // const timesValues = () => {        
+    //     let tot = multiplyNum(ctxData.selectedBuildType.rate)(ctxData.length)(ctxData.breadth)(ctxData.height);
+    //     createFloorObj(tot)
+    //     return tot
+    // }
+
+    // //form floor obj
+    // const createFloorObj = (floorTot: any) => {
+    //     let floorObj = {
+    //         length: null,
+    //         breadth: null,
+    //         height: null,
+    //         rate: null,
+    //         gFloorRes: null
+    //     };
+    //         floorObj.length = ctxData.length;
+    //         floorObj.breadth= ctxData.breadth
+    //         floorObj.height= ctxData.height
+    //         floorObj.rate= ctxData.selectedBuildType.rate
+    //         floorObj.gFloorRes= floorTot
+        
+    //    dispatchData({...ctxData, floorData: [...ctxData.floorData, {
     //         length: ctxData.length,
     //         breadth: ctxData.breadth,
     //         height: ctxData.height,
-    //         rate: ctxData.rate,
-    //         totRes: ctxData.height * ctxData.length * ctxData.breadth * ctxData.rate,
-    //         floorLevel: datum[i].type
+    //         rate: ctxData.selectedBuildType.rate,
+    //         gFloorRes: floorTot
+    //     }]});
+    // }
+
+    // //Add build btn
+    // const addBuildBtn = () => {
+    //     setBuildLevelData([...buildLevelData, [{type: 'G/F', id: '1', totResult: 0}]]);
+    //     console.log('add build btn', buildLevelData)
+    // }
+
+    // // Add floor btn
+    // const addFloor = () => {
+    //     let buildingArrLength = buildLevelData.length;
+    //     let lastItemArr;
+    //     let floorVal = calculate()
+    //     floorVal.multiply(ctxData, ctxData.rateKey);
+    //     let ansVal = floorVal.answer()
+        
+    //     if (buildLevelData.length === 1) {
+    //         // let anyDatumLength = buildLevelData[0].length;
+    //         console.log('1st buildlength = 1')
+    //        forAddingFloor(buildLevelData)
+    //        setBuildLevelData([[...datum,  {
+    //                 type: datum.length 
+    //                     + 
+    //                         (datum.length>1?( datum.length>2? (datum.length>3? 'TH': 'RD'): 'ND' ):'ST')
+    //                     +'/F', 
+    //                 id: (datum.length + 1).toString(),
+    //                 totResult: ansVal
+    //             } ]])
+           
+    //     } else if (buildLevelData.length > 1) {
+    //         // let filterBuildArr = buildLevelData.filter(() => )
+    //         // let lastArray = buildLevelData[buildLevelData.length - 1]
+    //         // forAddingFloor(buildLevelData)
+    //         addNewFloor(buildLevelData);
+    //         console.log('just nows l>1')
+    //         // setBuildLevelData([...buildLevelData, [...datum]])
     //     }
 
-    //     setFulFloor(dataFloor)
+    //     console.log('addfloor');
     // }
     
-    const timesValues = () => {        
-        let tot = multiplyNum(ctxData.selectedBuildType.rate)(ctxData.length)(ctxData.breadth)(ctxData.height);
-        createFloorObj(tot)
-        return tot
-    }
-
-    //form floor obj
-    const createFloorObj = (floorTot: any) => {
-        let floorObj = {
-            length: null,
-            breadth: null,
-            height: null,
-            rate: null,
-            gFloorRes: null
-        };
-            floorObj.length = ctxData.length;
-            floorObj.breadth= ctxData.breadth
-            floorObj.height= ctxData.height
-            floorObj.rate= ctxData.selectedBuildType.rate
-            floorObj.gFloorRes= floorTot
-        
-       dispatchData({...ctxData, floorData: [...ctxData.floorData, {
-            length: ctxData.length,
-            breadth: ctxData.breadth,
-            height: ctxData.height,
-            rate: ctxData.selectedBuildType.rate,
-            gFloorRes: floorTot
-        }]});
-    }
-
-    //Add build btn
-    const addBuildBtn = () => {
-        setBuildLevelData([...buildLevelData, [{type: 'G/F', id: '1', totResult: 0}]]);
-        console.log('add build btn', buildLevelData)
-    }
-
-    // Add floor btn
-    const addFloor = () => {
-        let buildingArrLength = buildLevelData.length;
-        let lastItemArr;
-        let floorVal = calculate()
-        floorVal.multiply(ctxData, ctxData.rateKey);
-        let ansVal = floorVal.answer()
-        
-        if (buildLevelData.length === 1) {
-            // let anyDatumLength = buildLevelData[0].length;
-            console.log('1st buildlength = 1')
-           forAddingFloor(buildLevelData)
-           setBuildLevelData([[...datum,  {
-                    type: datum.length 
-                        + 
-                            (datum.length>1?( datum.length>2? (datum.length>3? 'TH': 'RD'): 'ND' ):'ST')
-                        +'/F', 
-                    id: (datum.length + 1).toString(),
-                    totResult: ansVal
-                } ]])
-           
-        } else if (buildLevelData.length > 1) {
-            // let filterBuildArr = buildLevelData.filter(() => )
-            // let lastArray = buildLevelData[buildLevelData.length - 1]
-            // forAddingFloor(buildLevelData)
-            addNewFloor(buildLevelData);
-            console.log('just nows l>1')
-            // setBuildLevelData([...buildLevelData, [...datum]])
-        }
-
-        console.log('addfloor');
-    }
-    
       
-    const addNewFloor = (twoDArray: any) => {
+    // const addNewFloor = (twoDArray: any) => {
 
-        let new2dArray = twoDArray.map((itm1: any, i: any) => {
+    //     let new2dArray = twoDArray.map((itm1: any, i: any) => {
             
-            if (i+1 >= twoDArray.length) {
-                return [...itm1, {
-                            type: itm1.length 
-                                + 
-                                    (itm1.length>1?( itm1.length>2? (itm1.length>3? 'TH': 'RD'): 'ND' ):'ST')
-                                +'/F', 
-                            id: (itm1.length + 1).toString(),
-                            totResult: 0
-                        }]
-            }
-            return [...itm1]
-        })
-        setBuildLevelData(new2dArray)
-    }
+    //         if (i+1 >= twoDArray.length) {
+    //             return [...itm1, {
+    //                         type: itm1.length 
+    //                             + 
+    //                                 (itm1.length>1?( itm1.length>2? (itm1.length>3? 'TH': 'RD'): 'ND' ):'ST')
+    //                             +'/F', 
+    //                         id: (itm1.length + 1).toString(),
+    //                         totResult: 0
+    //                     }]
+    //         }
+    //         return [...itm1]
+    //     })
+    //     setBuildLevelData(new2dArray)
+    // }
 
-    //you have to add a component btn for deleting build or floor
-    const removeBuild = (idx: any) => {
-        buildLevelData.filter((thg, indx) => indx !=  idx )
-    }
+    // //you have to add a component btn for deleting build or floor
+    // const removeBuild = (idx: any) => {
+    //     buildLevelData.filter((thg, indx) => indx !=  idx )
+    // }
     
-    const getTotalVal = (childTotVal: any) => {
-        console.log('tot', childTotVal)
-        // dispatchData({...ctxData, floorTotal: [...ctxData.floorTotal, childTotVal]})
-        setFulFloor({...fulFloor, gFloorRes: childTotVal})
-    }
+    // const getTotalVal = (childTotVal: any) => {
+    //     console.log('tot', childTotVal)
+    //     // dispatchData({...ctxData, floorTotal: [...ctxData.floorTotal, childTotVal]})
+    //     setFulFloor({...fulFloor, gFloorRes: childTotVal})
+    // }
 
     
-    const forAddingFloor = (arr: any) => {
+    // const forAddingFloor = (arr: any) => {
         
-            buildDatum([...arr[arr.length - 1], 
-                    {
-                        type: datum.length 
-                            + 
-                                (datum.length>1?( datum.length>2? (datum.length>3? 'TH': 'RD'): 'ND' ):'ST')
-                            +'/F', 
-                        id: (datum.length + 1).toString(),
-                        totResult: 0
-                    } 
-                ]);
-    }
+    //         buildDatum([...arr[arr.length - 1], 
+    //                 {
+    //                     type: datum.length 
+    //                         + 
+    //                             (datum.length>1?( datum.length>2? (datum.length>3? 'TH': 'RD'): 'ND' ):'ST')
+    //                         +'/F', 
+    //                     id: (datum.length + 1).toString(),
+    //                     totResult: 0
+    //                 } 
+    //             ]);
+    // }
 
     // const computeAssessmentData = () => {
         // let assessCost = addUp(...ctxData.floorTotal, ctxData.fencingQFee)
@@ -277,7 +285,7 @@ export default function BuildingLevel({previewEditableInput, params}: any) {
                 )})}  
             </ScrollView> */}
             <ScrollView>
-                {buildLevelData.map((datums, i) => {  
+                {buildLevelData.map((datums: any, i: any) => {  
                     // if(i)                    
                     return (
                     <View key={i+1} 
@@ -303,7 +311,7 @@ export default function BuildingLevel({previewEditableInput, params}: any) {
                             </View>
                             {/* put thgs here */}
                         </View>
-                        {datums.map((datum, idx) => {
+                        {datums.map((datum: any, idx: any) => {
                             return (
                                 <View key={idx+1} style={styles.buildingLevelStyle}>
                                     <FloorType 
