@@ -26,11 +26,12 @@ import PreviewBuildingLevel from "../../preview/prevBuildingLevel";
 import PreviewPaymentAcc from "../../preview/previewPayAcc";
 // import { feeData } from "../data/data";
 
-let label, distName, buildLevel, floorLevel, length, breadth,
-height,rate, fenceLabel, feeData, value, res, totalAmt, agentCode,revCode,feeResult
+let label: any, distName, buildLevel, floorLevel, length, breadth,
+height,rate, fenceLabel: any, feeData: any, value: any, res, totalAmt, agentCode,revCode,feeResult: any
 const imgAssessCal = require('./../../assets/asses-calculator.png');
 const imgLag = require('./../../assets/lasg-prev-logo.jpg')
-    const html = `<html>
+let arr = new Array(3)   
+const html = `<html>
     <head>
         <meta>
         <title>ASSEMENT CALCULATOR</title>
@@ -82,8 +83,12 @@ const imgLag = require('./../../assets/lasg-prev-logo.jpg')
             </h3>
         </header>
         <section id="applic-data" class="display-types">
-            <p style="flex: 7;">${label}</p>
-            <p id="output-res-outline-color" style="flex: 5;">${value}</p>
+        ${arr.map((dta) => (`
+            <div>
+                <p style="flex: 7;">${label}</p>
+                <p id="output-res-outline-color" style="flex: 5;">${value}</p>
+            </div>`))}
+            
         </section>
 
         <section id="builds">
@@ -110,11 +115,13 @@ const imgLag = require('./../../assets/lasg-prev-logo.jpg')
 
         <section id="cal-data">
             <div>
-                <p class="display-types">
+            ${arr.map((dat) => (
+                `<p class="display-types">
                     <span style="flex: 1;"><b>${fenceLabel}:</b> </span>
 
                     <span id="output-res-outline-color" style="flex: 1">${feeData}</span><span>SQM</span><span style="flex:.279;text-align: center; color: #293189;">=</span><span id="output-res-outline-color" style="flex: 1.033;">${feeResult}</span>
-                </p>
+                </p>`
+            ))}
             </div> <span style="position: absolute; top: 51.7vh; left: 28.9vw; font-size: 11px; color:#FAA11F;"> > 650SQM = LAND AREA - 650 x 10 + 20,
                 000</span>
         </section>

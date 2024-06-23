@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import { SafeAreaView } from "react-native";
 
-// import { useSQLiteContext } from "expo-sqlite";
+import { useSQLiteContext } from "expo-sqlite";
 
 import { ConfigDataContext, DispatchContext } from "../../warehouse/configContext";
 import SettingPage from "../setPage";
-
-import * as SecureStore from 'expo-secure-store';
 
 
 export default function ManagerSetting() {
@@ -26,8 +24,9 @@ export default function ManagerSetting() {
     //Save the data
   const saveData = async (distKey: any, distValue: any) => {
     dispatchToCtxStore({...ctxStore, [distKey]: distValue})
-    // console.log('ctx content', valueForStore)
-    // storeInfo(db, ctxStore);
+    setDbVal({...dbVal, [distKey]: distValue})
+    console.log('ctx content', dbVal)
+    // await storeInfo(db, dbVal);
     
   }
 
@@ -37,21 +36,13 @@ export default function ManagerSetting() {
                     fname,
                     lname,
                     phone_no
-                ) VALUES (?, ?, ?)`,
+                ) 
+                    VALUES (?, ?, ?)`,
                 [
                     docData.fName,
                     docData.lName,
                     docData.phoneNo
                 ]
-                // (_: any, res: any) => {
-                //     userId = res.insertId;
-                //     console.log('resObj',res.insertId)
-                //     resolve(res)
-                // }
-                // (_, err) => {
-                //     console.log(err: any)
-                //     reject(err: any)
-                // }
             );
 
             await db.runAsync(`
@@ -64,7 +55,7 @@ export default function ManagerSetting() {
                         recreational,
                         industrial,
                         date,
-                        user_id,
+                        user_id
                         ) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                     [
@@ -76,17 +67,8 @@ export default function ManagerSetting() {
                         docData.recreational,
                         docData.industrial,
                         docData.date,
-                        docData.user_id,
                         userId
                     ]
-                    // (_: any, res: any) => {
-                    //     console.log('apidbusers good', res);
-                    //     resolve(res);
-                    // },
-                    // (_, err) => {
-                    //     console.log('apidbusers', err)
-                    //     reject(err: any)
-                    // }
                 );
 
             await db.runAsync(`
@@ -100,7 +82,6 @@ export default function ManagerSetting() {
                         docData.layoutQFee,
                         userId
                     ]
-                    
                 );
 // //Remember to drop column applic_name here. 
 // //it is now in name table
@@ -112,8 +93,9 @@ export default function ManagerSetting() {
                       stagecertificationAgencyCode,
                       stagecertificationRevenueCode,
                       bettermentAgencyCode,
-                      bettermentRevenueCode
-                    ) VALUES (?, ?, ?, ?, ?, ?)`,
+                      bettermentRevenueCode,
+                      user_id
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
                     [
                         docData.processingfeeRevenueCode,
                         docData.processingfeeAgencyCode,
@@ -124,7 +106,6 @@ export default function ManagerSetting() {
                         userId
                     ]
                 )
-
 }
 
     return (

@@ -11,7 +11,7 @@ import LabelledDisplay from '../../display/labelDisplay';
 import DisplayInfo from '../../display/display';
 import ReuseInput from '../../reuseables/input';
 import { ConfigDataContext, DispatchContext } from '../../warehouse/configContext';
-import ManageApplicantDetails from '../../bio/manageApplicantDet';
+// import ManageApplicantDetails from '../../bio/manageApplicantDet';
 
 export default function Idc(this: any, {navigation}: any) {
     const idcCtxData: any = useContext(ConfigDataContext);
@@ -20,7 +20,7 @@ export default function Idc(this: any, {navigation}: any) {
     const [curRate, setCurRate] =useState(0);
     const getUserInputData = (objKey: any, objValue: number) => {
         console.log('idc data', idcCtxData);
-        dispatchIdcCtxData({idcCtxData, [objKey]: objValue })
+        dispatchIdcCtxData({...idcCtxData, [objKey]: objValue })
         objKey === 'lettableSpaceIdc' && setIdclettable(objValue);
         // Object.keys(idcCtxData) === lettableSpaceIdc
         objKey === 'currentRateIdc' && setCurRate(objValue);
@@ -34,7 +34,10 @@ export default function Idc(this: any, {navigation}: any) {
             <ScreenHeadings
                 title='APPLICATION DETAILS'
             />
-            <ManageApplicantDetails />
+            {/* <ManageApplicantDetails /> */}
+            <ApplicantDet 
+                gatherDet={getUserInputData}
+            />
             <ScreenHeadings 
                 title='BETTERMENT FEE (INFRASTRUCTURE DEVELOPMENT CHARGE)'
             />
@@ -73,7 +76,10 @@ export default function Idc(this: any, {navigation}: any) {
                 />
             </View>
             <PaymentDisplay
-                total={'N'+calIdcTotal || '***'}
+                total={calIdcTotal || '***'}
+                agencyCode={idcCtxData.bettermentAgencyCode}
+                revCode={idcCtxData.bettermentRevenueCode}
+                payType = 'BETTERMENT (IDC) '
             />
             {/* <PenalPaymentDet />  */}
 

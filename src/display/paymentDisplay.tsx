@@ -31,7 +31,7 @@ export default function PaymentDisplay({total, agencyCode, revCode, payType, cod
 
                 <View style={{flexDirection: 'row'}}>
                     <DisplayInfo
-                        info={'REVENUE CODE: '+ revCode}
+                        info={'  REVENUE CODE: '+ revCode}
                     />
                     {/* <Text> {' '} </Text> */}
                     {/* <DisplayInfo

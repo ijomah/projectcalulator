@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -25,14 +25,14 @@ export default function Pfs({navigation, params}: any) {
 
     // const devDimension = useWindowDimensions();
 
-    // const getUserDatum = (dataKey: any, dataValue: any) => {
-    //     // const dataStore = {[dataKey]: dataValue};
-    //     dispatchCtxData({...ctxData, [dataKey]: dataValue})
-    // }
-
     const ctxData: any = useContext(ConfigDataContext);
     const dispatchCtxData: any = useContext(DispatchContext)
-    const [fenceFee, setfenceFee]: any = useState({fencingQFee: 0});
+    const [fenceFee, setfenceFee]: any = useState({fencingQFee: '',
+        firstQfloorQpump: '',
+        addQpump: '',
+        underQgroundQtank: '',
+        pfsQFencingQFee: ''
+    });
     const devDimension = useWindowDimensions();
 
     //From build level comp
@@ -69,47 +69,75 @@ export default function Pfs({navigation, params}: any) {
     const [fivePercentage, setFivePercent] = useState(0);
     const [procFee, setProcessFee] = useState(0);
 
-     const getUserDatum = (fenceKey: any, fenceVal: any) => {
+    //For pfs input
+    const [floorPump, setFloorPump] = useState('');
+    const [addPump, setAddPump] = useState('');
+    const [tank, setTank] = useState('');
+    const [pfsFence, setPfsFence] = useState('');
+
+    //Floor total
+    const [floorAddition, setFloorAddition ] = useState(0);
+
+    const getUserDatum = (fenceKey: any, fenceVal: any) => {
         // console.log('pfee', addUp(...[1, 2, 10], 2, 3))
         // console.log('outer', this)
-        if(fenceKey === 'fencingQFee' || fenceKey === 'pfsQFencingQFee') {
-            console.log('pfee2', fenceKey, fenceVal)
+        fenceKey === 'addQpump' && setAddPump(fenceVal);
+        fenceKey === 'firstQfloorQpump' && setFloorPump(fenceVal);
+        fenceKey === 'underQgroundQtank' && setTank(fenceVal);
+        
+
+        if(fenceKey !== 'fencingQFee' || fenceKey === 'pfsQFencingQFee') {
+            // console.log('pfee2', fenceKey, fenceVal)
             
-            if (fenceKey === 'fencingQFee') {
+            if (fenceKey === 'pfsQFencingQFee') {
                 if (fenceVal > 650) {
                         // console.log('pfee3', fenceVal)
-                       let fencingFee = ((fenceVal - 650) * 10) + 20000;
-                        setfenceFee({[fenceKey]: ((fenceVal - 650) * 10) + 20000})
+                       let fencingFee: any = ((fenceVal - 650) * 10) + 20000;
+                        setfenceFee({...fenceFee, [fenceKey]: ((fenceVal - 650) * 10) + 20000})
                         dispatchCtxData({...ctxData, [fenceKey]: ((fenceVal - 650) * 10) + 20000 });
-                        computeAssessmentData(fencingFee)
+                        setPfsFence(fencingFee);
+                        computeAssessmentData()
                     } else if(fenceVal <= 650) {
-                        let fenceFee = fenceVal;
-                        // console.log('pfee4', fenceVal)
-                        setfenceFee({[fenceKey]: fenceVal})
+                        // let fenceFee = fenceVal;
+                        console.log('pfee4', fenceVal)
+                        setfenceFee({...fenceFee, [fenceKey]: fenceVal})
                         dispatchCtxData({...ctxData, [fenceKey]: fenceVal});  
-                        computeAssessmentData(fenceFee)
+                        setPfsFence(fenceVal);
+                        computeAssessmentData()
                     }
             }
 
-            if(fenceKey != 'fencingQFee') {
-                if (fenceVal > 650) {
-                    //     console.log('pfee3', objVal)
-                       let fencingFee = ((fenceVal - 650) * 10) + 20000;
-                        setfenceFee({[fenceKey]: ((fenceVal - 650) * 10) + 20000})
+            if(fenceKey != 'pfsQFencingQFee') {
+                // if (fenceVal > 650) {
+                    //     console.log('pfee3', fenceFee)
+                    //    let fencingFee = ((fenceVal - 650) * 10) + 20000;
+                    //     setfenceFee({...fenceFee, [fenceKey]: ((fenceVal - 650) * 10) + 20000})
+                    //     dispatchCtxData({...ctxData, [fenceKey]: fenceVal});
+                    //     computeAssessmentData(fencingFee)
+                    // } else if(fenceVal <= 650) {
+                        console.log('pfee 8', fenceFee);
+                        // let fenceFee = fenceVal;
+                        setfenceFee({...fenceFee, [fenceKey]: fenceVal})
                         dispatchCtxData({...ctxData, [fenceKey]: fenceVal});
-                        computeAssessmentData(fencingFee)
-                    } else if(fenceVal <= 650) {
-                        let fenceFee = fenceVal;
-                        setfenceFee({[fenceKey]: fenceVal})
-                        dispatchCtxData({...ctxData, [fenceKey]: fenceVal});
-                        computeAssessmentData(fenceFee)  
-                    }
+                        computeAssessmentData()  
+                    // }
             }
             
             
         }
 
-     }
+        // let fencingFee = ((fenceVal - 650) * 10) + 20000;
+    //                     setfenceFee({...fenceFee, [fenceKey]: ((fenceVal - 650) * 10) + 20000})
+    //                     dispatchCtxData({...ctxData, [fenceKey]: ((fenceVal - 650) * 10) + 20000 });
+    //                     // computeAssessmentData(fencingFee)
+    //                     console.log('pfsfeeData', fenceKey, fenceFee )
+    }
+
+    const doAssessment = parseInt(pfsFence)
+    + parseInt(addPump)
+    + parseInt(floorPump)
+    + parseInt(tank);
+    
 
      //From build level comp
     const getUserInputs = (storeKey: any, storeValue: number) => {  
@@ -272,17 +300,35 @@ export default function Pfs({navigation, params}: any) {
     //take the floor total of each floor
     //cal your assessment then
 
-    const computeAssessmentData = (assessVal: any) => {
+    const computeAssessmentData = () => {
+        let assessCost;
         if (ctxData.floorTotal.length === 0) {
+            assessCost = floorAddition + doAssessment
             return
         } 
                 
             let reduceResAddition = ctxData.floorTotal.reduce((a: any, b: any) => a + b);
-            let assessCost = reduceResAddition + parseInt(assessVal)
-            setAssess(parseInt(assessCost))
+            setFloorAddition(parseInt(reduceResAddition))
+            assessCost = floorAddition + doAssessment
+                            // + parseInt(assessVal)
+                            // + parseInt(addPump)
+                            // + parseInt(floorPump)
+                            // + parseInt(tank)
+            setAssess(assessCost)
             console.log('touched contxt in-if-block', ctxData, assessCost)
             dispatchCtxData({...ctxData, assessmentFee: assessCost});
         
+        //     if(typeof(assessVal) === "object") {
+        //     let reduceResAddition = ctxData.floorTotal.reduce((a: any, b: any) => a + b);
+        //     let assessCost = reduceResAddition 
+        //         + parseInt(assessVal.pfsQFencingQFee)
+        //         + parseInt(assessVal.firstQfloorQpump)
+        //         + parseInt(assessVal.addQpump)
+        //         + parseInt(assessVal.underQgroundQtank);
+        //     setAssess(parseInt(assessCost))
+        //     console.log('object in-if-block', ctxData, assessCost)
+        //     dispatchCtxData({...ctxData, assessmentFee: assessCost});
+        // }
         
 
         // let assessCost = reduceResAddition + parseInt(fenceFee.fencingQFee)
@@ -302,46 +348,36 @@ export default function Pfs({navigation, params}: any) {
 
         //calls
         
-        let subTotal = parseInt(assessCost) + parseInt(ctxData.layoutQFee) + parseInt(ctxData.appQRegQFee)
+        let subTotal = assessCost + parseInt(ctxData.layoutQFee) + parseInt(ctxData.appQRegQFee)
         // addUp(parseInt(assessVal), parseInt(ctxData.layoutQFee), parseInt(ctxData.appQRegQFee));
         cal10Percent();
-        let tenPercent = (parseInt(assessCost) * 10) / 100     //ie 10%
+        let tenPercent = (assessCost * 10) / 100     //ie 10%
         cal5Percent();
-        let fivePercent = (parseInt(assessCost) * 5) / 100     //ie 5%
-        // calTotal();
-        // let total = tenPercentage + assessCost + subtot
-        // addUp(tenPercentage, parseInt(assessCost), subtot)
+        let fivePercent = (assessCost * 5) / 100     //ie 5%        
         
         setSubTot(subTotal);
         setTenPercent(tenPercent);
         setFivePercent(fivePercent);
-        
-
-        // if (isPfs === true) {
-        //     dispatchCtxData({...ctxData, assessmentFee: addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)});
-        //     total = addUp(tenPercentage, assess, subtot, fivePercentage)
-        //     setProcessFee(total);
-        // }
-
+    
         computeProcessingFee(assessCost)
 
     }
 
-    const computeProcessingFee = (assessmentVal: string) => {
+    const computeProcessingFee = (assessmentVal: number) => {
 
         if (ctxData.selectedBuildType.buildType !== 'residential') {        
-            let totalForProcessingFee = parseInt(assessmentVal) + parseInt(ctxData.layoutQFee) + parseInt(ctxData.appQRegQFee) +
-                (parseInt(assessmentVal) * 10) / 100 +
-                (parseInt(assessmentVal) * 5) / 100 +
-                parseInt(assessmentVal);
+            let totalForProcessingFee = assessmentVal + parseInt(ctxData.layoutQFee) + parseInt(ctxData.appQRegQFee) +
+                (assessmentVal * 10) / 100 +
+                (assessmentVal * 5) / 100 +
+                assessmentVal;
             
             setProcessFee(totalForProcessingFee);
         } 
         
         if(ctxData.selectedBuildType.buildType === 'residential') {
-            let totalForProcessingFee = parseInt(assessmentVal) + parseInt(ctxData.layoutQFee) + parseInt(ctxData.appQRegQFee) +
-                (parseInt(assessmentVal) * 10) / 100 +
-                parseInt(assessmentVal);
+            let totalForProcessingFee = assessmentVal + parseInt(ctxData.layoutQFee) + parseInt(ctxData.appQRegQFee) +
+                (assessmentVal * 10) / 100 +
+                assessmentVal;
 
             setProcessFee(totalForProcessingFee);
         }
@@ -416,7 +452,7 @@ export default function Pfs({navigation, params}: any) {
             // return newObjArr;
         }
     }
-     
+    useEffect( () => computeAssessmentData(), [addPump, floorPump, tank, pfsFence, assess, floorAddition] )
     return (
         <ScrollView style={styles.processCase}>
         <ScreenHeadings 

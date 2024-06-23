@@ -175,7 +175,7 @@ export default function CalcuationTypes(this: any, {
                             <DisplayInfo 
                                 style={styles.calDisplayInfoStyle}
                                 calTypeLabelStyle={customDisplayStyle}
-                                    info={ctxData.pfsQFencingQFee}
+                                    info={(fenceFee.pfsQFencingQFee).toString()}
                             />
                         </View>
                     <View style={styles.fencingFeeStyle}>
@@ -204,7 +204,7 @@ export default function CalcuationTypes(this: any, {
                         <DisplayInfo 
                             style={styles.calDisplayInfoStyle}
                             calTypeLabelStyle={customDisplayStyle}
-                                info={ctxData.firstQfloorQpump}
+                                info={fenceFee.firstQfloorQpump}
                         />
                     </View>
                     
@@ -234,7 +234,7 @@ export default function CalcuationTypes(this: any, {
                         <DisplayInfo 
                             style={styles.calDisplayInfoStyle}
                             calTypeLabelStyle={customDisplayStyle}
-                                info={ctxData.addQpump}
+                                info={fenceFee.addQpump}
                         />
                     </View>
 
@@ -264,7 +264,7 @@ export default function CalcuationTypes(this: any, {
                             <DisplayInfo 
                                 style={styles.calDisplayInfoStyle}
                                 calTypeLabelStyle={customDisplayStyle}
-                                    info={ctxData.underQgroundQtank}
+                                    info={fenceFee.underQgroundQtank}
                             />
                     </View>
                 </View>
@@ -311,8 +311,9 @@ export default function CalcuationTypes(this: any, {
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='ASSESSMENT FEE'
                         // onCal={computeAssessmentData}
-                        info={assess}
+                        info={assess.toString()}
                         isText={false}
+                        isPfs={isPfs}
                     />
                     
                     <LabelledDisplay 

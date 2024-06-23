@@ -10,12 +10,14 @@ import { FontAwesome6 } from '@expo/vector-icons';
 
 import DisplayInfo from "./display";
 import { customDisplayStyle } from "../constants/styles";
+import AppButton from "../buttons/appBtn";
 
 export default function LabelledDisplay({
         info, 
         isText, 
         isSign,
         isWhat, 
+        isPfs,
         prevLabelStyle,
         multiplandInfo,
         calTypeLabelStyle,
@@ -53,6 +55,12 @@ export default function LabelledDisplay({
                     color="black" 
                 />
             }
+            {/* {isPfs === true?  */}
+            {/* <AppButton 
+            title={totalValue}
+            onGoto={}
+            />
+            : */}
             <DisplayInfo 
                 style={[
                     // styles.displayInfoPartStyle, 
@@ -62,8 +70,9 @@ export default function LabelledDisplay({
                 rightPenalPaymentDetFlexStyle={rightPenalPaymentDetFlexStyle}
                 calTypeLabelStyle={calTypeLabelStyle}
                 onCal={onCal}
-                info={info}
+                info={info.toString()}
             />
+            {/* } */}
         </SafeAreaView>
     )
 }

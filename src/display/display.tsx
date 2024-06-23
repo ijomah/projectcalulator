@@ -36,7 +36,7 @@ export default function DisplayInfo({
                     styles.displayTextStyle, 
                     {color: textColor}, 
                 ]}
-                onPress={ctxDatum.computeAssessmentData}
+                // onPress={ctxDatum.computeAssessmentData}
             >{info}</Text>
         </SafeAreaView>
     )

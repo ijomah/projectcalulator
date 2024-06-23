@@ -31,7 +31,7 @@ import StageAndIDCAndPenal from "./src/screen/typeOfFeeCal/stageIdcPenal";
 import PageUsedInPenal from "./src/screen/typeOfFeeCal/usedInPenal";
 import SettingPage from "./src/settings/setPage";
 import ManagerSetting from "./src/settings/managerSetting/manageSetting";
-// import SqliteDbProvider from "./db/dbStore";
+import SqliteDbProvider from "./db/dbStore";
 
 const Tab = createBottomTabNavigator();
 

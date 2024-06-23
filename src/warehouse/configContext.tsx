@@ -38,6 +38,9 @@ export const ConfigDataContext: any = createContext(undefined)
 
 export default function ConfigContextProvider({children}: any) {
     const value: any =  {
+                fName: 'admin',
+                lName: 'boss',
+                phoneNo: '08012345678',
                 residential: '',
                 commercial: '',
                 institutional: '',
@@ -45,6 +48,9 @@ export default function ConfigContextProvider({children}: any) {
                 agricultural: '',
                 recreational: '',
                 mixedUse: '',
+                district:'',
+                buildingType: '',
+                floorType: '',
                 bioData: [],
                 feeData: [],
                 floorData: [],

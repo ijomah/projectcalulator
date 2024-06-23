@@ -4,11 +4,13 @@ import { View, Text, StyleSheet } from 'react-native';
 // import Fallback from './fallback';
 
 export default function SqliteDbProvider({children}: any) {
+
     async function migrateDbIfNeeded(db: SQLiteDatabase) {
         const DATABASE_VERSION = 1;
-      //   let { user_version: currentDbVersion } = await db.getFirstAsync<{ user_version: number }>(
-      //     'PRAGMA user_version'
-      //   );
+        console.log('db init fxn 1')
+        //   let { user_version: currentDbVersion } = await db.getFirstAsync<{ user_version: number }>(
+        //     'PRAGMA user_version'
+        //   );
         let { user_version: currentDbVersion } = await db.getFirstAsync<any>(
           'PRAGMA user_version'
         );
@@ -20,7 +22,7 @@ export default function SqliteDbProvider({children}: any) {
               PRAGMA journal_mode = 'wal';
           `);
           // CREATE TABLE todos (id INTEGER PRIMARY KEY NOT NULL, value TEXT NOT NULL, intValue INTEGER);
-      
+          console.log('db init fxn2')
           await db.execAsync(`CREATE TABLE IF NOT EXISTS users (
               id INTEGER NOT NULL PRIMARY KEY,
               fname TEXT,
@@ -76,9 +78,11 @@ export default function SqliteDbProvider({children}: any) {
       
               currentDbVersion = 1;
         }
-        // if (currentDbVersion === 1) {
-        //   Add more migrations
-        // }
+        if (currentDbVersion === 1) {
+          // Add more migrations
+          console.log('db init fxn3 v1')
+        }
+        console.log('db init fxn3 v1', currentDbVersion)
         await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`);
       }
 

@@ -15,7 +15,7 @@ import LabelledDisplay from "../../display/labelDisplay";
 import PaymentDisplay from "../../display/paymentDisplay";
 import ScreenHeadings from "../../headings/Heading";
 import { ConfigDataContext, DispatchContext } from "../../warehouse/configContext";
-import ManageApplicantDetails from "../../bio/manageApplicantDet";
+// import ManageApplicantDetails from "../../bio/manageApplicantDet";
 import DisplayInfo from "../../display/display";
 
 
@@ -79,7 +79,10 @@ export default function StageAndIDCAndPenal({navigation, route}: any) {
     //   return ctxStore * nameInfo;
     // } 
 
-
+    const getUserInputInfo = (stageProperty: any, val: any) => {
+      dispatchCtxStore({...ctxStore, [stageProperty]: val})
+      
+    }
     return (
       <ScrollView>
         <SafeAreaView style={styles.stageIdcPenalContainerStyle}>
@@ -87,7 +90,10 @@ export default function StageAndIDCAndPenal({navigation, route}: any) {
             <ScreenHeadings 
               title='APPLICATION DETAILS'
             />
-            <ManageApplicantDetails />
+            {/* <ManageApplicantDetails /> */}
+            <ApplicantDet 
+              gatherDet={getUserInputInfo}
+            />
             <View>
               <ScreenHeadings                
                   title='STAGE CERTIFICATION'
@@ -199,8 +205,8 @@ export default function StageAndIDCAndPenal({navigation, route}: any) {
             <PaymentDisplay
                 total={labelPercent[0] === "ASSESSMENT"? Math.round(ctxStore.assessmentFee * percentRate * 100) / 100  : labelPercent[0] === "PROCESSING"? ctxStore.processingFee * percentRate : '0'}
                 // total={labelPercent === "ASSESSMENT"? Math.round((assFee * percentRate) * 100) / 100  : labelPercent === "PROCESSING"? Math.round((proc * percentRate) * 100) / 100 : '0'}
-                agencyCode={ctxStore.stageAgencyCode}
-                revCode={ctxStore.stageRevenueCode}
+                agencyCode={ctxStore.stagecertificationAgencyCode}
+                revCode={ctxStore.stagecertificationRevenueCode}
                 payType = 'STAGE CERTIFICATION '
             />
             <View style={{

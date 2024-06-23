@@ -10,7 +10,7 @@ import AppButton from '../../buttons/appBtn';
 import PaymentDisplay from '../../display/paymentDisplay';
 import PenalPaymentDet from '../../display/penalPaymentDet';
 import ScreenHeadings from '../../headings/Heading';
-import ManageApplicantDetails from '../../bio/manageApplicantDet';
+// import ManageApplicantDetails from '../../bio/manageApplicantDet';
 import { AppStyles } from '../../constants/styles';
 import { Dropdown } from 'react-native-element-dropdown';
 import { feeData, percentData } from '../../data/data';
@@ -60,13 +60,17 @@ export default function PageUsedInPenal(this: any, {navigation, route}: any) {
 
       const getUserInputInfo = (penalProperty: any, val: any) => {
         dispatchCtxInfo({...ctxInfo, [penalProperty]: val})
+        console.log('penal input', ctxInfo.feeTypePenal)
       }
     return (
         <SafeAreaView>
             <ScreenHeadings
                 title='APPLICATION DETAILS'
             />
-            <ManageApplicantDetails />
+            {/* <ManageApplicantDetails /> */}
+            <ApplicantDet 
+              gatherDet={getUserInputInfo}
+            />
             <ScreenHeadings 
                 title='PENAL'
             />
@@ -177,7 +181,12 @@ export default function PageUsedInPenal(this: any, {navigation, route}: any) {
 
             <View style={{flexDirection: 'row'}}>
             <DisplayInfo 
-            info={labelPercent === "ASSESSMENT"? ctxInfo.assessmentFee  : labelPercent === "PROCESSING"? ctxInfo.processingFee : '0' }
+            info={(labelPercent === "ASSESSMENT"? 
+                ctxInfo.assessmentFee  
+              : labelPercent === "PROCESSING"? 
+                ctxInfo.processingFee 
+                : 
+                ctxInfo.feeTypePenal )}
               // info={labelPercent[0] === "ASSESSMENT"? assFee  : labelPercent[0] === "PROCESSING"? proc : '0' }
               // info={labelPercent === "ASSESSMENT"? assFee  : proc }
             />
@@ -189,16 +198,26 @@ export default function PageUsedInPenal(this: any, {navigation, route}: any) {
             <DisplayInfo 
               // info={labelPercent === "ASSESSMENT"? ctxStore.assessmentFee  : labelPercent === "PROCESSING"? ctxStore.processingFee : '0' }
               // info={labelPercent === "ASSESSMENT"? ((Math.round(assFee * ctxInfo.currentRatePenal * 100)) / 100).toString()  : labelPercent === "PROCESSING"? ((Math.round(proc * ctxInfo.currentRatePenal * 100)) / 100).toString() : '0'}
-              info={(labelPercent === "ASSESSMENT"? ((Math.round(ctxInfo.assessmentFee * ctxInfo.currentRatePenal * 100)) / 100).toString()  : labelPercent === "PROCESSING"? ((Math.round(ctxInfo.processingFee * ctxInfo.currentRatePenal * 100)) / 100).toString() : '0') ||
+              info={((labelPercent === "ASSESSMENT"? 
+                ((Math.round(ctxInfo.assessmentFee * ctxInfo.currentRatePenal * 100)) / 100).toString()  
+                  : labelPercent === "PROCESSING"? 
+                    ((Math.round(ctxInfo.processingFee * ctxInfo.currentRatePenal * 100)) / 100).toString() 
+                  : ((Math.round(ctxInfo.feeTypePenal * ctxInfo.currentRatePenal * 100)) / 100).toString()) ||
                     labelPercent === "" && ((Math.round(ctxInfo.feeTypePenal * ctxInfo.currentRatePenal * 100)) / 100).toString()
-              }
+    ) || 'Total'}
             />
             </View>
 
             <PaymentDisplay
-              total={(labelPercent === "ASSESSMENT"? ((Math.round(ctxInfo.assessmentFee * ctxInfo.currentRatePenal * 100)) / 100)  : labelPercent[0] === "PROCESSING"? ((Math.round(ctxInfo.processingFee * ctxInfo.currentRatePenal * 100)) / 100) : '0') ||
+              total={((labelPercent === "ASSESSMENT"? 
+                ((Math.round(ctxInfo.assessmentFee * ctxInfo.currentRatePenal * 100)) / 100)  
+                  : labelPercent[0] === "PROCESSING"? 
+                    ((Math.round(ctxInfo.processingFee * ctxInfo.currentRatePenal * 100)) / 100) 
+                    : 
+                    ((Math.round(ctxInfo.feeTypePenal * ctxInfo.currentRatePenal * 100)) / 100).toString()) 
+              ||
                 labelPercent === "" && ((Math.round(ctxInfo.feeTypePenal * ctxInfo.currentRatePenal * 100)) / 100).toString()
-              }
+    ) || '***'}
               agencyCode={'ORACLE CODE 77128'}
               revCode={'ORACLE CODE 32205'}
               payType = 'PENAL '
