@@ -18,6 +18,8 @@ export default function FloorType(this: any,
         floorPosition, 
         previewEditableInput, 
         getUserInputs,
+        createFloorObj,
+        structureData,
         calResult,
         totResult,
         timesValues,
@@ -104,7 +106,16 @@ export default function FloorType(this: any,
                                 console.log(timesValues())
                                 getTotalVal(timesValues())
                                 setTotalValue(timesValues())
-                                dispatchFloorCtx({...floorCtxVal, floorTotal: [...floorCtxVal.floorTotal, timesValues()]})
+                                // structureData()
+                                dispatchFloorCtx({...floorCtxVal, 
+                                    bioData: [...floorCtxVal.bioData, {
+                                        locationQofQdevelopment: floorCtxVal.locationQofQdevelopment,
+                                        applicantQname: floorCtxVal.applicantQname,
+                                        applicantQaddress: floorCtxVal.applicantQaddress,
+                                        telephoneQno: floorCtxVal.telephoneQno,
+                                        fileQnumber: floorCtxVal.fileQnumber}],
+                                    floorData: [...floorCtxVal.floorData, createFloorObj(timesValues())],
+                                    floorTotal: [...floorCtxVal.floorTotal, timesValues()]})
                                 
                             } 
                         }

@@ -19,7 +19,8 @@ export default function BuildingLevel({
     previewEditableInput,
     getUserInputs,
     addBuildBtn,
-    timesValues, 
+    timesValues,
+    createFloorObj, 
     getTotalVal, 
     floorTotArr,
     buildLevelData, params}: any) {
@@ -319,7 +320,7 @@ export default function BuildingLevel({
                                         style={styles.floorStyle}
                                         // totResult={datum.totResult}
                                         previewEditableInput={previewEditableInput}
-                                        {...{ getUserInputs, timesValues, getTotalVal, floorTotArr}}
+                                        {...{ getUserInputs, createFloorObj, structureData, timesValues, getTotalVal, floorTotArr}}
                                     />
                                 </View>
                             )

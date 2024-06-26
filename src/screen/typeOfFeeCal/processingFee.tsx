@@ -104,30 +104,16 @@ export default function ProcessFee({navigation, params}: any) {
 
      //From build level comp
     const getUserInputs = (storeKey: any, storeValue: number) => {  
-        
-        // setFulFloor({...fulFloor, [storeKey]: storeValue})
 
         dispatchCtxData({...ctxData, [storeKey]: storeValue});
         let grFloorRes: any = fulFloor.gFloorRes
         grFloorRes = parseInt(fulFloor.length) * parseInt(fulFloor.height) * parseInt(fulFloor.breadth) * ctxData.selectedBuildType.rate;
-        // floorDataArr.push({...fulFloor})
-        // fulFloor.gFloorRes = timesValues().toString()
-        
-        
-        // if(parseInt(fulFloor.length) > 0 && parseInt(fulFloor.height) > 0 && parseInt(fulFloor.breadth) > 0) {
-
-            //new idea
-            // setMoreFloor([...moreFloor, fulFloor])
-            // ctxData.floorData = moreFloor
-            // dispatchData({...ctxData, floorData: [...ctxData.floorData, fulFloor]})
-            // dispatchData({...ctxData, floorData: moreFloor})
-            console.log('gf', fulFloor.gFloorRes)
-        // }
+        // getFloorData()
         console.log('ctx', ctxData);
     }
 
     // const getFloorData = () => {
-    //     let i: any
+    //     let i: any = 0
     //     let dataFloor: any = {
     //         length: ctxData.length,
     //         breadth: ctxData.breadth,
@@ -138,6 +124,7 @@ export default function ProcessFee({navigation, params}: any) {
     //     }
 
     //     setFulFloor(dataFloor)
+    //     console.log('dataFloor', fulFloor)
     // }
     
     const timesValues = () => {        
@@ -149,11 +136,11 @@ export default function ProcessFee({navigation, params}: any) {
     //form floor obj
     const createFloorObj = (floorTot: any) => {
         let floorObj = {
-            length: null,
-            breadth: null,
-            height: null,
-            rate: null,
-            gFloorRes: null
+            length: '',
+            breadth: '',
+            height: '',
+            rate: '',
+            gFloorRes: ''
         };
             floorObj.length = ctxData.length;
             floorObj.breadth= ctxData.breadth
@@ -161,13 +148,8 @@ export default function ProcessFee({navigation, params}: any) {
             floorObj.rate= ctxData.selectedBuildType.rate
             floorObj.gFloorRes= floorTot
         
-       dispatchCtxData({...ctxData, floorData: [...ctxData.floorData, {
-            length: ctxData.length,
-            breadth: ctxData.breadth,
-            height: ctxData.height,
-            rate: ctxData.selectedBuildType.rate,
-            gFloorRes: floorTot
-        }]});
+       dispatchCtxData({...ctxData, floorData: [...ctxData.floorData, floorObj]});
+       return floorObj;
     }
 
     //Add build btn
@@ -383,42 +365,64 @@ export default function ProcessFee({navigation, params}: any) {
     
     const gatherDet = (applikey: any, applivalue: any) => {
         const appliDet = {[applikey]: applivalue};
-        // const bioDataArr = structureData(appliDet);
-        structureData(appliDet);
-        // dispatchCtxData({...ctxData, bioData: bioDataArr})
+        dispatchCtxData({...ctxData, [applikey]: applivalue})
         console.log('bioMsg', ctxData)
         
     }
 
-    const structureData = (bioVal: any) => {
-        //loop the object
-        //create a new obj based on the no. of key/value pairs
-        // the new obj should have an id
-        //the keys will be turn to values
-        // this fxn will return an array
+    // const structureData = (bioVal: any) => {
+    //     //loop the object
+    //     //create a new obj based on the no. of key/value pairs
+    //     // the new obj should have an id
+    //     //the keys will be turn to values
+    //     // this fxn will return an array
     
-        //then finally attach the array to the context obj @
-        // the component where it is called
+    //     //then finally attach the array to the context obj @
+    //     // the component where it is called
     
-        //use a for in loop
-        //get the keys and values
-        // formulate the obj the components needs
-        // let newObjArr = [];
+    //     //use a for in loop
+    //     //get the keys and values
+    //     // formulate the obj the components needs
+    //     // let newObjArr = [];
+    //     setCounting(counting + 1)
+    //     //  ++counter;
+    //     for (var objDatumKey in bioVal) {
+            
+    //         // locate the upperCase in the string
+    //         //shift the text at that point
+    //         let properData = objDatumKey.split('Q').join(' ').toLocaleUpperCase();
+    //         dispatchCtxData({...ctxData, bioData:[...ctxData.bioData, {ownerKey: properData, id: counting, ownerData: bioVal[objDatumKey]}]})
+    //         // return newObjArr;
+    //     }
+    // }
+    const structureData = () => {
         setCounting(counting + 1)
         //  ++counter;
-        for (var objDatumKey in bioVal) {
+        for (var objDatumKey in ctxData) {
             
-            // locate the upperCase in the string
-            //shift the text at that point
-            let properData = objDatumKey.split('Q').join(' ').toLocaleUpperCase();
-            dispatchCtxData({...ctxData, bioData:[...ctxData.bioData, {ownerKey: properData, id: counting, ownerData: bioVal[objDatumKey]}]})
+            switch (objDatumKey) {
+                case 'locationQofQdevelopment':
+                    dispatchCtxData({...ctxData, bioData:[...ctxData.bioData, {ownerKey: objDatumKey.split('Q').join(' ').toLocaleUpperCase(), id: counting, ownerData: ctxData[objDatumKey]}]});
+                    break;
+                case 'applicantQname':
+                    dispatchCtxData({...ctxData, bioData:[...ctxData.bioData, {ownerKey: objDatumKey.split('Q').join(' ').toLocaleUpperCase(), id: counting, ownerData: ctxData[objDatumKey]}]}); 
+                    break;
+                case 'applicantQaddress':
+                    dispatchCtxData({...ctxData, bioData:[...ctxData.bioData, {ownerKey: objDatumKey.split('Q').join(' ').toLocaleUpperCase(), id: counting, ownerData: ctxData[objDatumKey]}]}); 
+                    break;
+                case 'telephoneQno':
+                    dispatchCtxData({...ctxData, bioData:[...ctxData.bioData, {ownerKey: objDatumKey.split('Q').join(' ').toLocaleUpperCase(), id: counting, ownerData: ctxData[objDatumKey]}]}); 
+                    break;
+                case 'fileQnumber':
+                    dispatchCtxData({...ctxData, bioData:[...ctxData.bioData, {ownerKey: objDatumKey.split('Q').join(' ').toLocaleUpperCase(), id: counting, ownerData: ctxData[objDatumKey]}]}); 
+                    break;
+                default:
+                    break;
+            }
             // return newObjArr;
         }
     }
-
-    // useEffect(() => {
-    //     computeAssessmentData()
-    // }, [assess])
+   
     return (
         <ScrollView style={styles.processCase}>
             <ScreenHeadings 
@@ -433,6 +437,8 @@ export default function ProcessFee({navigation, params}: any) {
                 timesValues, 
                 getTotalVal, 
                 floorTotArr,
+                createFloorObj,
+                structureData,
                 addFloor,
                 buildLevelData}} 
             />
