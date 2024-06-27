@@ -57,7 +57,7 @@ export default function ConfigContextProvider({children}: any) {
                 telephoneQno: '',
                 fileQnumber: '',
                 bioData: [],
-                feeData: [],
+                feesDatum: [],
                 floorData: [],
                 floorTotal: [],
                 assessmentFee: null,

@@ -22,6 +22,7 @@ import Pfs from "./typeOfFeeCal/pfs";
 
 export default function CalcuationTypes(this: any, {
     getUserDatum,
+    getFeeDataObj,
     computeAssessmentData,
     assess,
     tenPercentage,
@@ -31,118 +32,6 @@ export default function CalcuationTypes(this: any, {
     fenceFee, navigation, isPfs}: any) {
     const ctxData: any = useContext(ConfigDataContext);
     const dispatchCtxData: any = useContext(DispatchContext)
-    
-    // const [assess,  setAssess] = useState(0)
-    // const [subtot, setSubTot] = useState(0)
-    // const [tenPercentage, setTenPercent] = useState(0)
-    // const [fivePercentage, setFivePercent] = useState(0);
-    // const [procFee, setProcessFee] = useState(0);
-    // //get the floor data arr
-    // //filter the array to the correct arithmetical ones
-    // //take the floor total of each floor
-    // //cal your assessment then
-    // // const computeAssessmentData = () => {
-    // //     console.log('touched')
-    //     //filter the arr
-    //     // let filteredFloorData = ctxData.floorData.filter((info: any) => (info.length * info.breadth * info.height * info.rate) === info.gFloorRes);
-        
-    //     // dispatchCtxData({...ctxData, floorData: filteredFloorData})
-
-    //     // let floorTotArr = filteredFloorData.reduce((item: any, current: any, floorIdx: any) => {
-    //         // if (current === 'gFloorRes') {
-    //             // item[floorIdx] = current.gFloorRes
-    //         // }
-    //         // let floorTotalArr = Object.values(item); 
-    //         // return Object.values(item);
-    //     // }, {} )
-        
-    //     // let floorTotArr = Object.values(floorTotObj);
-
-    // const computeAssessmentData = () => {
-    //     let assessCost = addUp(...ctxData.floorTotal, parseInt(fenceFee.fencingQFee)) || addUp(...ctxData.floorTotal, ctxData.fencingQFee)
-    //     setAssess(parseInt(assessCost))
-
-    //     // if(isPfs === true) {
-    //     //     assessCost= addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)
-    //     //     setAssess(parseInt(assessCost))
-    //     // }
-        
-        
-    //     dispatchCtxData({...ctxData, assessmentFee: assess});
-    //     console.log('touched contxt', ctxData, assessCost)
-
-    // //calls
-    //     calSubTotal();
-    //     let subTotal = addUp(assess, parseInt(ctxData.layoutQFee), parseInt(ctxData.appQRegQFee));
-    //     cal10Percent();
-    //     let tenPercent = (assess * 10) / 100     //ie 10%
-    //     cal5Percent();
-    //     let fivePercent = (assess * 5) / 100     //ie 5%
-    //     calTotal();
-    //     let total = addUp(tenPercentage, assess, subtot)
-        
-    //     setSubTot(subTotal);
-    //     setTenPercent(tenPercent);
-    //     setFivePercent(fivePercent);
-    //     setProcessFee(total);
-
-    //     // if (isPfs === true) {
-    //     //     dispatchCtxData({...ctxData, assessmentFee: addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)});
-    //     //     total = addUp(tenPercentage, assess, subtot, fivePercentage)
-    //     //     setProcessFee(total);
-    //     // }
-
-    //     if (ctxData.selectedBuildType.buildType !== 'residential') {
-    //         total = addUp(tenPercentage, assess, subtot, fivePercentage)
-    //         setProcessFee(total);
-    //     }
-
-    // }
-    //     //put in ctx
-    //         // if(isPfs === true) {
-    //         //     dispatchCtxData({...ctxData, assessmentFee: addUp(...ctxData.floorTotal, ctxData.pfsQFencingQFee, ctxData.addpump, ctxData.firstQfloorQpump, ctxData.underQgroundQtank)});
-    //         // } else {
-    //         //     dispatchCtxData({...ctxData, assessmentFee: addUp(...ctxData.floorTotal, ctxData.fencingQFee)});
-    //         // }
-
-    //     //calls
-    // //     calSubTotal();
-    // //     cal10Percent();
-    // //     cal5Percent();
-    // //     calTotal();
-    // // }
-
-    // // const workoutPfs = () => {
-
-    // // }
-    
-    // // let structTotal
-    // //
-    // //functions
-    // const cal10Percent = () => {
-    //     // let tenPercent = ctxData.assessmentFee * 0.1     //ie 10%
-    //     let tenPercent = assess * 0.1     //ie 10%
-    //     dispatchCtxData({...ctxData, tenPercent: tenPercent})
-    // } 
-    // const cal5Percent = () => {
-    //     // let fivePercent = ctxData.assessmentFee * 0.05     //ie 5%
-    //     let fivePercent = assess * 0.05     //ie 5%
-    //     dispatchCtxData({...ctxData, fivePercent: fivePercent})
-    // }
-    // const calSubTotal = () => {
-    //     // let subTotal = addUp(ctxData.assessmentFee, ctxData.layout, ctxData.appReg);
-    //     let subTotal = addUp(assess, ctxData.layoutQFee, ctxData.appQRegQFee);
-    //     dispatchCtxData({...ctxData, subTotal: subTotal})
-    // }
-    // const calTotal = () => {
-    //     let total = addUp(ctxData.tenPercent, ctxData.sec, ctxData.subTotal)
-    //     dispatchCtxData({...ctxData, processingFee: total});
-    // }
-
-    // setInterval(computeAssessmentData, 50000 )
-    // useEffect(() => {
-    //     computeAssessmentData
-    // }, [ctxData])
 
     return (
         <SafeAreaView>
@@ -396,7 +285,20 @@ export default function CalcuationTypes(this: any, {
                         calTypeBtnStyle={styles.calTypeBtnStyle}
                         title='CAL PENAL'
                         onGoto={() => {
-                            dispatchCtxData({...ctxData, assessmentFee: assess, processingFee: procFee})
+                            dispatchCtxData({...ctxData, 
+                                assessmentFee: assess, processingFee: procFee,
+                                feesDatum: [...ctxData.feesDatum, {
+                                    assessmentFee: assess,
+                                    layoutFee: ctxData.layoutQFee,
+                                    appRegFee: ctxData.appQRegQFee,
+                                    subTotal: subtot,
+                                    tenPercentage: tenPercentage,
+                                    fivePercentage: fivePercentage,
+                                    sec: assess,
+                                    Total: procFee,
+                                    fencingFee: parseInt(fenceFee.fencingQFee)
+                                }]
+                            })
                             navigation.navigate('penalFee', {proc: Math.round(procFee * 100) / 100,
                         assFee: assess
                      })}}
@@ -407,7 +309,20 @@ export default function CalcuationTypes(this: any, {
                         calTypeBtnStyle={styles.calTypeBtnStyle}
                         title='CAL IDC'
                         onGoto={() => {
-                            dispatchCtxData({...ctxData, assessmentFee: assess, processingFee: procFee})
+                            dispatchCtxData({...ctxData, 
+                                assessmentFee: assess, processingFee: procFee,
+                                feesDatum: [...ctxData.feesDatum, {
+                                    assessmentFee: assess,
+                                    layoutFee: ctxData.layoutQFee,
+                                    appRegFee: ctxData.appQRegQFee,
+                                    subTotal: subtot,
+                                    tenPercentage: tenPercentage,
+                                    fivePercentage: fivePercentage,
+                                    sec: assess,
+                                    Total: procFee,
+                                    fencingFee: fenceFee
+                                }]
+                            })
                             navigation.navigate('idcFee')}}
                         // btnConfig=
                     />
@@ -416,7 +331,22 @@ export default function CalcuationTypes(this: any, {
                 <AppButton 
                     calTypeBtnStyle={styles.calTypeBtnStyle}
                     title='PREVIEW'
-                    onGoto={() => navigation.navigate('preview')}
+                    onGoto={() => {
+                        dispatchCtxData({...ctxData, 
+                            assessmentFee: assess, processingFee: procFee,
+                            feesDatum: [...ctxData.feesDatum, {
+                                assessmentFee: assess,
+                                layoutFee: ctxData.layoutQFee,
+                                appRegFee: ctxData.appQRegQFee,
+                                subTotal: subtot,
+                                tenPercentage: tenPercentage,
+                                fivePercentage: fivePercentage,
+                                sec: assess,
+                                Total: procFee,
+                                fencingFee: fenceFee
+                            }]
+                        })
+                        navigation.navigate('preview')}}
                     // btnConfig=
                 />
             </View>

@@ -131,8 +131,9 @@ let newObFee = [
     {feeKey: 'APP & REG FEE', feeValue: 'number', id: '4'},
     {feeKey: 'SUB TOTAL', feeValue: 'number', id: '5'},
     {feeKey: '10%', feeValue: 'number', id: '6'},
-    {feeKey: 'S.E.C', feeValue: 'number', id: '7'},
-    {feeKey: 'TOTAL', feeValue: 'number', id: '8'},
+    {feeKey: '5% LASEMA', feeValue: 'number', id: '7'},
+    {feeKey: 'S.E.C', feeValue: 'number', id: '8'},
+    {feeKey: 'TOTAL', feeValue: 'number', id: '9'},
 ]
 
 let newObFloor = [

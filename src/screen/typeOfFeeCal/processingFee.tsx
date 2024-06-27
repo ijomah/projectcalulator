@@ -422,6 +422,7 @@ export default function ProcessFee({navigation, params}: any) {
             // return newObjArr;
         }
     }
+    
    
     return (
         <ScrollView style={styles.processCase}>
@@ -451,7 +452,8 @@ export default function ProcessFee({navigation, params}: any) {
                     procFee,
                     subtot,
                     getUserDatum,
-                    fenceFee
+                    fenceFee,
+                    
                 }} 
                 isPfs={false}
             />    
