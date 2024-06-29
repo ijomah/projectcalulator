@@ -277,10 +277,11 @@ const styles = StyleSheet.create({
          fontSize: 14,
        },
        placeholderStyle: {
-         fontSize: 16,
+         fontSize: 12,
+        //  fontSize: 16,
        },
        selectedTextStyle: {
-         fontSize: 16,
+         fontSize: 10,
        },
        iconStyle: {
          width: 20,
@@ -288,6 +289,8 @@ const styles = StyleSheet.create({
        },
        inputSearchStyle: {
          height: 40,
-         fontSize: 16,
+         fontSize: 10,
+        //  fontSize: 16,
+        // fontSize: AppStyles.txtFontSize / 2
        },
 })

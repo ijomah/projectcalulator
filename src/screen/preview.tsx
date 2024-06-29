@@ -31,6 +31,7 @@ height,rate, fenceLabel: any, feeData: any, value: any, res, totalAmt, agentCode
 const imgAssessCal = require('./../../assets/asses-calculator.png');
 const imgLag = require('./../../assets/lasg-prev-logo.jpg')
 let arr = new Array(3)   
+
 const html = `<html>
     <head>
         <meta>
@@ -183,7 +184,7 @@ export default function PreviewPage({navigation}: any) {
     return (
         <ScrollView contentContainerStyle={{justifyContent: 'space-between'}}>
         <View style={styles.processCase}>
-            <View style={styles.imgContainerStyle}>
+            {/* <View style={styles.imgContainerStyle}>
                 <Image
                     style={[styles.imgStyle, {height: 50, width: 50}]}
                     source={require('./../../assets/lasg-prev-logo.jpg')}
@@ -208,16 +209,16 @@ export default function PreviewPage({navigation}: any) {
             <ScreenHeadings 
                 prevDisplayStyles={styles.prevDisplayStyles}
                 title='APPLICATION DETAILS'
-            />
-            <ApplicantDet 
+            /> */}
+            {/* <ApplicantDet 
                 disableInput='disabled'
                 previewEditableInput={false}
-            />
+            /> */}
             {/* <BuildingLevel 
             previewEditableInput={false}
             /> */}
             {/* <PreviewBuildingLevel /> */}
-            <LabelledDisplay 
+            {/* <LabelledDisplay 
                         calTypeLabelStyle={customDisplayStyle}
                         multiplandInfo={'G/F : '+' '+' 88 '+' '+' x'}
                         namedInfo={' 45 '+' x'+ ' 34 '+ 'x '+ ' 234'}
@@ -226,9 +227,9 @@ export default function PreviewPage({navigation}: any) {
                         isSign={false}
                         prevLabelStyle={{marginLeft: '0%',flex: 1.7}}
                         
-                    />
+                    /> */}
             <View>
-                    <LabelledDisplay 
+                    {/* <LabelledDisplay 
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='ASSESSMENT FEE'
                         info='Result'
@@ -262,19 +263,19 @@ export default function PreviewPage({navigation}: any) {
                         namedInfo='10%'
                         isText={false}
                         previewEditableInput='false'
-                    />
+                    /> */}
 
-                    <>
+                    {/* <> */}
                     {/* {isPfs && */}
-                        <LabelledDisplay
+                        {/* <LabelledDisplay
                             calTypeLabelStyle={customDisplayStyle}
                             namedInfo='5% LASEMA'
                             isText={false}
                             previewEditableInput='false'
-                        />  
+                        />   */}
                     {/* } */}
-                    </>
-
+                    {/* </> */}
+{/* 
                     <LabelledDisplay
                         calTypeLabelStyle={customDisplayStyle}
                         namedInfo='S.E.C'
@@ -288,7 +289,7 @@ export default function PreviewPage({navigation}: any) {
                         info='Total Result'
                         isText={false}
                         previewEditableInput='false'
-                    />
+                    /> */}
                 </View>
             <PaymentDisplay />
             {
@@ -298,7 +299,7 @@ export default function PreviewPage({navigation}: any) {
             //    />
             }
             <AppButton 
-                title='SAVE'
+                title='PRINT PREVIEW'
                 onGoto={print}
             />
             

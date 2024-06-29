@@ -47,6 +47,7 @@ export default function Idc(this: any, {navigation}: any) {
                     inputConfig={{
                         placeholder: 'LETTABLE SPACE/UNIT',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserInputData.bind(this, 'lettableSpaceIdc')
                     }}
                 />
@@ -56,6 +57,7 @@ export default function Idc(this: any, {navigation}: any) {
                     inputConfig={{
                         placeholder: 'CURRENT RATE',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserInputData.bind(this, 'currentRateIdc')
                     }}
                 />

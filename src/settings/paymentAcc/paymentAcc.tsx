@@ -16,6 +16,7 @@ export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Code',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"AgencyCode")
                         
                     }}
@@ -25,6 +26,7 @@ export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Code',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"RevenueCode")
                         
                     }}

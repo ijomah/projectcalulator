@@ -17,14 +17,16 @@ export default function FeePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeholder: '  AMOUNT',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, "appQRegQFee"),
                     }}
                 />
                 <ReuseInput 
                     label='LAYOUT FEE'
                     inputConfig={{
-                        placeHolder: 'AMOUNT',
+                        placeholder: 'AMOUNT',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, "layoutQFee"),
                     }}
                 />

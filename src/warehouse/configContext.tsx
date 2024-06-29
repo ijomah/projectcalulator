@@ -38,6 +38,7 @@ export const ConfigDataContext: any = createContext(undefined)
 
 export default function ConfigContextProvider({children}: any) {
     const value: any =  {
+                selectedBuildType: {},
                 fName: 'admin',
                 lName: 'boss',
                 phoneNo: '08012345678',
@@ -85,10 +86,10 @@ export default function ConfigContextProvider({children}: any) {
     const [data, setData] = useState(value)
     
 
-    //Insert into db here
+        //Insert into db here
 
-    //Read from db here using the hook and update
-    // the state variable(data).
+        //Read from db here using the hook and update
+        // the state variable(data).
     // const getDBData = async () => {
     //     const dbRes = await db.getFirstAsync(`
     //         SELECT * FROM fees, codes, rates, districts;
@@ -97,7 +98,7 @@ export default function ConfigContextProvider({children}: any) {
     //     setData(dbRes)
     // }
 
-    // I need this to run once
+    // // I need this to run once
     // useEffect(() => {
     //     getDBData();
     // })

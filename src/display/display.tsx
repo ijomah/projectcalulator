@@ -12,6 +12,7 @@ export default function DisplayInfo({
         prevBuidingDisplayInfoStyle,
         calTypeLabelStyle, 
         textColor,
+        payDisplayInfoStyle,
         prevDisplayStyles,
         prevBuildingOutlineStyle,
         rightPenalPaymentDetFlexStyle,
@@ -34,7 +35,8 @@ export default function DisplayInfo({
         >
             <Text style={[
                     styles.displayTextStyle, 
-                    {color: textColor}, 
+                    payDisplayInfoStyle,
+                    {color: textColor},
                 ]}
                 // onPress={ctxDatum.computeAssessmentData}
             >{info}</Text>

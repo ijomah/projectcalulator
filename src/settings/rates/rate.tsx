@@ -13,6 +13,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         // value: '',
                         onChangeText: getUserData.bind(this, "residential")
 
@@ -24,6 +25,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, "commercial")
                         
                     }}
@@ -34,6 +36,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, "industrial")
                     }}
                 />
@@ -42,6 +45,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     label='INSTITUTIONAL USE'
                     inputConfig={{
                         placeHolder: 'Rate',
+                        textAlign: 'center',
                         inputMode: 'numeric',
                         onChangeText: getUserData.bind(this, "institutional")
                         
@@ -53,6 +57,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, "agricultural")
                         
                     }}
@@ -63,6 +68,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, 'recreational')
                         
                     }}
@@ -73,6 +79,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                     inputConfig={{
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserData.bind(this, "mixedUse")
                         
                     }}

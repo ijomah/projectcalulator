@@ -46,7 +46,8 @@ export default function FloorType(this: any,
                         inputConfig={{
                             placeholder: 'Length',
                             editable: previewEditableInput,
-                            inputMode: 'tel',
+                            inputMode: 'numeric',
+                            textAlign: 'center',
                             onChangeText: getUserInputs.bind(this, 'length') 
                         }}
                     />
@@ -56,7 +57,8 @@ export default function FloorType(this: any,
                         inputConfig={{
                             placeholder: 'Breadth',
                             editable: previewEditableInput,
-                            inputMode: 'tel',
+                            inputMode: 'numeric',
+                            textAlign: 'center',
                             onChangeText: getUserInputs.bind(this, 'breadth') 
                         }}
                     />
@@ -67,7 +69,8 @@ export default function FloorType(this: any,
                         inputConfig={{
                             placeholder: 'Height',
                             editable: previewEditableInput,
-                            inputMode: 'tel',
+                            inputMode: 'numeric',
+                            textAlign: 'center',
                             onChangeText: getUserInputs.bind(this, 'height') 
                         }}
                     />
@@ -77,7 +80,8 @@ export default function FloorType(this: any,
                         inputConfig={{
                             placeholder: 'Rate',
                             editable: false,
-                            inputMode: 'tel',
+                            inputMode: 'numeric',
+                            textAlign: 'center',
                             value: floorCtxVal.selectedBuildType.rate
                             // onChangeText: getUserInputs.bind(this, 'rate') 
                         }}

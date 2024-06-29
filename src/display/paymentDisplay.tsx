@@ -7,8 +7,10 @@ import {
     TouchableOpacity } from "react-native";
 import DisplayInfo from "./display";
 import LabelledDisplay from "./labelDisplay";
+import { AppStyles } from "../constants/styles";
 
 export default function PaymentDisplay({total, agencyCode, revCode, payType, codes}: any) {
+
     return (
         <SafeAreaView style={styles.payDisplayContainer}>
             <Text style={{textAlign: 'center'}}>
@@ -18,9 +20,10 @@ export default function PaymentDisplay({total, agencyCode, revCode, payType, cod
                 {' '} 
                 TO LASG ACCOUNT AS {payType} FEE
             </Text>
-            <View style={{flexDirection: 'row',}}>
-                <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', width: AppStyles.width - 35, }}>
+                <View style={{flexDirection: 'row', flex: 6}}>
                     <DisplayInfo
+                        payDisplayInfoStyle={styles.payDisplayInfoStyle}
                         info={'AGENCY CODE: '+ agencyCode}
                     />
                     {/* <Text> {' '} </Text> */}
@@ -29,8 +32,10 @@ export default function PaymentDisplay({total, agencyCode, revCode, payType, cod
                     /> */}
                 </View>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'row', flex: 6}}>
                     <DisplayInfo
+                        style={styles.payDisplayInfoStyle}
+                        payDisplayInfoStyle={styles.payDisplayInfoRevenueStyle}
                         info={'  REVENUE CODE: '+ revCode}
                     />
                     {/* <Text> {' '} </Text> */}
@@ -55,5 +60,10 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
         alignItems: 'center',
 
-    }
+    },
+    payDisplayInfoStyle: {
+        width: AppStyles.mediumInputWidth
+    },
+    payDisplayInfoRevenueStyle: {
+        width: AppStyles.bigInputWidth}
 })

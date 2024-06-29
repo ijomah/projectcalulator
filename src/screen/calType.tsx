@@ -50,6 +50,7 @@ export default function CalcuationTypes(this: any, {
                                         inputConfig={{
                                             placeholder: 'LAND AREA',
                                             textAlign: 'center',
+                                            inputMode: 'numeric',
                                             onChangeText: getUserDatum.bind(this, 'pfsQFencingQFee'),
                                             // onEndEditting: computeAssessmentData
                                         }}
@@ -79,6 +80,7 @@ export default function CalcuationTypes(this: any, {
                                     inputConfig={{
                                         placeholder: 'INPUT COST',
                                         textAlign: 'center',
+                                        inputMode: 'numeric',
                                         onChangeText: getUserDatum.bind(this, 'firstQfloorQpump'),
                                         // onEndEditting: computeAssessmentData
                                     }}
@@ -109,6 +111,7 @@ export default function CalcuationTypes(this: any, {
                                     inputConfig={{
                                         placeholder: 'INPUT COST',
                                         textAlign: 'center',
+                                        inputMode: 'numeric',
                                         onChangeText: getUserDatum.bind(this, 'addQpump'),
                                         // onEndEditting: computeAssessmentData
                                     }}
@@ -139,6 +142,7 @@ export default function CalcuationTypes(this: any, {
                                         inputConfig={{
                                             placeholder: 'INPUT COST',
                                             textAlign: 'center',
+                                            inputMode: 'numeric',
                                             onChangeText: getUserDatum.bind(this, 'underQgroundQtank'),
                                             // onEndEditting: computeAssessmentData
                                         }}
@@ -171,6 +175,7 @@ export default function CalcuationTypes(this: any, {
                                 inputConfig={{
                                     placeholder: 'LAND AREA',
                                     textAlign: 'center',
+                                    inputMode: 'numeric',
                                     onChangeText: getUserDatum.bind(this, 'fencingQFee'),
                                     onChange: () => {                                    
                                         // computeAssessmentData();
@@ -346,7 +351,9 @@ export default function CalcuationTypes(this: any, {
                                 fencingFee: fenceFee
                             }]
                         })
-                        navigation.navigate('preview')}}
+                        navigation.navigate('preview')
+                    }
+                    }
                     // btnConfig=
                 />
             </View>

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useState } from "react";
-import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, TextInput, ScrollView } from "react-native";
 
 import { AntDesign } from '@expo/vector-icons';
 
@@ -64,6 +64,7 @@ export default function PageUsedInPenal(this: any, {navigation, route}: any) {
       }
     return (
         <SafeAreaView>
+          <ScrollView>
             <ScreenHeadings
                 title='APPLICATION DETAILS'
             />
@@ -174,6 +175,7 @@ export default function PageUsedInPenal(this: any, {navigation, route}: any) {
                     inputConfig={{
                         placeholder: 'CURRENT RATE',
                         inputMode: 'numeric',
+                        textAlign: 'center',
                         onChangeText: getUserInputInfo.bind(this, 'currentRatePenal')
                     }}
                 />
@@ -281,6 +283,7 @@ export default function PageUsedInPenal(this: any, {navigation, route}: any) {
                 onGoto={() => navigation.navigate('preview')}
             // btnConfig=
             />
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -314,10 +317,10 @@ const styles = StyleSheet.create({
            fontSize: 14,
          },
          placeholderStyle: {
-           fontSize: 16,
+           fontSize: 12,
          },
          selectedTextStyle: {
-           fontSize: 16,
+           fontSize: 10,
          },
          iconStyle: {
            width: 20,
@@ -325,6 +328,7 @@ const styles = StyleSheet.create({
          },
          inputSearchStyle: {
            height: 40,
-           fontSize: 16,
+          //  fontSize: 16,
+          fontSize: 10,
          },
 })
