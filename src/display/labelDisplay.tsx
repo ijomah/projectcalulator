@@ -70,7 +70,7 @@ export default function LabelledDisplay({
                 rightPenalPaymentDetFlexStyle={rightPenalPaymentDetFlexStyle}
                 calTypeLabelStyle={calTypeLabelStyle}
                 onCal={onCal}
-                info={info.toString()}
+                info={info === undefined? '': info.toString()}
             />
             {/* } */}
         </SafeAreaView>

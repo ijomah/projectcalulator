@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import * as Print from 'expo-print';
+import { FontAwesome6 } from '@expo/vector-icons';
 import { shareAsync } from 'expo-sharing';
 
 import ApplicantDet from "../bio/applicantDet";
@@ -24,6 +25,8 @@ import PaymentDisplay from "../display/paymentDisplay";
 import ScreenHeadings from "../headings/Heading";
 import PreviewBuildingLevel from "../../preview/prevBuildingLevel";
 import PreviewPaymentAcc from "../../preview/previewPayAcc";
+import { ConfigDataContext } from "../warehouse/configContext";
+import ReuseInput from "../reuseables/input";
 // import { feeData } from "../data/data";
 
 let label: any, distName, buildLevel, floorLevel, length, breadth,
@@ -156,7 +159,8 @@ const html = `<html>
 
     </html>`
 
-export default function PreviewPage({navigation}: any) {
+export default function PreviewPage({navigation, gatherDet}: any) {
+    const contxt: any = useContext(ConfigDataContext)
     const [selectedPrinter, setSelectedPrinter] = React.useState();
     const devDimension = useWindowDimensions();
 
@@ -182,151 +186,213 @@ export default function PreviewPage({navigation}: any) {
       };
     
     return (
-        <ScrollView contentContainerStyle={{justifyContent: 'space-between'}}>
-        <View style={styles.processCase}>
-            {/* <View style={styles.imgContainerStyle}>
-                <Image
-                    style={[styles.imgStyle, {height: 50, width: 50}]}
-                    source={require('./../../assets/lasg-prev-logo.jpg')}
-                />
-                <Image
-                    style={styles.imgStyle}
-                    source={require('./../../assets/asses-calculator.png')}
-                />
-            </View>
-            <DisplayInfo 
-                prevDisplayStyles={styles.prevDisplayStyles}
-                info='CALCULATION OF ASSESSMENT'
-            />
-            <DisplayInfo 
-                prevDisplayStyles={styles.prevDisplayStyles}
-                info='FOR PROCESSING FEE'
-            />
-            <DisplayInfo 
-                prevDisplayStyles={styles.prevDisplayStyles}
-                info='IKOYI DISTRICT OFFICE'
-            />
-            <ScreenHeadings 
-                prevDisplayStyles={styles.prevDisplayStyles}
-                title='APPLICATION DETAILS'
-            /> */}
-            {/* <ApplicantDet 
-                disableInput='disabled'
-                previewEditableInput={false}
-            /> */}
-            {/* <BuildingLevel 
-            previewEditableInput={false}
-            /> */}
-            {/* <PreviewBuildingLevel /> */}
-            {/* <LabelledDisplay 
-                        calTypeLabelStyle={customDisplayStyle}
-                        multiplandInfo={'G/F : '+' '+' 88 '+' '+' x'}
-                        namedInfo={' 45 '+' x'+ ' 34 '+ 'x '+ ' 234'}
-                        info='86546'
-                        isText={true}
-                        isSign={false}
-                        prevLabelStyle={{marginLeft: '0%',flex: 1.7}}
-                        
-                    /> */}
-            <View>
-                    {/* <LabelledDisplay 
-                        calTypeLabelStyle={customDisplayStyle}
-                        namedInfo='ASSESSMENT FEE'
-                        info='Result'
-                        isText={false}
-                        
+        <>
+            <ScrollView contentContainerStyle={{justifyContent: 'space-between'}}>
+            <View style={styles.processCase}>
+                <View style={styles.imgContainerStyle}>
+                    <Image
+                        style={[styles.imgStyle, {height: 50, width: 50}]}
+                        source={require('./../../assets/lasg-prev-logo.jpg')}
                     />
-                    
-                    <LabelledDisplay 
-                        calTypeLabelStyle={customDisplayStyle}
-                        namedInfo='LAYOUT FEE'
-                        isText={false}
-                        previewEditableInput='false'
+                    <Image
+                        style={styles.imgStyle}
+                        source={require('./../../assets/asses-calculator.png')}
                     />
-
-                    <LabelledDisplay
-                        calTypeLabelStyle={customDisplayStyle}
-                        namedInfo='APP & REG FEE'
-                        isText={false}
-                        previewEditableInput='false'
-                    />
-
-                    <LabelledDisplay 
-                        calTypeLabelStyle={customDisplayStyle}
-                        namedInfo='SUB TOTAL'
-                        isText={false}
-                        previewEditableInput='false'
-                    />
-                    
-                    <LabelledDisplay
-                        calTypeLabelStyle={customDisplayStyle}
-                        namedInfo='10%'
-                        isText={false}
-                        previewEditableInput='false'
-                    /> */}
-
-                    {/* <> */}
-                    {/* {isPfs && */}
-                        {/* <LabelledDisplay
-                            calTypeLabelStyle={customDisplayStyle}
-                            namedInfo='5% LASEMA'
-                            isText={false}
-                            previewEditableInput='false'
-                        />   */}
-                    {/* } */}
-                    {/* </> */}
-{/* 
-                    <LabelledDisplay
-                        calTypeLabelStyle={customDisplayStyle}
-                        namedInfo='S.E.C'
-                        isText={false}
-                        previewEditableInput='false'
-                    />
-
-                    <LabelledDisplay
-                        calTypeLabelStyle={customDisplayStyle}
-                        namedInfo='TOTAL'
-                        info='Total Result'
-                        isText={false}
-                        previewEditableInput='false'
-                    /> */}
                 </View>
-            <PaymentDisplay />
-            {
-            // fee?
-            //    <PreviewPaymentAcc
+                <DisplayInfo 
+                    prevDisplayStyles={styles.prevDisplayStyles}
+                    info='CALCULATION OF ASSESSMENT'
+                />
+                <DisplayInfo 
+                    prevDisplayStyles={styles.prevDisplayStyles}
+                    info='FOR PROCESSING FEE'
+                />
+                <DisplayInfo 
+                    prevDisplayStyles={styles.prevDisplayStyles}
+                    info='IKOYI DISTRICT OFFICE'
+                />
+                <ScreenHeadings 
+                    prevDisplayStyles={styles.prevDisplayStyles}
+                    title='APPLICATION DETAILS'
+                />
+                <ApplicantDet 
+                    gatherDet={()=>{}}
+                    disableInput='disabled'
+                    previewEditableInput={false}
+
+                />
+                {/* <PreviewBuildingLevel /> */}
+
+                <LabelledDisplay 
+                            calTypeLabelStyle={customDisplayStyle}
+                            multiplandInfo={'G/F : '+' '+' 88 '+' '+' x'}
+                            namedInfo={' 45 '+' x'+ ' 34 '+ 'x '+ ' 234'}
+                            info='86546'
+                            isText={true}
+                            isSign={false}
+                            prevLabelStyle={{marginLeft: '0%',flex: 1.7}}
+                            
+                        />
+                <View style={styles.fencingFeeStyle}>
+                        
+                    <View style={{flex: 4.2,}}>
+                            <ReuseInput 
+                                    calTypeStyle={[
+                                        styles.calTypeInputStyle, 
+                                    ]}
+                                    label='FENCING FEE:'
+                                    inputConfig={{
+                                        placeholder: 'LAND AREA',
+                                        textAlign: 'center',
+                                        inputMode: 'numeric',
+                                        readOnly: true
+                                        // onChangeText: getUserDatum.bind(this, 'fencingQFee'),
+                                    }}
+                            />
+                    </View>
+                    <FontAwesome6 
+                        style={styles.calTypeIconStyle}
+                        name="equals" 
+                        size={15} 
+                        color="black"
+                    />
                     
-            //    />
-            }
-            <AppButton 
-                title='PRINT PREVIEW'
-                onGoto={print}
-            />
+                    <DisplayInfo 
+                        style={styles.calDisplayInfoStyle}
+                        calTypeLabelStyle={customDisplayStyle}
+                            info={contxt.fencingQFee}
+                                // === ""?fenceFee.fencingQFee : ctxData.fencingQFee}
+                    />
+                </View>
+                <View>
+                        <LabelledDisplay 
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='ASSESSMENT FEE'
+                            info={contxt.assessmentFee}
+                            isText={false}
+                            
+                        />
+                        
+                        <LabelledDisplay 
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='LAYOUT FEE'
+                            isText={false}
+                            info={contxt.layoutQFee}
+                            previewEditableInput='false'
+                        />
+
+                        <LabelledDisplay
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='APP & REG FEE'
+                            isText={false}
+                            info={contxt.appQRegQFee}
+                            previewEditableInput='false'
+                        />
+
+                        <LabelledDisplay 
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='SUB TOTAL'
+                            isText={false}
+                            info={contxt.subTotal}
+                            previewEditableInput='false'
+                        />
+                        
+                        <LabelledDisplay
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='10%'
+                            isText={false}
+                            info={contxt.tenPercent}
+                            previewEditableInput='false'
+                        />
+
+                        {/* <> */}
+                        {/* {isPfs && */}
+                            {/* <LabelledDisplay
+                                calTypeLabelStyle={customDisplayStyle}
+                                namedInfo='5% LASEMA'
+                                info={contxt.fivePercent}
+                                isText={false}
+                                previewEditableInput='false'
+                            />   */}
+                        {/* } */}
+                        {/* </> */}
+
+                        <LabelledDisplay
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='S.E.C'
+                            isText={false}
+                            info={contxt.sec}
+                            previewEditableInput='false'
+                        />
+
+                        <LabelledDisplay
+                            calTypeLabelStyle={customDisplayStyle}
+                            namedInfo='TOTAL'
+                            isText={false}
+                            info={contxt.processingFee}
+                            previewEditableInput='false'
+                        />
+                    </View>
+                <PaymentDisplay 
+                    total={contxt.processingFee}
+                    agencyCode={contxt.processingfeeAgencyCode}
+                    revCode={contxt.processingfeeRevenueCode}
+                    payType={'PROCESSING'}
+                />
+                {
+                // fee?
+                //    <PreviewPaymentAcc
+                        
+                //    />
+                }
+                <AppButton 
+                // It should preview and save as pdf. May be two button will be fine here 
+                    title='SAVE'
+                    onGoto={print}
+                />
+                
+            </View>
+    
             
-        </View>
-        <View>
-        <Text style={
-            {
-                fontSize: AppStyles.txtFontSize * 8, 
-                borderWidth: 1,
-                marginBottom: 0,
-                justifyContent: 'flex-end',
-                borderColor: 'gray', 
-                borderStyle: 'solid', 
-                textAlign: 'center'
-            }
-        }>
-            PLEASE CHECK THE CALCULATED ASSESSMENT FOR ERRORS. 
-            ASSESSMENT CALCULATOR WOULD NOT BE LIABLE FOR ANY HUMAN ERROR
-        </Text>
-        </View>
-        </ScrollView>
+            </ScrollView>
+            <View style={{justifyContent: "flex-end"}}>
+                <Text style={
+                    {
+                        fontSize: AppStyles.txtFontSize * 8, 
+                        borderWidth: 1,
+                        marginBottom: 0,
+                        justifyContent: 'flex-end',
+                        borderColor: 'gray', 
+                        borderStyle: 'solid', 
+                        textAlign: 'center'
+                    }
+                }>
+                    PLEASE CHECK THE CALCULATED ASSESSMENT FOR ERRORS. 
+                    ASSESSMENT CALCULATOR WOULD NOT BE LIABLE FOR ANY HUMAN ERROR
+                </Text>
+            </View>
+        </>
     )
 }
 
 const screenSize = Dimensions.get("window");
 
 const styles = StyleSheet.create({
+    fencingFeeStyle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        // justifyContent: 'space-between',       
+    },
+    calTypeInputStyle: {
+        width: AppStyles.smallInputWidth,
+    },
+    calDisplayInfoStyle: {
+        flex: 4,
+    },
+    calTypeIconStyle: {
+        flex: 1,
+    },
+    
     prevDisplayStyles: {
         width: screenSize.width,
     },

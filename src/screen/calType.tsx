@@ -164,26 +164,26 @@ export default function CalcuationTypes(this: any, {
             :
                 <View style={styles.fencingFeeStyle}>
                         {/* pfs ends here */}
-                <View style={{flex: 4.2,}}>
-                        <ReuseInput 
-                                // calTypeLabelFlex={styles.calTypeLabelFlex}
-                                // calTypeInputFlex={styles.calTypeInputFlex}
-                                calTypeStyle={[
-                                    styles.calTypeInputStyle, 
-                                ]}
-                                label='FENCING FEE:'
-                                inputConfig={{
-                                    placeholder: 'LAND AREA',
-                                    textAlign: 'center',
-                                    inputMode: 'numeric',
-                                    onChangeText: getUserDatum.bind(this, 'fencingQFee'),
-                                    onChange: () => {                                    
-                                        // computeAssessmentData();
-                                        
-                                        dispatchCtxData({...ctxData, assessmentFee: assess, processingFee: procFee})                                    
-                                    }
-                                }}
-                        />
+                    <View style={{flex: 4.2,}}>
+                            <ReuseInput 
+                                    // calTypeLabelFlex={styles.calTypeLabelFlex}
+                                    // calTypeInputFlex={styles.calTypeInputFlex}
+                                    calTypeStyle={[
+                                        styles.calTypeInputStyle, 
+                                    ]}
+                                    label='FENCING FEE:'
+                                    inputConfig={{
+                                        placeholder: 'LAND AREA',
+                                        textAlign: 'center',
+                                        inputMode: 'numeric',
+                                        onChangeText: getUserDatum.bind(this, 'fencingQFee'),
+                                        onChange: () => {                                    
+                                            // computeAssessmentData();
+                                            
+                                            dispatchCtxData({...ctxData, assessmentFee: assess, processingFee: procFee})                                    
+                                        }
+                                    }}
+                            />
                     </View>
                     <FontAwesome6 
                         style={styles.calTypeIconStyle}
