@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SafeAreaView, 
         StyleSheet, 
         FlatList, 
@@ -14,11 +14,16 @@ import AppButton from "../buttons/appBtn";
 import DisplayInfo from "../display/display";
 import LabelledDisplay from "../display/labelDisplay";
 import ReuseInput from "../reuseables/input";
+import { ConfigDataContext } from "../warehouse/configContext";
 
 
-export default function ApplicantDet(this: any, {navigation, gatherDet, previewEditableInput, disableInput}: any) {
+export default function ApplicantDet(this: any, {navigation,
+    gatherDet, 
+    previewEditableInput, disableInput}: any) {
+        const ctxt: any = useContext(ConfigDataContext)
 // let [anim] = useState(new Animated.Value(0))
 //    Animated.timing(anim, {})
+
     return (
         <SafeAreaView style={styles.bioContainer}>
             <ReuseInput 
@@ -27,7 +32,8 @@ export default function ApplicantDet(this: any, {navigation, gatherDet, previewE
                     // placeholder: 'INPUT LAND AREA'
                     editable: previewEditableInput,
                     textAlign: 'center',
-                    onChangeText: gatherDet.bind(this, 'locationQofQdevelopment')
+                    onChangeText: gatherDet.bind(this, 'locationQofQdevelopment'),
+                    value: ctxt.locationQofQdevelopment
                 }}
             />
             <ReuseInput 
@@ -37,7 +43,8 @@ export default function ApplicantDet(this: any, {navigation, gatherDet, previewE
                     editable: previewEditableInput,
                     inputMolde: 'text',
                     textAlign: 'center',
-                    onChangeText: gatherDet.bind(this, 'applicantQname')
+                    onChangeText: gatherDet.bind(this, 'applicantQname'),
+                    value: ctxt.applicantQname
                 }}
             />
             <ReuseInput 
@@ -47,7 +54,8 @@ export default function ApplicantDet(this: any, {navigation, gatherDet, previewE
                     editable: previewEditableInput,
                     inputMode: 'text',
                     textAlign: 'center',
-                    onChangeText: gatherDet.bind(this, 'applicantQaddress')
+                    onChangeText: gatherDet.bind(this, 'applicantQaddress'),
+                    value: ctxt.applicantQaddress
                 }}
             />
             <ReuseInput 
@@ -57,7 +65,8 @@ export default function ApplicantDet(this: any, {navigation, gatherDet, previewE
                     editable: previewEditableInput,
                     inputMode: 'numeric',
                     textAlign: 'center',
-                    onChangeText: gatherDet.bind(this, 'telephoneQno')
+                    onChangeText: gatherDet.bind(this, 'telephoneQno'),
+                    value: ctxt.telephoneQno
 
                 }}
             />
@@ -68,7 +77,8 @@ export default function ApplicantDet(this: any, {navigation, gatherDet, previewE
                     editable: previewEditableInput,
                     inputMode: 'text',
                     textAlign: 'center',
-                    onChangeText: gatherDet.bind(this, 'fileQnumber')
+                    onChangeText: gatherDet.bind(this, 'fileQnumber'),
+                    value: ctxt.fileQnumber
                 }}
             />
         </SafeAreaView>

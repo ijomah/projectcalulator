@@ -18,6 +18,7 @@ export default function LabelledDisplay({
         isSign,
         isWhat, 
         isPfs,
+        isPreviewFloor,
         prevLabelStyle,
         multiplandInfo,
         calTypeLabelStyle,
@@ -38,7 +39,7 @@ export default function LabelledDisplay({
                 
             }
             <Text style={[
-                styles.namedInfoStyle, 
+                isPreviewFloor? styles.forFloorDataStyle:styles.namedInfoStyle, 
                 penalPaymentDetFlexStyle]}>{namedInfo}</Text>
             {/* Equality sign icon */}
             {isSign?
@@ -47,8 +48,8 @@ export default function LabelledDisplay({
                 size={15} color="black" />
                 :
                 <FontAwesome6 
-                    style={
-                        styles.iconEqualStyle
+                    style={isPreviewFloor? styles.floorIconEqualStyle
+                        :styles.iconEqualStyle
                     }
                     name="equals" 
                     size={15} 
@@ -97,8 +98,16 @@ const styles = StyleSheet.create({
         flex: 1.7
     },
 
+    forFloorDataStyle: {
+        flex: 0.05
+    },
+
     namedInfoStyle: {
         flex: 2.5        
+    },
+
+    floorIconEqualStyle: {
+        flex: 0.4
     },
 
     iconEqualStyle: {

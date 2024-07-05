@@ -8,7 +8,8 @@ import {
     TouchableOpacity, 
     useWindowDimensions,
     Dimensions,
-    ScrollView
+    ScrollView,
+    ToastAndroid
 } from "react-native";
 
 import * as Print from 'expo-print';
@@ -170,6 +171,7 @@ export default function PreviewPage({navigation, gatherDet}: any) {
     };
     
     const print = async () => {
+        ToastAndroid.show('Saved ...', ToastAndroid.LONG)
         // On iOS/android prints the given html. On web prints the HTML from the current page.
         await Print.printAsync({
           html,
@@ -219,20 +221,53 @@ export default function PreviewPage({navigation, gatherDet}: any) {
                     gatherDet={()=>{}}
                     disableInput='disabled'
                     previewEditableInput={false}
-
+                    previewInputData={{
+                        applicantQaddress: contxt.applicantQaddress,
+                        applicantQname: contxt.applicantQname,
+                        telephoneQno: contxt.telephoneQno,
+                        fileQnumber: contxt.fileQnumber
+                    }}
                 />
                 {/* <PreviewBuildingLevel /> */}
 
-                <LabelledDisplay 
-                            calTypeLabelStyle={customDisplayStyle}
-                            multiplandInfo={'G/F : '+' '+' 88 '+' '+' x'}
-                            namedInfo={' 45 '+' x'+ ' 34 '+ 'x '+ ' 234'}
-                            info='86546'
-                            isText={true}
-                            isSign={false}
-                            prevLabelStyle={{marginLeft: '0%',flex: 1.7}}
-                            
-                        />
+                {
+                    contxt.floorData.map((flData: any, florIdx: number) => {
+                        let floorInfo
+                        switch(florIdx) {
+                            case 0:
+                                floorInfo = 'G/F'    
+                                break;
+                            case 1:
+                                floorInfo = `${florIdx}` + 'ST/F'
+                                break;
+                            case 2:
+                                floorInfo = `${florIdx}` + 'ND/F'
+                                break;
+                            case 3:
+                                floorInfo = `${florIdx}` + 'RD/F'
+                                break;
+                            default:
+                                floorInfo = `${florIdx}` + 'TH/F'
+                                break;
+                        }
+                        return (
+                            <LabelledDisplay 
+                                key={florIdx+1}
+                                calTypeLabelStyle={customDisplayStyle}
+                                multiplandInfo={`${floorInfo}:`+ ' ' + ' ' + ' ' + `${flData.length} `  + ' x ' +
+                                    ` ${flData.breadth} ` +' x ' + ` ${flData.height} ` + ' x '+  ` ${flData.rate}`
+                                }
+                                // namedInfo={`${flData.breadth} ` +' x ' + ` ${flData.height} ` + ' x '+  ` ${flData.rate}`}
+                                info={flData.gFloorRes}
+                                isPreviewFloor={true}
+                                isText={true}
+                                isSign={false}
+                                prevLabelStyle={{marginLeft: '0%',flex: 1.7}}
+                                
+                            />
+                        )
+                    })
+                }
                 <View style={styles.fencingFeeStyle}>
                         
                     <View style={{flex: 4.2,}}>
@@ -245,7 +280,8 @@ export default function PreviewPage({navigation, gatherDet}: any) {
                                         placeholder: 'LAND AREA',
                                         textAlign: 'center',
                                         inputMode: 'numeric',
-                                        readOnly: true
+                                        readOnly: true,
+                                        value: contxt.fencingQFee
                                         // onChangeText: getUserDatum.bind(this, 'fencingQFee'),
                                     }}
                             />
@@ -329,12 +365,12 @@ export default function PreviewPage({navigation, gatherDet}: any) {
                             calTypeLabelStyle={customDisplayStyle}
                             namedInfo='TOTAL'
                             isText={false}
-                            info={contxt.processingFee}
+                            info={Math.round(contxt.processingFee * 100) / 100}
                             previewEditableInput='false'
                         />
                     </View>
                 <PaymentDisplay 
-                    total={contxt.processingFee}
+                    total={Math.round(contxt.processingFee * 100) / 100}
                     agencyCode={contxt.processingfeeAgencyCode}
                     revCode={contxt.processingfeeRevenueCode}
                     payType={'PROCESSING'}

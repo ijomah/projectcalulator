@@ -103,6 +103,8 @@ export default function FloorType(this: any,
                             } 
                         }}
                     /> */}
+
+                    {/* Floor multiplication btn */}
                     <AppButton
                         title={totalValue}
                         onGoto={

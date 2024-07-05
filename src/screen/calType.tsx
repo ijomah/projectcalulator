@@ -280,7 +280,26 @@ export default function CalcuationTypes(this: any, {
                         title='CAL STAGE CERT'
                         // btnConfig=
                         onGoto={() => {
-                            dispatchCtxData({...ctxData, assessmentFee: assess, processingFee: procFee})
+                            dispatchCtxData({...ctxData, 
+                                fencingQFee: fenceFee.fencingQFee,
+                                assessmentFee: assess, 
+                                processingFee: procFee,
+                                tenPercent: tenPercentage,
+                                sec: assess,
+                                subTotal: subtot,
+                                feesDatum: [...ctxData.feesDatum, {
+                                    assessmentFee: assess,
+                                    layoutFee: ctxData.layoutQFee,
+                                    appRegFee: ctxData.appQRegQFee,
+                                    subTotal: subtot,
+                                    tenPercent: tenPercentage,
+                                    fivePercent: fivePercentage,
+                                    sec: assess,
+                                    Total: procFee,
+                                    fencingFee: parseInt(fenceFee.fencingQFee)
+                                }
+                                ]
+                            })
                             navigation.navigate('stageIdcPenal', {proc: Math.round(procFee * 100) / 100,
                             assFee: assess
                          })}}
@@ -291,14 +310,19 @@ export default function CalcuationTypes(this: any, {
                         title='CAL PENAL'
                         onGoto={() => {
                             dispatchCtxData({...ctxData, 
-                                assessmentFee: assess, processingFee: procFee,
+                                fencingQFee: fenceFee.fencingQFee,
+                                assessmentFee: assess, 
+                                processingFee: procFee,
+                                tenPercent: tenPercentage,
+                                sec: assess,
+                                subTotal: subtot,
                                 feesDatum: [...ctxData.feesDatum, {
                                     assessmentFee: assess,
                                     layoutFee: ctxData.layoutQFee,
                                     appRegFee: ctxData.appQRegQFee,
                                     subTotal: subtot,
-                                    tenPercentage: tenPercentage,
-                                    fivePercentage: fivePercentage,
+                                    tenPercent: tenPercentage,
+                                    fivePercent: fivePercentage,
                                     sec: assess,
                                     Total: procFee,
                                     fencingFee: parseInt(fenceFee.fencingQFee)
@@ -315,14 +339,19 @@ export default function CalcuationTypes(this: any, {
                         title='CAL IDC'
                         onGoto={() => {
                             dispatchCtxData({...ctxData, 
-                                assessmentFee: assess, processingFee: procFee,
+                                fencingQFee: fenceFee.fencingQFee,
+                                assessmentFee: assess, 
+                                processingFee: procFee,
+                                tenPercent: tenPercentage,
+                                sec: assess,
+                                subTotal: subtot,
                                 feesDatum: [...ctxData.feesDatum, {
                                     assessmentFee: assess,
                                     layoutFee: ctxData.layoutQFee,
                                     appRegFee: ctxData.appQRegQFee,
                                     subTotal: subtot,
-                                    tenPercentage: tenPercentage,
-                                    fivePercentage: fivePercentage,
+                                    tenPercent: tenPercentage,
+                                    fivePercent: fivePercentage,
                                     sec: assess,
                                     Total: procFee,
                                     fencingFee: fenceFee
@@ -338,14 +367,19 @@ export default function CalcuationTypes(this: any, {
                     title='PREVIEW'
                     onGoto={() => {
                         dispatchCtxData({...ctxData, 
-                            assessmentFee: assess, processingFee: procFee,
+                            fencingQFee: fenceFee.fencingQFee,
+                            assessmentFee: assess, 
+                            processingFee: procFee,
+                            tenPercent: tenPercentage,
+                            sec: assess,
+                            subTotal: subtot,
                             feesDatum: [...ctxData.feesDatum, {
                                 assessmentFee: assess,
                                 layoutFee: ctxData.layoutQFee,
                                 appRegFee: ctxData.appQRegQFee,
                                 subTotal: subtot,
-                                tenPercentage: tenPercentage,
-                                fivePercentage: fivePercentage,
+                                tenPercent: tenPercentage,
+                                fivePercent: fivePercentage,
                                 sec: assess,
                                 Total: procFee,
                                 fencingFee: fenceFee
