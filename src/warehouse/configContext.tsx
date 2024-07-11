@@ -82,7 +82,7 @@ export default function ConfigContextProvider({children}: any) {
                 bettermentAgencyCode: '',
                 bettermentRevenueCode: ''
         }
-    // const db = useSQLiteContext();
+    const db = useSQLiteContext();
     const [data, setData] = useState(value)
     
 
@@ -90,18 +90,18 @@ export default function ConfigContextProvider({children}: any) {
 
         //Read from db here using the hook and update
         // the state variable(data).
-    // const getDBData = async () => {
-    //     const dbRes = await db.getFirstAsync(`
-    //         SELECT * FROM fees, codes, rates, districts;
-    //     `)
+    const getDBData = async () => {
+        const dbRes = await db.getFirstAsync(`
+            SELECT * FROM fees, codes, rates, districts;
+        `)
 
-    //     setData(dbRes)
-    // }
+        setData(dbRes)
+    }
 
     // // I need this to run once
-    // useEffect(() => {
-    //     getDBData();
-    // })
+    useEffect(() => {
+        getDBData();
+    })
 
     return (
         <ConfigDataContext.Provider value={data}>

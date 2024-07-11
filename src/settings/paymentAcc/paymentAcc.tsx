@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 import ReuseInput from '../../reuseables/input';
+import { ConfigDataContext } from '../../warehouse/configContext';
 
 export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
+    const payCtx: any = useContext(ConfigDataContext)
     return (
         <SafeAreaView>
             <Text>
@@ -17,7 +19,9 @@ export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
                         placeHolder: 'Code',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"AgencyCode")
+                        onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"AgencyCode"),
+                        value: payCtx[`${feeType.replace(" ", "").toLowerCase()}`+"AgencyCode"]
+                        
                         
                     }}
                 />
@@ -27,7 +31,8 @@ export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
                         placeHolder: 'Code',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"RevenueCode")
+                        onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"RevenueCode"),
+                        value: payCtx[`${feeType.replace(" ", "").toLowerCase()}`+"RevenueCode"]
                         
                     }}
                 />

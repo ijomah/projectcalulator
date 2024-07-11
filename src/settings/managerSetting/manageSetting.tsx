@@ -10,7 +10,7 @@ import SettingPage from "../setPage";
 export default function ManagerSetting() {
     const ctxStore: any = useContext(ConfigDataContext);
     const dispatchToCtxStore: any = useContext(DispatchContext);
-    // const db = useSQLiteContext();
+    const db = useSQLiteContext();
   const [dbVal, setDbVal] = useState({})
 
     const getUserData = (inputKey: any, inputValue: any) => {
@@ -26,7 +26,8 @@ export default function ManagerSetting() {
     dispatchToCtxStore({...ctxStore, [distKey]: distValue})
     setDbVal({...dbVal, [distKey]: distValue})
     console.log('ctx content', dbVal)
-    // await storeInfo(db, dbVal);
+    await storeInfo(db, dbVal);
+
     
   }
 
@@ -71,41 +72,41 @@ export default function ManagerSetting() {
                     ]
                 );
 
-            await db.runAsync(`
-                    INSERT INTO fees (
-                      appQRegQFee,
-                      layoutQFee,
-                        user_id
-                    ) VALUES (?, ?, ?)`,
-                    [
-                        docData.appQRegQFee,
-                        docData.layoutQFee,
-                        userId
-                    ]
-                );
+            // await db.runAsync(`
+            //         INSERT INTO fees (
+            //           appQRegQFee,
+            //           layoutQFee,
+            //             user_id
+            //         ) VALUES (?, ?, ?)`,
+            //         [
+            //             docData.appQRegQFee,
+            //             docData.layoutQFee,
+            //             userId
+            //         ]
+            //     );
 // //Remember to drop column applic_name here. 
 // //it is now in name table
 // //Relationship is many to many
-            await db.runAsync(`
-                    INSERT INTO codes (
-                      processingfeeRevenueCode,
-                      processingfeeAgencyCode,
-                      stagecertificationAgencyCode,
-                      stagecertificationRevenueCode,
-                      bettermentAgencyCode,
-                      bettermentRevenueCode,
-                      user_id
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                    [
-                        docData.processingfeeRevenueCode,
-                        docData.processingfeeAgencyCode,
-                        docData.stagecertificationAgencyCode,
-                        docData.stagecertificationRevenueCode,
-                        docData.bettermentAgencyCode,
-                        docData.bettermentRevenueCode,
-                        userId
-                    ]
-                )
+            // await db.runAsync(`
+            //         INSERT INTO codes (
+            //           processingfeeRevenueCode,
+            //           processingfeeAgencyCode,
+            //           stagecertificationAgencyCode,
+            //           stagecertificationRevenueCode,
+            //           bettermentAgencyCode,
+            //           bettermentRevenueCode,
+            //           user_id
+            //         ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            //         [
+            //             docData.processingfeeRevenueCode,
+            //             docData.processingfeeAgencyCode,
+            //             docData.stagecertificationAgencyCode,
+            //             docData.stagecertificationRevenueCode,
+            //             docData.bettermentAgencyCode,
+            //             docData.bettermentRevenueCode,
+            //             userId
+            //         ]
+            //     )
 }
 
     return (

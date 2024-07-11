@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView, StyleSheet, View, Text, TextInput } from "react-native";
 import ReuseInput from '../../reuseables/input';
+import { ConfigDataContext } from '../../warehouse/configContext';
 
 export default function RatePage(this: any, {getUserData}: any) {
+    const ctx: any = useContext(ConfigDataContext)
     return (
         <SafeAreaView>
             <Text>RATES</Text>
@@ -15,7 +17,8 @@ export default function RatePage(this: any, {getUserData}: any) {
                         inputMode: 'numeric',
                         textAlign: 'center',
                         // value: '',
-                        onChangeText: getUserData.bind(this, "residential")
+                        onChangeText: getUserData.bind(this, "residential"),
+                        value: ctx.residential
 
                     }}
                 />
@@ -26,8 +29,8 @@ export default function RatePage(this: any, {getUserData}: any) {
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        onChangeText: getUserData.bind(this, "commercial")
-                        
+                        onChangeText: getUserData.bind(this, "commercial"),
+                        value: ctx.commercial
                     }}
                 />
 
@@ -37,7 +40,8 @@ export default function RatePage(this: any, {getUserData}: any) {
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        onChangeText: getUserData.bind(this, "industrial")
+                        onChangeText: getUserData.bind(this, "industrial"),
+                        value: ctx.industrial
                     }}
                 />
 
@@ -47,8 +51,8 @@ export default function RatePage(this: any, {getUserData}: any) {
                         placeHolder: 'Rate',
                         textAlign: 'center',
                         inputMode: 'numeric',
-                        onChangeText: getUserData.bind(this, "institutional")
-                        
+                        onChangeText: getUserData.bind(this, "institutional"),
+                        value: ctx.institutional
                     }}
                 />
 
@@ -58,8 +62,8 @@ export default function RatePage(this: any, {getUserData}: any) {
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        onChangeText: getUserData.bind(this, "agricultural")
-                        
+                        onChangeText: getUserData.bind(this, "agricultural"),
+                        value: ctx.agricultural
                     }}
                 />
 
@@ -69,7 +73,8 @@ export default function RatePage(this: any, {getUserData}: any) {
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        onChangeText: getUserData.bind(this, 'recreational')
+                        onChangeText: getUserData.bind(this, 'recreational'),
+                        value: ctx.recreational
                         
                     }}
                 />
@@ -80,7 +85,8 @@ export default function RatePage(this: any, {getUserData}: any) {
                         placeHolder: 'Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        onChangeText: getUserData.bind(this, "mixedUse")
+                        onChangeText: getUserData.bind(this, "mixedUse"),
+                        value: ctx.mixedUse
                         
                     }}
                 />

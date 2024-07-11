@@ -109,7 +109,6 @@ export default function FloorType(this: any,
                         title={totalValue}
                         onGoto={
                             () => {
-                                console.log(timesValues())
                                 getTotalVal(timesValues())
                                 setTotalValue(timesValues())
                                 // structureData()
