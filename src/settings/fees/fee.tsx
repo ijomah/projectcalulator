@@ -17,7 +17,7 @@ export default function FeePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='APP & REG FEE'
                     inputConfig={{
-                        placeholder: '  AMOUNT',
+                        placeholder: '  Amount',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, "appQRegQFee"),
@@ -27,7 +27,7 @@ export default function FeePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='LAYOUT FEE'
                     inputConfig={{
-                        placeholder: 'AMOUNT',
+                        placeholder: '  Amount',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, "layoutQFee"),

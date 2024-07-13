@@ -11,53 +11,54 @@ import {
     ToastAndroid
 } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
 import AppButton from "../buttons/appBtn";
 import { screeninfos } from "../data/data";
 import DisplayInfo from "../display/display";
 import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
 
-import * as SecureStore from 'expo-secure-store';
 
-
-export default function BuildingTypePage({nav, compPathName}: any) {
+export default function BuildingTypePage({transferRate, nav, compPathName}: any) {
     const devDimension = useWindowDimensions();
     // const [rate, setRate] = useState({});
     
-    const ctxRate: any = useContext(ConfigDataContext);
-    const dispatchCtxRate: any = useContext(DispatchContext);
-    // const [rateCtxState, setRateCtxState] = useState(ctxRate);
-    // const nav = useNavigation();
-    //Transfer rate will interact with context
-    //get the rate from setting
-    //pass it as parameter to nav
-    const transferRate = (rateKey: any) => {
-        // const storeDataStr: any = SecureStore.getItemAsync("settingData");
-        // const storeData = JSON.parse(storeDataStr)
-        // console.log('store', storeDataStr, storeData);
-        dispatchCtxRate({...ctxRate, selectedBuildType: {buildType: rateKey, rate: ctxRate[rateKey]}})
-        // loop the ctx obj
-        //compare the keys with the one string
-        //if true, take the value, set it to state
-        // setRate({buildType: rateKey, rate: ctxRate[rateKey]})
-        // let keyRate = rateKey.replace(' ', '');
-        // console.log('ctxRate', ctxRate)
-        // for (var property in ctxRate) {
-        //     console.log('property for ctx', property)
+    // const ctxRate: any = useContext(ConfigDataContext);
+    // const dispatchCtxRate: any = useContext(DispatchContext);
+    // // const [rateCtxState, setRateCtxState] = useState(ctxRate);
+    // // const nav = useNavigation();
+    // //Transfer rate will interact with context
+    // //get the rate from setting
+    // //pass it as parameter to nav
+    // const transferRate = (rateKey: any) => {
+    //     // const storeDataStr: any = SecureStore.getItemAsync("settingData");
+    //     // const storeData = JSON.parse(storeDataStr)
+    //     // console.log('store', storeDataStr, storeData);
+    //     dispatchCtxRate({...ctxRate, 
+    //         selectedBuildType: {
+    //             buildType: rateKey, 
+    //             rate: ctxRate[rateKey]
+    //         }})
+    //     // loop the ctx obj
+    //     //compare the keys with the one string
+    //     //if true, take the value, set it to state
+    //     // setRate({buildType: rateKey, rate: ctxRate[rateKey]})
+    //     // let keyRate = rateKey.replace(' ', '');
+    //     // console.log('ctxRate', ctxRate)
+    //     // for (var property in ctxRate) {
+    //     //     console.log('property for ctx', property)
             
-        //     if (property === rateKey ) {
-        //         // let ppty = property.toLowerCase();
-        //         dispatchCtxRate({...ctxRate, rateKey: ctxRate[property]})
-        //     }
-        // }
-        // console.log(Object.keys(ctxRate))
-        // const {...ctxRateCopy} = ctxRate;
-        // Object.getOwnPropertyNames(ctxRate).forEach((objKey)=>{
-        //     if(objKey === rateKey.replace(' ', '')) {
-        //         setRate(ctxRate.objKey);
-        //     }
-        // })
-    };
+    //     //     if (property === rateKey ) {
+    //     //         // let ppty = property.toLowerCase();
+    //     //         dispatchCtxRate({...ctxRate, rateKey: ctxRate[property]})
+    //     //     }
+    //     // }
+    //     // console.log(Object.keys(ctxRate))
+    //     // const {...ctxRateCopy} = ctxRate;
+    //     // Object.getOwnPropertyNames(ctxRate).forEach((objKey)=>{
+    //     //     if(objKey === rateKey.replace(' ', '')) {
+    //     //         setRate(ctxRate.objKey);
+    //     //     }
+    //     // })
+    // };
 
     const goto  = () => {
         // if (rate === 0) {
@@ -73,7 +74,7 @@ export default function BuildingTypePage({nav, compPathName}: any) {
                 onPress={() => {
                     transferRate(item.buildType)
                 }}
-                style={[styles.buildType, {borderColor: item.colors}]}
+                style={[styles.buildType, {borderColor: item.colors, backgroundColor: 'white', opacity: 0.8,}]}
             >
                 <DisplayInfo 
                     info={item.building != null ? item.building : ''}
@@ -85,17 +86,16 @@ export default function BuildingTypePage({nav, compPathName}: any) {
     
     return (
         <SafeAreaView style={styles.buildTypeBox}>
-            <FlatList
-                style={styles.flatListstyle}
-                data={screeninfos}
-                renderItem={showScreenInfo}
-                // keyExtractor={({item}: any) => item.id}
-            />
-            
             <ImageBackground
                 source={require('./../../assets/imagebg.jpeg')}
                 style={styles.imgBg}
             >
+                 <FlatList
+                    style={styles.flatListstyle}
+                    data={screeninfos}
+                    renderItem={showScreenInfo}
+                    // keyExtractor={({item}: any) => item.id}
+                />
                 <AppButton 
                     onGoto={goto}
                     btnConfig={{
@@ -139,8 +139,9 @@ const styles = StyleSheet.create({
         
     },
     imgBg: {
-            height: screenSize.height / 5,
+            height: screenSize.height / 1.35,
             flexDirection: 'column',
+            alignItems: 'center',
             alignSelf: 'stretch',
             width: screenSize.width - 20,
             // opacity: 0.4,

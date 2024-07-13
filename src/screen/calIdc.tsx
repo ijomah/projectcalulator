@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -10,9 +10,22 @@ import {
 // import { screeninfos } from "../src/data/ds
 import BuildingTypePage from "./buildingType";
 import { AppStyles } from "../constants/styles";
+import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
 
 export default function CalIdc({navigation}: any) {
+    const ctxRate: any = useContext(ConfigDataContext);
+    const dispatchCtxRate: any = useContext(DispatchContext);
     const devDimension = useWindowDimensions()
+
+
+    const transferRate = (rateKey: any) => {
+        dispatchCtxRate({...ctxRate, 
+            selectedBuildType: {
+                buildType: rateKey, 
+                rate: ctxRate[rateKey]
+            }})
+        
+    };
 
      
     return (
@@ -20,6 +33,7 @@ export default function CalIdc({navigation}: any) {
             <BuildingTypePage 
                 nav={navigation}
                 compPathName='idcFee'
+                {...{transferRate}}
             />
         </SafeAreaView>
     )

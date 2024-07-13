@@ -98,7 +98,7 @@ export default function ConfigContextProvider({children}: any) {
         setData(dbRes)
     }
 
-    // // I need this to run once
+    // I need this to run once
     useEffect(() => {
         getDBData();
     })

@@ -16,7 +16,7 @@ export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
                 <ReuseInput 
                     label='AGENCY CODE'
                     inputConfig={{
-                        placeHolder: 'Code',
+                        placeholder: '  Account',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"AgencyCode"),
@@ -28,7 +28,7 @@ export default function PaymentAcc(this: any, {feeType, getUserData}: any) {
                 <ReuseInput 
                     label='REVENUE CODE'
                     inputConfig={{
-                        placeHolder: 'Code',
+                        placeholder: '  Account',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, `${feeType.replace(" ", "").toLowerCase()}`+"RevenueCode"),

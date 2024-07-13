@@ -13,7 +13,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='RESIDENTIAL USE'
                     inputConfig={{
-                        placeHolder: 'Rate',
+                        placeholder: '  Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         // value: '',
@@ -26,7 +26,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='COMMERCIAL USE'
                     inputConfig={{
-                        placeHolder: 'Rate',
+                        placeholder: '  Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, "commercial"),
@@ -37,7 +37,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='INDUSTRIAL USE'
                     inputConfig={{
-                        placeHolder: 'Rate',
+                        placeholder: '  Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, "industrial"),
@@ -48,7 +48,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='INSTITUTIONAL USE'
                     inputConfig={{
-                        placeHolder: 'Rate',
+                        placeholder: '  Rate',
                         textAlign: 'center',
                         inputMode: 'numeric',
                         onChangeText: getUserData.bind(this, "institutional"),
@@ -59,7 +59,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='AGRICULTURAL USE'
                     inputConfig={{
-                        placeHolder: 'Rate',
+                        placeholder: '  Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, "agricultural"),
@@ -70,7 +70,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='RECREATIONAL USE'
                     inputConfig={{
-                        placeHolder: 'Rate',
+                        placeholder: '  Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, 'recreational'),
@@ -82,7 +82,7 @@ export default function RatePage(this: any, {getUserData}: any) {
                 <ReuseInput 
                     label='MIXED USE'
                     inputConfig={{
-                        placeHolder: 'Rate',
+                        placeholder: '  Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
                         onChangeText: getUserData.bind(this, "mixedUse"),
