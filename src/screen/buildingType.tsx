@@ -91,16 +91,15 @@ export default function BuildingTypePage({transferRate, nav, compPathName}: any)
                 style={styles.imgBg}
             >
                  <FlatList
-                    style={styles.flatListstyle}
+                    style={{height: screenSize.height / 1.75 }}
+                    contentContainerStyle={{height: screenSize.height / 1.8,}}
                     data={screeninfos}
                     renderItem={showScreenInfo}
                     // keyExtractor={({item}: any) => item.id}
                 />
                 <AppButton 
                     onGoto={goto}
-                    btnConfig={{
-                        
-                    }}
+                    btnConfig={{}}
                     title='NEXT'
                 />
             </ImageBackground>
@@ -113,10 +112,11 @@ const styles = StyleSheet.create({
     buildTypeBox: {
         // backgroundColor: 'yellow',
         // height: 750, //use dim api or windowdim hook
-        height: screenSize.height - 163,
+        // height: screenSize.height - 163,
+        height: screenSize.height / 1.33,
         width: screenSize.width - 20,
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         // backgroundColor: 'red',
     },
     buildType: {
@@ -129,23 +129,19 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: 'green',
         // margin: 15,
-        margin: ((screenSize.height / 10) - 15) / 10,
+        margin: ((screenSize.height / 10) - 15) / 15,
         borderRadius: 20,
     },
-
-    flatListstyle: {
-        // height: (screenSize.height / 10) - 10,
-        // backgroundColor: 'yellow',
-        
-    },
     imgBg: {
-            height: screenSize.height / 1.35,
+            // height: screenSize.height / 1.35,
+            height: screenSize.height / 1.5,
             flexDirection: 'column',
             alignItems: 'center',
-            alignSelf: 'stretch',
+            // alignSelf: 'stretch',
             width: screenSize.width - 20,
-            // opacity: 0.4,
-            resizeMode: 'contain'
+            opacity: 0.8,
+            resizeMode: 'contain',
+            // backgroundColor: 'yellow',
     }
 
 })

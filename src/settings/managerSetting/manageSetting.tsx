@@ -68,7 +68,7 @@ export default function ManagerSetting() {
                         docData.recreational,
                         docData.industrial,
                         docData.date,
-                        userId
+                        userId.lastInsertRowId
                     ]
                 );
 
@@ -81,7 +81,7 @@ export default function ManagerSetting() {
                     [
                         docData.appQRegQFee,
                         docData.layoutQFee,
-                        userId
+                        userId.lastInsertRowId
                     ]
                 );
 // //Remember to drop column applic_name here. 
@@ -104,7 +104,7 @@ export default function ManagerSetting() {
                         docData.stagecertificationRevenueCode,
                         docData.bettermentAgencyCode,
                         docData.bettermentRevenueCode,
-                        userId
+                        userId.lastInsertRowId
                     ]
                 )
 }

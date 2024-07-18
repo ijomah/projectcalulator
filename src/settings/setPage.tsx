@@ -50,7 +50,7 @@ export default function SettingPage({saveData, getUserData}: any) {
     return (
         <ScrollView contentContainerStyle={styles.settingStyles}>
             <DisplayInfo 
-                    info='CONFIGURATION'
+                    info='Configuration'
                 />
             <View>
                 <View style={styles.dropDownAndLabel}>

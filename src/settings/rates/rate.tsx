@@ -16,9 +16,9 @@ export default function RatePage(this: any, {getUserData}: any) {
                         placeholder: '  Rate',
                         inputMode: 'numeric',
                         textAlign: 'center',
-                        // value: '',
+                        value: ctx.residential,
                         onChangeText: getUserData.bind(this, "residential"),
-                        value: ctx.residential
+                        
 
                     }}
                 />

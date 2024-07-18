@@ -92,16 +92,20 @@ export default function ConfigContextProvider({children}: any) {
         // the state variable(data).
     const getDBData = async () => {
         const dbRes = await db.getFirstAsync(`
-            SELECT * FROM fees, codes, rates, districts;
+            SELECT * FROM rates
+            JOIN codes ON rates.user_id = codes.user_id
+            JOIN districts ON districts.user_id = rates.user_id
+            JOIN fees ON fees.user_id = rates.user_id;
         `)
 
-        setData(dbRes)
+        setData({...data, dbRes})
+        console.log('hi db', dbRes)
     }
 
     // I need this to run once
     useEffect(() => {
         getDBData();
-    })
+    }, [])
 
     return (
         <ConfigDataContext.Provider value={data}>

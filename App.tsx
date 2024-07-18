@@ -37,7 +37,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
     return (
-        <SqliteDbProvider>
+        // <SqliteDbProvider>
             <ConfigContextProvider>
                 <NavigationContainer>
                     <Tab.Navigator 
@@ -95,6 +95,6 @@ export default function App() {
                     </Tab.Navigator>
                 </NavigationContainer>
             </ConfigContextProvider>
-        </SqliteDbProvider>
+        // </SqliteDbProvider>
     )
 }

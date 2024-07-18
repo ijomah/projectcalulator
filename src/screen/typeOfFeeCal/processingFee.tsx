@@ -423,6 +423,28 @@ export default function ProcessFee({navigation, params}: any) {
         }
     }
     
+    const putFeesDataInCtx = () => {
+        dispatchCtxData({...ctxData, 
+            fencingQFee: fenceFee.fencingQFee,
+            assessmentFee: assess, 
+            processingFee: procFee,
+            tenPercent: tenPercentage,
+            sec: assess,
+            subTotal: subtot,
+            feesDatum: [...ctxData.feesDatum, {
+                assessmentFee: assess,
+                layoutFee: ctxData.layoutQFee,
+                appRegFee: ctxData.appQRegQFee,
+                subTotal: subtot,
+                tenPercent: tenPercentage,
+                fivePercent: fivePercentage,
+                sec: assess,
+                Total: procFee,
+                fencingFee: parseInt(fenceFee.fencingQFee)
+            }
+            ]
+        })
+    }
    
     return (
         <ScrollView style={styles.processCase}>
@@ -447,6 +469,7 @@ export default function ProcessFee({navigation, params}: any) {
                 navigation={navigation}
                 {...{computeAssessmentData,
                     assess,
+                    putFeesDataInCtx,
                     tenPercentage,
                     fivePercentage,
                     procFee,

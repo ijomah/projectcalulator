@@ -86,7 +86,7 @@ export default function SqliteDbProvider({children}: any) {
         await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`);
       }
 
-
+    
   return (
     // <View style={styles.container}>
     // <Suspense fallback={<Fallback />}>

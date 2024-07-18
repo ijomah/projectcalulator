@@ -23,6 +23,7 @@ import Pfs from "./typeOfFeeCal/pfs";
 export default function CalcuationTypes(this: any, {
     getUserDatum,
     getFeeDataObj,
+    putFeesDataInCtx,
     computeAssessmentData,
     assess,
     tenPercentage,
@@ -52,7 +53,7 @@ export default function CalcuationTypes(this: any, {
                                             textAlign: 'center',
                                             inputMode: 'numeric',
                                             onChangeText: getUserDatum.bind(this, 'pfsQFencingQFee'),
-                                            // onEndEditting: computeAssessmentData
+                                            onEndEditting: putFeesDataInCtx
                                         }}
                                 />
                             </View>
@@ -82,7 +83,7 @@ export default function CalcuationTypes(this: any, {
                                         textAlign: 'center',
                                         inputMode: 'numeric',
                                         onChangeText: getUserDatum.bind(this, 'firstQfloorQpump'),
-                                        // onEndEditting: computeAssessmentData
+                                        onEndEditting: putFeesDataInCtx
                                     }}
                             />
                         </View>
@@ -113,7 +114,7 @@ export default function CalcuationTypes(this: any, {
                                         textAlign: 'center',
                                         inputMode: 'numeric',
                                         onChangeText: getUserDatum.bind(this, 'addQpump'),
-                                        // onEndEditting: computeAssessmentData
+                                        onEndEditting: putFeesDataInCtx
                                     }}
                             />
                         </View>
@@ -144,7 +145,7 @@ export default function CalcuationTypes(this: any, {
                                             textAlign: 'center',
                                             inputMode: 'numeric',
                                             onChangeText: getUserDatum.bind(this, 'underQgroundQtank'),
-                                            // onEndEditting: computeAssessmentData
+                                            onEndEditting: putFeesDataInCtx
                                         }}
                                 />
                             </View>
@@ -177,6 +178,7 @@ export default function CalcuationTypes(this: any, {
                                         textAlign: 'center',
                                         inputMode: 'numeric',
                                         onChangeText: getUserDatum.bind(this, 'fencingQFee'),
+                                        onEndEditting: putFeesDataInCtx,
                                         onChange: () => {                                    
                                             // computeAssessmentData();
                                             
