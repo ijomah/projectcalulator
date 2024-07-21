@@ -280,6 +280,8 @@ export default function PageUsedInPenal(this: any, {navigation, route}: any) {
             <AppButton 
                 title='PREVIEW'
                 isBtn={true}
+                //Later i May need a delay tactics before navigating for semding 
+                //data to ctx like I did in processFee case
                 onGoto={() => navigation.navigate('preview')}
             // btnConfig=
             />

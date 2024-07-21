@@ -7,7 +7,8 @@ import {
     TouchableOpacity, 
     useWindowDimensions,
     Dimensions,
-    ScrollView
+    ScrollView,
+    ToastAndroid
 } from "react-native";
 
 
@@ -18,13 +19,17 @@ import BuildingLevel from "../../buildings/building";
 // import ManageApplicantDetails from "../../bio/manageApplicantDet";
 import { ConfigDataContext, DispatchContext } from "../../warehouse/configContext";
 import { addUp, calculate, multiplyNum } from "../../../util/utilFxn";
+import { useSQLiteContext } from "expo-sqlite";
 // console.log('outer', this.fencingQFee)
 export default function ProcessFee({navigation, params}: any) {
     // console.log('inner', this.fencingQFee)
     const ctxData: any = useContext(ConfigDataContext);
     const dispatchCtxData: any = useContext(DispatchContext)
     const [fenceFee, setfenceFee]: any = useState({fencingQFee: 0});
+    const [tapCount, setTapCount]: any = useState(1)
     const devDimension = useWindowDimensions();
+    
+    
 
     //From build level comp
     const [datum, buildDatum] = useState([{type: 'G/F', id: '1', totResult: 0}]);
@@ -244,7 +249,7 @@ export default function ProcessFee({navigation, params}: any) {
     //filter the array to the correct arithmetical ones
     //take the floor total of each floor
     //cal your assessment then
-
+    
     const computeAssessmentData = (assessVal: any) => {
         if (ctxData.floorTotal.length === 0) {
             return
@@ -445,7 +450,24 @@ export default function ProcessFee({navigation, params}: any) {
             ]
         })
     }
+
+            //This is for the purpose of dispatching feesDatum to ctx
+   //keep state tapped  , setTapped for no of taps(counter)
+   //use if condition- on 1st tap, toast the user to tap again
+   //toast the messages "Goto to preview page? Tap again!"
+   //on 2nd tap navigate then
+   const sendFeesDatumToCtx = () => {
+    if(tapCount === 1) {
+        setTapCount(2)
+        ToastAndroid.show('Goto to preview page? Tap again!', ToastAndroid.LONG)
+    }else if(tapCount === 2) {
+        ToastAndroid.show('Here is preview page!', ToastAndroid.SHORT)
+        navigation.navigate('preview')
+    }
+   }
+
    
+
     return (
         <ScrollView style={styles.processCase}>
             <ScreenHeadings 
@@ -468,6 +490,7 @@ export default function ProcessFee({navigation, params}: any) {
             <CalcuationTypes 
                 navigation={navigation}
                 {...{computeAssessmentData,
+                    sendFeesDatumToCtx,
                     assess,
                     putFeesDataInCtx,
                     tenPercentage,

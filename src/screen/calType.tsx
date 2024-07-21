@@ -23,6 +23,7 @@ import Pfs from "./typeOfFeeCal/pfs";
 export default function CalcuationTypes(this: any, {
     getUserDatum,
     getFeeDataObj,
+    sendFeesDatumToCtx,
     putFeesDataInCtx,
     computeAssessmentData,
     assess,
@@ -387,7 +388,10 @@ export default function CalcuationTypes(this: any, {
                                 fencingFee: fenceFee
                             }]
                         })
-                        navigation.navigate('preview')
+                        //This will taost and go to preview after aecond taost
+                        //It will let dispatch to ctx finish up its work and wait 
+                        //for 2nd render. Defined in processFee component
+                        sendFeesDatumToCtx()
                     }
                     }
                     // btnConfig=

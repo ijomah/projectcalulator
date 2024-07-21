@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { 
     SafeAreaView, 
     StyleSheet, 
@@ -12,6 +12,8 @@ import {
 } from "react-native";
 
 import { MaterialIcons } from '@expo/vector-icons';
+import { ConfigDataContext, DispatchContext } from "../warehouse/configContext";
+import { useSQLiteContext } from "expo-sqlite";
 
 export default function HomePage({navigation}: any) {
     const screenInfo = [
@@ -24,17 +26,37 @@ export default function HomePage({navigation}: any) {
         {id: '7', dest: 'pixCollage', info: 'Picture Collage', iconName: 'picture-in-picture'}
     ]
     // const {width, height, fontScale, scale} = useWindowDimensions();
+    const ctxHome: any = useContext(ConfigDataContext);
+    const dispatchCtxHome: any = useContext(DispatchContext);
+    const db = useSQLiteContext();
+    
     const showScreenInfo = ({item}: any) => {
         return(
             <Pressable
                 style={styles.cardStyle}
-                onPress={() => navigation.navigate(item.dest)}
+                onPress={() => {
+                    item.dest != 'setting' || item.dest != 'pixCollage'? readDB() : '';
+                    navigation.navigate(item.dest)
+                }}
             >
                 <MaterialIcons name={item.iconName} size={40} color="#305452" />
                 <Text style={styles.cardTextStyle}>{item.info}</Text>
             </Pressable>
         )
     } 
+
+     //Read db here
+   const readDB = async () => {
+    const dbResult = await db.getFirstAsync(`
+        SELECT * FROM rates
+        JOIN codes ON rates.user_id = codes.user_id
+        JOIN districts ON districts.user_id = rates.user_id
+        JOIN fees ON fees.user_id = rates.user_id;
+    `);
+
+    dispatchCtxHome({...ctxHome, dbResult})
+    console.log('hi db from HOME', dbResult)
+}
     return (
         <SafeAreaView style={styles.listStyle}>
             

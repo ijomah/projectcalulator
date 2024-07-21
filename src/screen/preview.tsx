@@ -275,7 +275,7 @@ export default function PreviewPage({navigation, gatherDet}: any) {
 
         <section id="cal-data">
             <div>
-            ${contxt.feeDatum.map((_feeDatum: any) => (
+            ${contxt.feesDatum.map((_feeDatum: any) => (
                 `<p class="display-types">
                     <span style="flex: 1;"><b>${_feeDatum.fenceLabel}:</b> </span>
 
